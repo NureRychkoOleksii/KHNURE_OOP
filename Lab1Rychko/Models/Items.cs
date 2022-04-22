@@ -15,7 +15,7 @@ namespace Lab1Rychko.Models
 
             Random rnd = new Random();
 
-            wall = new Pixel(rnd.Next(1, 25), rnd.Next(1, 15), ConsoleColor.Green);
+            wall = new Pixel(rnd.Next(1, 25), rnd.Next(5, 15), ConsoleColor.Green);
 
             return wall;
         }
@@ -28,7 +28,7 @@ namespace Lab1Rychko.Models
 
             do
             {
-                enerBall = new Pixel(rnd.Next(1, 28), rnd.Next(1, 18), ConsoleColor.Green);
+                enerBall = new Pixel(rnd.Next(1, 25), rnd.Next(5, 15), ConsoleColor.Green);
             } while (ball.BallPixel.X == enerBall.X && ball.BallPixel.Y == enerBall.Y);
 
             return enerBall;

@@ -20,8 +20,8 @@ namespace Lab1Rychko
 
         public void StartGame()
         {
-            Console.SetWindowSize(200, 100);
-            Console.SetBufferSize(200, 100);
+            Console.SetWindowSize(150, 100);
+            Console.SetBufferSize(150, 100);
             var drawMenu = new DrawMenu();
             drawMenu.DrawMenuConsole();
             Console.ReadKey();
@@ -142,6 +142,19 @@ namespace Lab1Rychko
                     break;
                 }
             }
+            ball.Clear();
+            wall.Clear();
+            foreach (var i in walls)
+            {
+                i.Clear();
+            }
+            foreach (var i in items)
+            {
+                i.Clear();
+            }
+
+            Console.SetCursorPosition(_screenWidth / 3, _screenHeight / 3);
+
             Console.Write($"Game over, your score is {score}");
 
             Console.ReadKey();

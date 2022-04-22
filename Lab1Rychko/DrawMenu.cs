@@ -33,7 +33,17 @@ namespace Lab1Rychko
 | |   | | |  __/\__ \__ \ | (_| | | | | |_| | |   <  __/ |_| | | || (_) | \__ \ || (_| | |  | |_ 
 |_|   |_|  \___||___/___/  \__,_|_| |_|\__, | |_|\_\___|\__, |  \__\___/  |___/\__\__,_|_|   \__|
                                         __/ |            __/ |                                   
-                                       |___/            |___/                                    ");
+                                       |___/            |___/                                    
+
+
+
+
+");
+            Console.WriteLine(@"                                                                UpArrow - Up
+                                                                DownArrow - Down
+                                                                LeftArrow - Left
+                                                                RightArrow - Right
+                                                                Tab - change wall");
         }
     }
 }
