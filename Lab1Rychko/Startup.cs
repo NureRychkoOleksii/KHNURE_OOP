@@ -20,6 +20,12 @@ namespace Lab1Rychko
 
         public void StartGame()
         {
+            Console.SetWindowSize(200, 100);
+            Console.SetBufferSize(200, 100);
+            var drawMenu = new DrawMenu();
+            drawMenu.DrawMenuConsole();
+            Console.ReadKey();
+            Console.Clear();
             Console.SetWindowSize(_screenWidth, _screenHeight);
             Console.SetBufferSize(_screenWidth, _screenHeight);
             Console.CursorVisible = false;
