@@ -47,6 +47,8 @@ namespace Lab1Rychko
             var item2 = item.GenerateEnergyBall(ball);
             item2.DrawBall();
 
+            var doubleItems = new List<List<Pixel>>() { new List<Pixel>() { item1 }, new List<Pixel>(){ item2 } };
+
             var items = new List<Pixel>() { item1, item2 };
             var count = items.Count;
             var walls = new List<Pixel>() { wall1, wall2 };

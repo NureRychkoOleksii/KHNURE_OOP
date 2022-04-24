@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lab1Rychko.Models
 {
-    public readonly struct Pixel
+    class Pixel : DrawClass
     {
         private const char _pixelChar = '█';
         private const char _wallChar = '#';
@@ -41,7 +41,20 @@ namespace Lab1Rychko.Models
             }
         }
 
-        public void Clear()
+        public override void Draw()
+        {
+            Console.ForegroundColor = Color;
+            for (int x = 0; x < PixelSize; x++)
+            {
+                for (int y = 0; y < PixelSize; y++)
+                {
+                    Console.SetCursorPosition((int)X * PixelSize + x, (int)Y * PixelSize + y);
+                    Console.Write(_pixelChar);
+                }
+            }
+        }
+
+        public override void Clear()
         {
             for (int x = 0; x < PixelSize; x++)
             {

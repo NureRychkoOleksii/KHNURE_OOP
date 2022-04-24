@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Lab1Rychko
 {
-    class DrawBorder
+    class DrawBorder : DrawClass
     {
         private readonly int _mapWidth;
         private readonly int _mapHeight;
@@ -19,7 +19,7 @@ namespace Lab1Rychko
             _mapHeight = mapHeight;
         }
 
-        public void Draw()
+        public override void Draw()
         {
             for (int i = 0; i < _mapWidth; i++)
             {
@@ -32,6 +32,11 @@ namespace Lab1Rychko
                 new Pixel(0, i, BorderColor).Draw();
                 new Pixel(_mapWidth - 1, i, BorderColor).Draw();
             }
+        }
+
+        public override void Clear()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lab1Rychko.Models
 {
-    class Ball
+    class Ball : DrawClass
     {
         private const ConsoleColor _color = ConsoleColor.Blue;
 
@@ -17,12 +17,12 @@ namespace Lab1Rychko.Models
             BallPixel = new Pixel(initialX, initialY, _color, 1);
         }
 
-        public void Draw()
+        public override void Draw()
         {
             BallPixel.Draw();
         }
 
-        public void Clear()
+        public override void Clear()
         {
             BallPixel.Clear();
         }
@@ -40,5 +40,6 @@ namespace Lab1Rychko.Models
             };
             Draw();
         }
+
     }
 }
