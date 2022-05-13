@@ -10,8 +10,8 @@ namespace Lab1Rychko
 {
     class Startup
     {
-        private const int _mapWidth = 30;
-        private const int _mapHeight = 20;
+        private const int _mapWidth = 60;
+        private const int _mapHeight = 40;
 
         private const int _screenWidth = _mapWidth * 2;
         private const int _screenHeight = _mapHeight * 2;
@@ -37,21 +37,21 @@ namespace Lab1Rychko
             var ball = new Ball(10,5);
 
             var item = new Items();
+            var items = new List<Pixel>();
+            var walls = new List<Pixel>();
 
-            var wall1 = item.GenerateWall();
-            wall1.DrawWall();
-            var wall2 = item.GenerateWall();
-            wall2.DrawWall();
-            var item1 = item.GenerateEnergyBall(ball);
-            item1.DrawBall();
-            var item2 = item.GenerateEnergyBall(ball);
-            item2.DrawBall();
+            for (int i = 0; i<10; i++)
+            {
+                var templateItem = item.GenerateEnergyBall(ball);
+                templateItem.DrawBall();
+                var templateWall = item.GenerateWall();
+                templateWall.DrawWall();
+                walls.Add(templateWall);
+                items.Add(templateItem);
+            }
 
-            var doubleItems = new List<List<Pixel>>() { new List<Pixel>() { item1 }, new List<Pixel>(){ item2 } };
-
-            var items = new List<Pixel>() { item1, item2 };
+            var doubleItems = new List<List<Pixel>>() { new List<Pixel>() { items.FirstOrDefault() }, new List<Pixel>() { items.FirstOrDefault() } };
             var count = items.Count;
-            var walls = new List<Pixel>() { wall1, wall2 };
 
             var wall = new Wall(8,4);
             wall.DrawSlash();
@@ -92,7 +92,14 @@ namespace Lab1Rychko
                     items.Remove(items.Where(p => p.X == ball.BallPixel.X && p.Y == ball.BallPixel.Y).FirstOrDefault());
                     ball.Move(currentDirection);
                 }
-                else if((walls.Any(p => p.X - 1 == ball.BallPixel.X) || walls.Any(p => p.X + 1 == ball.BallPixel.X) || walls.Any(p => p.X == ball.BallPixel.X))  && (walls.Any(p => p.Y - 1 == ball.BallPixel.Y) || walls.Any(p => p.Y + 1 == ball.BallPixel.Y) || walls.Any(p => p.Y == ball.BallPixel.Y)))
+                //else if((walls.Any(p => p.X - 1 == ball.BallPixel.X) || walls.Any(p => p.X + 1 == ball.BallPixel.X) || walls.Any(p => p.X == ball.BallPixel.X))  && (walls.Any(p => p.Y - 1 == ball.BallPixel.Y) || walls.Any(p => p.Y + 1 == ball.BallPixel.Y) || walls.Any(p => p.Y == ball.BallPixel.Y)))
+                //{
+                //    currentDirection = ChangeDirection(currentDirection);
+                //}
+
+                else if(walls.Any(p =>(p.X == ball.BallPixel.X && p.Y == ball.BallPixel.Y) 
+                || (p.X - 1 == ball.BallPixel.X && p.Y == ball.BallPixel.Y) || (p.X == ball.BallPixel.X && p.Y - 1 == ball.BallPixel.Y)
+                || (p.X + 1 == ball.BallPixel.X && p.Y == ball.BallPixel.Y) || (p.X == ball.BallPixel.X && p.Y + 1 == ball.BallPixel.Y)))
                 {
                     currentDirection = ChangeDirection(currentDirection);
                 }
