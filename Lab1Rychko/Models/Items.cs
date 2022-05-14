@@ -15,7 +15,7 @@ namespace Lab1Rychko.Models
 
             Random rnd = new Random();
 
-            wall = new Pixel(rnd.Next(1, 25), rnd.Next(5, 15), ConsoleColor.Green);
+            wall = new Pixel(rnd.Next(1, 55), rnd.Next(5, 35), ConsoleColor.White);
 
             return wall;
         }
