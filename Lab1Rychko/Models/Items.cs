@@ -28,7 +28,7 @@ namespace Lab1Rychko.Models
 
             do
             {
-                enerBall = new Pixel(rnd.Next(1, 25), rnd.Next(5, 15), ConsoleColor.Green);
+                enerBall = new Pixel(rnd.Next(1, 55), rnd.Next(5, 35), ConsoleColor.Green);
             } while (ball.BallPixel.X == enerBall.X && ball.BallPixel.Y == enerBall.Y);
 
             return enerBall;
