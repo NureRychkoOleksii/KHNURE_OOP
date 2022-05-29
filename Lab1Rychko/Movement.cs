@@ -18,10 +18,6 @@ namespace Lab1Rychko
 
             ConsoleKey key = Console.ReadKey(true).Key;
 
-            //Dictionary<Direction, string> lst = new Dictionary<Direction, string>();
-
-            //Console.WriteLine($"up : {lst.Where(x => x.Key == Direction.Up).FirstOrDefault().Value}");
-
             switch(key)
             {
                 case ConsoleKey.UpArrow:

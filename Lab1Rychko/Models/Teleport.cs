@@ -9,7 +9,7 @@ namespace Lab1Rychko.Models
     class Teleport
     {
         private const char _tpChar = '&';
-        private const ConsoleColor _color = ConsoleColor.Red;
+        private const ConsoleColor _color = ConsoleColor.Yellow;
 
         public Pixel TpPixel { get; set; }
 
