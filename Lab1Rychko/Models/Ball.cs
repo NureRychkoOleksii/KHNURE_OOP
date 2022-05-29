@@ -10,11 +10,11 @@ namespace Lab1Rychko.Models
     {
         private const ConsoleColor _color = ConsoleColor.Blue;
 
-        public Pixel BallPixel { get; private set; }
+        public Pixel BallPixel { get; set; }
 
         public Ball(int initialX, int initialY)
         {
-            BallPixel = new Pixel(initialX, initialY, _color, 1);
+            BallPixel = new Pixel(initialX, initialY, _color, 2);
         }
 
         public override void Draw()

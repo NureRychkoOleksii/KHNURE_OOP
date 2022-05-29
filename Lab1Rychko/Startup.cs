@@ -35,6 +35,9 @@ namespace Lab1Rychko
             var music = new Music();
             music.Play();
 
+            var tp = new Teleport(new Random().Next(1, 55), new Random().Next(5, 35));
+            tp.DrawTp();
+
             drawBorder.Draw();
 
             var ball = new Ball(10,5);
@@ -84,6 +87,14 @@ namespace Lab1Rychko
                 if(wall.WallPixel.X == ball.BallPixel.X && wall.WallPixel.Y == ball.BallPixel.Y)
                 {
                    currentDirection = ChangeDirectionWalls(currentDirection, wall.SlashWall);
+                }
+
+                if(ball.BallPixel.X == tp.TpPixel.X && ball.BallPixel.Y == tp.TpPixel.Y)
+                {
+                    ball.Clear();
+                    ball.BallPixel.X = new Random().Next(1, 55);
+                    ball.BallPixel.Y = new Random().Next(5, 35);
+                    ball.Draw();
                 }
 
                 var itemBall = items.Any(p => p.X == ball.BallPixel.X && p.Y == ball.BallPixel.Y);

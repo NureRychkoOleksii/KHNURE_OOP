@@ -12,9 +12,9 @@ namespace Lab1Rychko.Models
         private const char _wallChar = '#';
         private const char _enerBallChar = '@';
 
-        public double X { get; }
+        public double X { get; set; }
 
-        public double Y { get; }
+        public double Y { get; set; }
 
         public ConsoleColor Color { get;  }
 
