@@ -17,7 +17,7 @@ namespace Lab1Rychko
         public void StopTimeChecking()
         {
             stopwatch.Stop();
-            Console.Write(stopwatch.Elapsed);
+            Console.Write("Your time: "+ stopwatch.Elapsed + " ");
         }
     }
 }

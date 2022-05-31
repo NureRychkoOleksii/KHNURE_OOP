@@ -10,7 +10,6 @@ namespace Lab1Rychko
 {
     class Startup
     {
-        
         private const int _mapWidth = 60;
         private const int _mapHeight = 40;
 
@@ -115,6 +114,7 @@ namespace Lab1Rychko
                     if (itemBall)
                     {
                         score++;
+                        items.Where(p => p.X == ball.BallPixel.X && p.Y == ball.BallPixel.Y).FirstOrDefault().Clear();
                         items.Remove(items.Where(p => p.X == ball.BallPixel.X && p.Y == ball.BallPixel.Y).FirstOrDefault());
                         ball.Move(currentDirection);
                     }
@@ -147,7 +147,13 @@ namespace Lab1Rychko
 
                     ball.Move(currentDirection);
 
-                    if (wall.WallPixel.X == _mapWidth - 2 || wall.WallPixel.X == 1 || wall.WallPixel.Y == 1 || wall.WallPixel.Y == _mapHeight - 2)
+                    if ((wall.WallPixel.X == _mapWidth - 2 || wall.WallPixel.X == 1 || wall.WallPixel.Y == 1 || wall.WallPixel.Y == _mapHeight - 2) ||
+                        walls.Any(p => p.X == wall.WallPixel.X && p.Y == wall.WallPixel.Y
+                                           || (p.X - 1 == wall.WallPixel.X && p.Y == wall.WallPixel.Y || (p.X == wall.WallPixel.X && p.Y - 1 == wall.WallPixel.Y))
+                                           || (p.X + 1 == wall.WallPixel.X && p.Y == wall.WallPixel.Y || (p.X == wall.WallPixel.X && p.Y + 1 == wall.WallPixel.Y)))
+                        || items.Any(p => p.X == wall.WallPixel.X && p.Y == wall.WallPixel.Y
+                                           || (p.X - 1 == wall.WallPixel.X && p.Y == wall.WallPixel.Y || (p.X == wall.WallPixel.X && p.Y - 1 == wall.WallPixel.Y))
+                                           || (p.X + 1 == wall.WallPixel.X && p.Y == wall.WallPixel.Y || (p.X == wall.WallPixel.X && p.Y + 1 == wall.WallPixel.Y))))
                     {
                         switch (currentDirectionWall)
                         {
