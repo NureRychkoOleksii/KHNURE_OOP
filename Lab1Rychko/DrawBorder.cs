@@ -36,7 +36,7 @@ namespace Lab1Rychko
 
         public override void Clear()
         {
-            throw new NotImplementedException();
+            //
         }
     }
 }
