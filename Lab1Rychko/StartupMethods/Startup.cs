@@ -46,7 +46,6 @@ namespace Lab1Rychko.StartupMethods
 
                 _console.DrawItems(drawBorder, music, tp, out items, out walls, player, ball, item);
 
-                var doubleItems = new List<List<Pixel>>() { new List<Pixel>() { items.FirstOrDefault() }, new List<Pixel>() { items.FirstOrDefault() } };
                 var count = items.Count;
 
                 int score = 0;
@@ -64,18 +63,20 @@ namespace Lab1Rychko.StartupMethods
                     sw.Restart();
                     var oldMovementWall = currentDirectionWall;
                     var oldMovement = currentDirection;
+                    bool changeWall = false;
 
                     while (sw.ElapsedMilliseconds <= _frameRate)
                     {
                         if (currentDirectionWall == oldMovementWall)
                         {
-                            currentDirectionWall = movement.ReadMovement(currentDirectionWall);
+                            currentDirectionWall = movement.ReadMovement(currentDirectionWall, ref changeWall);
                         }
                     }
                     player = _console.PlayerCheckings(player, ref ball, ref currentDirection, ref currentDirectionWall, ref walls, ref items);
                     ball = _console.BallCheckings(ball, ref items, ref score, ref currentDirection, ref walls, ref tp);
                     ball.Move(currentDirection);
-                    player.Move(currentDirectionWall);
+                    player.Move(currentDirectionWall, changeWall);
+                    changeWall = false;
                     currentDirectionWall = Direction.Stop;
                     if (score == count)
                     {

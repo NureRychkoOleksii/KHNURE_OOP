@@ -9,9 +9,6 @@ namespace Lab1Rychko.StartupMethods
     {
         private const int _mapWidth = 60;
         private const int _mapHeight = 40;
-        private const int _screenWidth = _mapWidth * 2;
-        private const int _screenHeight = _mapHeight * 2;
-        private int _frameRate = 200;
 
         public void SetConsole(int screenWidth, int screenHeight)
         {
@@ -99,9 +96,9 @@ namespace Lab1Rychko.StartupMethods
                                    || (p.X + 1 == ball.BallPixel.X && p.Y == ball.BallPixel.Y && (currDirCopy == Direction.Left))
                                    || (p.X == ball.BallPixel.X && p.Y + 1 == ball.BallPixel.Y && (currDirCopy == Direction.Up))))
             {
+                currentDirection = currDirCopy;
                 currentDirection = ChangeDirection(currentDirection);
             }
-            currentDirection = currDirCopy;
             if ((ball.BallPixel.X == _mapWidth - 2 || ball.BallPixel.X == 1 || ball.BallPixel.Y == 1 || ball.BallPixel.Y == _mapHeight - 2)
                         || (ball.BallPixel.X == _mapWidth - 1 || ball.BallPixel.X == 0 || ball.BallPixel.Y == 0 || ball.BallPixel.Y == _mapHeight - 1))
             {

@@ -9,7 +9,7 @@ namespace Lab1Rychko
 {
     class Movement
     {
-        public Direction ReadMovement(Direction currentDirection)
+        public Direction ReadMovement(Direction currentDirection,ref bool changeWall)
         {
             if (!Console.KeyAvailable)
             {
@@ -33,7 +33,8 @@ namespace Lab1Rychko
                     currentDirection = Direction.Right;
                     break;
                 case ConsoleKey.Tab:
-                    currentDirection = Direction.ChangeWall;
+                    currentDirection = Direction.Stop;
+                    changeWall = true;
                     break;
                 default:
                     currentDirection = Direction.Stop;

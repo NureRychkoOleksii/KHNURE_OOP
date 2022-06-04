@@ -7,7 +7,6 @@ namespace Lab1Rychko.Models
         Down = 1,
         Left = 2,
         Right = 3,
-        ChangeWall = 4,
-        Stop = 5
+        Stop = 4
     }
 }

@@ -6,7 +6,7 @@ namespace Lab1Rychko
     {
         static void Main()
         {
-            var startup = new Startup();
+            var startup = new StartupMethods.Startup();
 
             startup.StartGame();
         }

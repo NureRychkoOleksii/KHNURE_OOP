@@ -37,7 +37,7 @@ namespace Lab1Rychko.Models
             WallPixel.Clear();
         }
 
-        public void Move(Direction direction, bool eat = false)
+        public void Move(Direction direction, bool changeWall)
         {
             Clear();
 
@@ -55,13 +55,15 @@ namespace Lab1Rychko.Models
                 case Direction.Down:
                     WallPixel = new Pixel(WallPixel.X, WallPixel.Y + 1, _color);
                     break;
-                case Direction.ChangeWall:
-                    ChangeWall();
-                    break;
                 case Direction.Stop:
                     WallPixel = WallPixel;
                     break;
             }
+
+            if(changeWall)
+            {
+                ChangeWall();
+            }    
 
             if (SlashWall == '\\')
             {
