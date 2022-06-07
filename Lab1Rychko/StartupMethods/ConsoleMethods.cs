@@ -10,6 +10,16 @@ namespace Lab1Rychko.StartupMethods
         private const int _mapWidth = 60;
         private const int _mapHeight = 40;
 
+        private Dictionary<Direction, string> directions = new Dictionary<Direction, string>();
+
+        public ConsoleMethods()
+        {
+            directions.Add(Direction.Right, "x-1");
+            directions.Add(Direction.Left, "x+1");
+            directions.Add(Direction.Up, "y-1");
+            directions.Add(Direction.Down, "y+1");
+        }
+
         public void SetConsole(int screenWidth, int screenHeight)
         {
             Console.SetWindowSize(150, 100);
@@ -54,10 +64,7 @@ namespace Lab1Rychko.StartupMethods
                 currentDirection = ChangeDirectionWalls(currentDirection, player.SlashWall);
             }
             if ((player.WallPixel.X == _mapWidth - 2 || player.WallPixel.X == 1 || player.WallPixel.Y == 1 || player.WallPixel.Y == _mapHeight - 2) ||
-                        walls.Any(p => p.X - 1 == player.WallPixel.X && p.Y == player.WallPixel.Y || (p.X == player.WallPixel.X && p.Y - 1 == player.WallPixel.Y)
-                                           || (p.X + 1 == player.WallPixel.X && p.Y == player.WallPixel.Y || (p.X == player.WallPixel.X && p.Y + 1 == player.WallPixel.Y)))
-                        || items.Any(p => (p.X - 1 == player.WallPixel.X && p.Y == player.WallPixel.Y || (p.X == player.WallPixel.X && p.Y - 1 == player.WallPixel.Y))
-                                           || (p.X + 1 == player.WallPixel.X && p.Y == player.WallPixel.Y || (p.X == player.WallPixel.X && p.Y + 1 == player.WallPixel.Y))))
+                        ComparePlayerAndWalls(player, walls) || ComparePlayerAndBalls(player, items))
             {
                 switch (currentDirectionWall)
                 {
@@ -80,10 +87,9 @@ namespace Lab1Rychko.StartupMethods
 
         public Ball BallCheckings(Ball ball, ref List<Pixel> items, ref int score, ref Direction currentDirection, ref List<Pixel> walls, ref Teleport tp)
         {
-            var itemBall = items.Any(p => p.X == ball.BallPixel.X && p.Y == ball.BallPixel.Y);
             var currDirCopy = currentDirection;
 
-            if (itemBall)
+            if (items.Any(p => p.X == ball.BallPixel.X && p.Y == ball.BallPixel.Y))
             {
                 score++;
                 items.Where(p => p.X == ball.BallPixel.X && p.Y == ball.BallPixel.Y).FirstOrDefault().Clear();
@@ -91,13 +97,13 @@ namespace Lab1Rychko.StartupMethods
                 ball.Move(currentDirection);
             }
 
-            else if (walls.Any(p => (p.X - 1 == ball.BallPixel.X && p.Y == ball.BallPixel.Y && (currDirCopy == Direction.Right))
-                                   || (p.X == ball.BallPixel.X && p.Y - 1 == ball.BallPixel.Y && (currDirCopy == Direction.Down))
-                                   || (p.X + 1 == ball.BallPixel.X && p.Y == ball.BallPixel.Y && (currDirCopy == Direction.Left))
-                                   || (p.X == ball.BallPixel.X && p.Y + 1 == ball.BallPixel.Y && (currDirCopy == Direction.Up))))
+            foreach(var p in walls)
             {
-                currentDirection = currDirCopy;
-                currentDirection = ChangeDirection(currentDirection);
+                if(this.directions.Any(d => (d.Key == currDirCopy) && CompareBallCoordinates(ball, d.Value, p)))
+                {
+                    currentDirection = ChangeDirection(currentDirection);
+                    break;
+                }
             }
             if ((ball.BallPixel.X == _mapWidth - 2 || ball.BallPixel.X == 1 || ball.BallPixel.Y == 1 || ball.BallPixel.Y == _mapHeight - 2)
                         || (ball.BallPixel.X == _mapWidth - 1 || ball.BallPixel.X == 0 || ball.BallPixel.Y == 0 || ball.BallPixel.Y == _mapHeight - 1))
@@ -200,5 +206,72 @@ namespace Lab1Rychko.StartupMethods
 
             return direction;
         }
+
+        private bool CompareBallCoordinates(Ball ball, string coordinate, Pixel wall)
+        {
+            switch(coordinate)
+            {
+                case "x-1":
+                    return wall.X - 1 == ball.BallPixel.X && wall.Y == ball.BallPixel.Y;
+                case "y+1":
+                    return wall.X == ball.BallPixel.X && wall.Y - 1 == ball.BallPixel.Y;
+                case "x+1":
+                    return wall.X + 1 == ball.BallPixel.X && wall.Y == ball.BallPixel.Y;
+                case "y-1":
+                    return wall.X == ball.BallPixel.X && wall.Y + 1 == ball.BallPixel.Y;
+            }
+            return false;
+        }
+
+        private bool ComparePlayerAndWalls(Wall wall, List<Pixel> walls)
+        {
+            bool result = false;
+            var tempRes = false;
+            var tempWallsY = walls.Where(w => w.Y == wall.WallPixel.Y);
+            var tempWallsX = walls.Where(w => w.X == wall.WallPixel.X);
+            if(tempWallsX != null)
+            {
+                tempRes = tempWallsX.Any(w => w.Y - 1 == wall.WallPixel.Y || w.Y + 1 == wall.WallPixel.Y);
+            }
+            if (tempWallsY != null)
+            {
+                if(tempRes)
+                {
+                    return tempRes;
+                }
+                result = tempWallsY.Any(w => w.X - 1 == wall.WallPixel.X || w.X + 1 == wall.WallPixel.X);
+            }
+
+            return result;
+        }
+
+        private bool ComparePlayerAndBalls(Wall wall, List<Pixel> items)
+        {
+            bool result = false;
+            var tempRes = false;
+            var tempWallsY = items.Where(w => w.Y == wall.WallPixel.Y);
+            var tempWallsX = items.Where(w => w.X == wall.WallPixel.X);
+            if (tempWallsX != null)
+            {
+                tempRes = tempWallsX.Any(w => w.Y - 1 == wall.WallPixel.Y || w.Y + 1 == wall.WallPixel.Y);
+            }
+            if (tempWallsY != null)
+            {
+                if (tempRes)
+                {
+                    return tempRes;
+                }
+                result = tempWallsY.Any(w => w.X - 1 == wall.WallPixel.X || w.X + 1 == wall.WallPixel.X);
+            }
+
+            return result;
+        }
+
+        //if ((player.WallPixel.X == _mapWidth - 2 || player.WallPixel.X == 1 || player.WallPixel.Y == 1 || player.WallPixel.Y == _mapHeight - 2) ||
+        //                walls.Any(p => p.X - 1 == player.WallPixel.X && p.Y == player.WallPixel.Y || (p.X == player.WallPixel.X && p.Y - 1 == player.WallPixel.Y)
+        //                                   || (p.X + 1 == player.WallPixel.X && p.Y == player.WallPixel.Y || (p.X == player.WallPixel.X && p.Y + 1 == player.WallPixel.Y)))
+        //                || items.Any(p => (p.X - 1 == player.WallPixel.X && p.Y == player.WallPixel.Y || (p.X == player.WallPixel.X && p.Y - 1 == player.WallPixel.Y))
+        //                                   || (p.X + 1 == player.WallPixel.X && p.Y == player.WallPixel.Y || (p.X == player.WallPixel.X && p.Y + 1 == player.WallPixel.Y))))
+        //    {
     }
 }
