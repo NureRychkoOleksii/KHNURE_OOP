@@ -1,12 +1,13 @@
 ﻿using System;
+using PresentationLayer.StartupMethods;
 
-namespace Lab1Rychko
+namespace PresentationLayer
 {
     class Program
     {
         static void Main()
         {
-            var startup = new StartupMethods.Startup();
+            var startup = new Startup();
 
             startup.StartGame();
         }

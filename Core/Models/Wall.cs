@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lab1Rychko.Models
+namespace Core.Models
 {
-    class Wall
+    public class Wall
     {
         private const char _wallCharSlash = '/';
         private const char _wallCharBackSlash = '\\';

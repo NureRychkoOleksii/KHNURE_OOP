@@ -1,10 +1,10 @@
-﻿using Lab1Rychko.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
+using BLL;
+using Core.Models;
 
-namespace Lab1Rychko.StartupMethods
+namespace PresentationLayer.StartupMethods
 {
     class Startup
     {
@@ -14,7 +14,7 @@ namespace Lab1Rychko.StartupMethods
         private const int _screenWidth = _mapWidth * 2;
         private const int _screenHeight = _mapHeight * 2;
 
-        private int _frameRate = 200;
+        private int _frameRate = 100;
 
         private readonly ConsoleMethods _console= new ConsoleMethods();
         private readonly DrawMenu _drawMenu = new DrawMenu();
@@ -52,8 +52,8 @@ namespace Lab1Rychko.StartupMethods
 
                 var movement = new Movement();
 
-                var currentDirection = Direction.Right;
-                var currentDirectionWall = Direction.Stop;
+                Direction currentDirection = Direction.Right;
+                Direction currentDirectionWall = Direction.Stop;
 
                 Stopwatch sw = new Stopwatch();
 
@@ -62,7 +62,6 @@ namespace Lab1Rychko.StartupMethods
                 {
                     sw.Restart();
                     var oldMovementWall = currentDirectionWall;
-                    var oldMovement = currentDirection;
                     bool changeWall = false;
 
                     while (sw.ElapsedMilliseconds <= _frameRate)

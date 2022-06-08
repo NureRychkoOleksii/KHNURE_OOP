@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lab1Rychko.Models
+namespace Core.Models
 {
-    class Ball : DrawClass
+    public class Ball : DrawClass
     {
         private const ConsoleColor _color = ConsoleColor.Blue;
 

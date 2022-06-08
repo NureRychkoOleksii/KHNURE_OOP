@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lab1Rychko
+namespace BLL
 {
-    class TimeCheck
+    public class TimeCheck
     {
         private Stopwatch stopwatch = new Stopwatch();
         public void StartTimeChecking()

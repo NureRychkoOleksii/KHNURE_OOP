@@ -1,8 +1,8 @@
 ﻿using System.Media;
 
-namespace Lab1Rychko.Models
+namespace Core.Models
 {
-    class Music
+    public class Music
     {
         public void Play()
         {

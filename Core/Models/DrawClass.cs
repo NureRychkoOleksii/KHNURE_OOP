@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lab1Rychko.Models
+namespace Core.Models
 {
-    abstract class DrawClass
+    public abstract class DrawClass
     {
         public abstract void Draw();
 

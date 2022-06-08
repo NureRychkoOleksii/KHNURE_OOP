@@ -1,5 +1,5 @@
 ﻿
-namespace Lab1Rychko.Models
+namespace Core.Models
 {
     public enum Direction
     {

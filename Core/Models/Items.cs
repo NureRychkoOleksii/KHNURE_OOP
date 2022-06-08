@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lab1Rychko.Models
+namespace Core.Models
 {
-    class Items
+    public class Items
     {
         public Pixel GenerateWall()
         {

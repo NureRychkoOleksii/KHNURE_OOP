@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lab1Rychko.Models
+namespace Core.Models
 {
-    class Pixel : DrawClass
+    public class Pixel : DrawClass
     {
         private const char _pixelChar = '█';
         private const char _wallChar = '#';

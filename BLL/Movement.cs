@@ -1,13 +1,9 @@
-﻿using Lab1Rychko.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using Core.Models;
 
-namespace Lab1Rychko
+namespace BLL
 {
-    class Movement
+    public class Movement
     {
         public Direction ReadMovement(Direction currentDirection,ref bool changeWall)
         {

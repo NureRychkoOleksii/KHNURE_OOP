@@ -1,9 +1,10 @@
-﻿using Lab1Rychko.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Core.Models;
+using BLL;
 
-namespace Lab1Rychko.StartupMethods
+namespace PresentationLayer.StartupMethods
 {
     class ConsoleMethods
     {

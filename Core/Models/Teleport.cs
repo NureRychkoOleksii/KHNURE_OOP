@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lab1Rychko.Models
+namespace Core.Models
 {
-    class Teleport
+    public class Teleport
     {
         private const char _tpChar = '&';
         private const ConsoleColor _color = ConsoleColor.Yellow;

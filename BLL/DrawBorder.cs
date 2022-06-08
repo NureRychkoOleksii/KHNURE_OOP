@@ -1,9 +1,9 @@
-﻿using Lab1Rychko.Models;
-using System;
+﻿using System;
+using Core.Models;
 
-namespace Lab1Rychko
+namespace BLL
 {
-    class DrawBorder : DrawClass
+    public class DrawBorder : DrawClass
     {
         private readonly int _mapWidth;
         private readonly int _mapHeight;

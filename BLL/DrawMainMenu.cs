@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lab1Rychko
+namespace BLL
 {
-    class DrawMainMenu
+    public class DrawMainMenu
     {
         public void DrawMenu()
         {
