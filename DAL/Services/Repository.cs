@@ -31,7 +31,7 @@ namespace DAL.Services
         public async Task CreateObject(TEntity obj, string path)
         {
             _data = (await GetAllAsync(path)).ToList();
-            obj.Id = ++_data.FirstOrDefault().Id;
+            obj.Id = ++_data.OrderBy(x => x.Id).FirstOrDefault().Id;
             _data.Add(obj);
             await _serializationWorker.Serialize<IEnumerable<TEntity>>(_data, path);
         }

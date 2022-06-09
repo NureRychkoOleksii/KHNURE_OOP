@@ -13,17 +13,17 @@ namespace PL
             var services = new ServiceCollection();
             ConfigureServices(services);
             var serviceProvider = services.BuildServiceProvider();
-            await serviceProvider.GetService<App>().Start();
+            await serviceProvider.GetService<App>()?.Start()!;
         }
 
         public static void ConfigureServices(IServiceCollection services)
         {
-            var configuration = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: false)
-                .AddEnvironmentVariables()
-                .Build();
-            services.Configure<AppSettings>(configuration.GetSection("AppSettings"));
+            //var configuration = new ConfigurationBuilder()
+            //    .SetBasePath(Directory.GetCurrentDirectory())
+            //    .AddJsonFile("appsettings.json", optional: false)
+            //    .AddEnvironmentVariables()
+            //    .Build();
+            //services.Configure<AppSettings>(configuration.GetSection("AppSettings"));
             services.AddScoped<App>();
             services.AddScoped<Startup>();
             BLL.DependencyRegistrar.ConfigureServices(services);

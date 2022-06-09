@@ -8,8 +8,7 @@ namespace BLL
     public class UserService : IUserService
     {
         private readonly IRepository<User> _repository;
-        //private string _path = "..\\..\\..\\..\\..\\DAL\\JSON\\Users.json";
-        private string _path = @"E:\git_repos\KH\DAL\JSON\Users.json";
+        private string _path = "..\\..\\..\\..\\DAL\\JSON\\Users.json";
 
         public UserService(IRepository<User> repository)
         {

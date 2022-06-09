@@ -7,12 +7,10 @@ namespace PL
     public class App 
     {
         private readonly Startup _startup;
-        private readonly IUserService _userService;
 
-        public App(IUserService service, Startup startup)
+        public App(Startup startup)
         {
             _startup = startup;
-            _userService = service;
         }
 
         public async Task Start()

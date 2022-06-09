@@ -10,7 +10,7 @@ namespace PL.StartupMethods
 {
     public class Startup
     {
-        private IUserService _userService;
+        private readonly IUserService _userService;
         public Startup(IUserService service)
         {
             _userService = service;
