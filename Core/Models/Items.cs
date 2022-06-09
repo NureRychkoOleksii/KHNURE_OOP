@@ -9,15 +9,16 @@ namespace Core.Models
 {
     public class Items
     {
+        public Pixel Wall { get; set; }
+
+
         public Pixel GenerateWall()
         {
-            Pixel wall;
-
             Random rnd = new Random();
 
-            wall = new Pixel(rnd.Next(1, 55), rnd.Next(5, 35), ConsoleColor.White);
+            Wall = new Pixel(rnd.Next(1, 55), rnd.Next(5, 35), ConsoleColor.White);
 
-            return wall;
+            return Wall;
         }
 
         public Pixel GenerateEnergyBall(Ball ball)
