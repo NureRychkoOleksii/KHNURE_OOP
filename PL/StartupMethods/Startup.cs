@@ -1,13 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using BLL;
+using BLL.Interfaces;
 using Core.Models;
 
-namespace PresentationLayer.StartupMethods
+namespace PL.StartupMethods
 {
-    class Startup
+    public class Startup
     {
+        private IUserService _userService;
+        public Startup(IUserService service)
+        {
+            _userService = service;
+        }
+
         private const int _mapWidth = 60;
         private const int _mapHeight = 40;
 
@@ -19,8 +27,9 @@ namespace PresentationLayer.StartupMethods
         private readonly ConsoleMethods _console= new ConsoleMethods();
         private readonly DrawMenu _drawMenu = new DrawMenu();
 
-        public void StartGame()
+        public async Task StartGame()
         {
+            await _userService.AddUser(new User() {Name = "Moonler", Password = "123", Record = "123" });
             _console.SetConsole(_screenWidth, _screenHeight);
             var menu = new DrawMainMenu();
             menu.DrawMenu();

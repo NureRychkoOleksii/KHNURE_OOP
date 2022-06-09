@@ -4,7 +4,7 @@ using System.Linq;
 using Core.Models;
 using BLL;
 
-namespace PresentationLayer.StartupMethods
+namespace PL.StartupMethods
 {
     class ConsoleMethods
     {

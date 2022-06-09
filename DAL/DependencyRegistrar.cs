@@ -8,6 +8,7 @@ namespace DAL
     {
         public static void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<ISerializationWorker, SerializationWorker>();
         }
     }

@@ -1,6 +1,6 @@
 ﻿namespace Core.Models
 {
-    public class BaseEntity
+    public class IdKey
     {
         public int Id { get; set; }
     }
