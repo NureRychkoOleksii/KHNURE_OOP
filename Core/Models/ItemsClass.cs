@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.Models
 {
     public class ItemsClass
     {
-        List<Pixel> items;
+        public List<Pixel> items;
         public ItemsClass(List<Pixel> items)
         {
             this.items = items;
@@ -22,7 +20,7 @@ namespace Core.Models
             }
             set
             {
-                items.Add(new Pixel(x, y, ConsoleColor.DarkBlue));
+                items.Add(new Pixel(x, y, ConsoleColor.Green));
             }
         }
     }

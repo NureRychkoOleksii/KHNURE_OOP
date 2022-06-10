@@ -35,10 +35,11 @@ namespace PL.StartupMethods
             menu.DrawMenu();
         }
 
-        public void DrawItems(DrawBorder border, Music music, Teleport tp, out List<Pixel> items, out List<Pixel> walls, Wall player, Ball ball, Items item) 
+        public void DrawItems(DrawBorder border, Music music, Teleport tp, out List<Pixel> itemsList, out List<Pixel> walls, Wall player, Ball ball, Items item) 
         {
             item = new Items();
-            items = new List<Pixel>();
+            itemsList = new List<Pixel>();
+            ItemsClass items = new ItemsClass(itemsList);
             walls = new List<Pixel>();
 
             border.Draw();
@@ -53,8 +54,9 @@ namespace PL.StartupMethods
                 var templateWall = item.GenerateWall();
                 templateWall.DrawWall();
                 walls.Add(templateWall);
-                items.Add(templateItem);
+                items[(int)templateItem.X, (int)templateItem.Y]= templateItem;
             }
+            itemsList = items.items;
             player.DrawSlash();
         }
 

@@ -29,7 +29,7 @@ namespace PL.StartupMethods
 
         public async Task StartGame()
         {
-            await _userService.AddUser(new User() {Name = "Moonler", Password = "123", Record = "123" });
+            //await _userService.AddUser(new User() {Name = "Moonler", Password = "123", Record = "123" });
             _console.SetConsole(_screenWidth, _screenHeight);
             var menu = new DrawMainMenu();
             menu.DrawMenu();
