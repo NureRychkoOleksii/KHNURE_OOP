@@ -34,6 +34,7 @@
             this.ball = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.player = new System.Windows.Forms.PictureBox();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ball)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.player)).BeginInit();
@@ -99,6 +100,7 @@
         private System.Windows.Forms.PictureBox ball;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.PictureBox player;
+        private System.Windows.Forms.Timer timer2;
     }
 }
 

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApp1.Models;
 
 namespace WindowsFormsApp1
 {
@@ -14,40 +15,78 @@ namespace WindowsFormsApp1
     {
         private int dirXBall = 1, dirYBall = 0;
         private bool slash = true;
+        int count = 0;
+        public List<PictureBox> _walls = new List<PictureBox>();
+
+        public List<PictureBox> _energyBalls = new List<PictureBox>();
 
         public Form1()
         {
             InitializeComponent();
             Music music = new Music();
+            Items items = new Items();
+            items.CreateItems();
             music.Play();
             timer1.Tick += new EventHandler(Update);
             timer1.Tick += new EventHandler(ChangeBallDirection);
             timer1.Interval = 100;
             timer1.Start();
+            timer2.Tick += new EventHandler(CreateItems);
+            timer2.Interval = 100;
+            timer2.Start();
             this.KeyDown += new KeyEventHandler(OKP);
         }
 
         private void Update(Object myObject, EventArgs eventsArgs)
         {
-            ball.Location = new Point(ball.Location.X + dirXBall * 15, ball.Location.Y + dirYBall * 15);
+            ball.Location = new Point(ball.Location.X + dirXBall * 10, ball.Location.Y + dirYBall * 10);
         }
 
+        private void CreateItems(object sender, EventArgs e)
+        {
+            Random rand = new Random();
+            if (count == 10)
+            {
+                timer2.Tick -= new EventHandler(CreateItems);
+                timer2.Enabled = false;
+            }
+            var picture1 = new PictureBox()
+            {
+                Name = $"wall{++count}",
+                Size = new Size(15, 15),
+                Location = new Point(rand.Next(1, 66) * 10, rand.Next(1, 66) * 10),
+                BackColor = Color.Red
+            };
+            var picture2 = new PictureBox()
+            {
+                Name = $"energyBall{++count}",
+                Size = new Size(15, 15),
+                Location = new Point(rand.Next(1, 66) * 10, rand.Next(1, 66) * 10),
+                BackColor = Color.Green
+            };
+            _walls.Add(picture1);
+            this.Controls.Add(picture1);
+            picture1.BringToFront();
+            _energyBalls.Add(picture2);
+            this.Controls.Add(picture2);
+            picture2.BringToFront();
+        }
         
         private void OKP(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode.ToString())
             {
                 case "Right":
-                    player.Location = new Point(player.Location.X + 15, player.Location.Y);
+                    player.Location = new Point(player.Location.X + 10, player.Location.Y);
                     break;
                 case "Left":
-                    player.Location = new Point(player.Location.X - 15, player.Location.Y);
+                    player.Location = new Point(player.Location.X - 10, player.Location.Y);
                     break;
                 case "Down":
-                    player.Location = new Point(player.Location.X, player.Location.Y + 15);
+                    player.Location = new Point(player.Location.X, player.Location.Y + 10);
                     break;
                 case "Up":
-                    player.Location = new Point(player.Location.X, player.Location.Y - 15);
+                    player.Location = new Point(player.Location.X, player.Location.Y - 10);
                     break;
             }
         }

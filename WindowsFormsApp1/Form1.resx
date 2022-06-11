@@ -124,13 +124,16 @@
   <data name="player.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACYAAAAkCAIAAABql9/yAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wgAADsIBFShKgAAAAOhJREFUWEe90FFugzAURcHsf9NUCZOWS03A+DnzU4lbvyPlsXzFY8u3mZR++TyN
+        wQAADsEBuJFr7QAAAOhJREFUWEe90FFugzAURcHsf9NUCZOWS03A+DnzU4lbvyPlsXzFY8u3mZR++TyN
         zJZlDo0d4wQC6fl9ncspJNP6p5ZCss1IKiTbS3FSIdneKpMKybZRllRItlSTVEi2fwqSCsnWMppUSLYD
         Q0mFZDt2P6mQbB/dTCok25k7SYVku6A7qZBs13T+d4vtsp4fpMXW4+obhWTrdOmZQrL1O3+pkGy3nDxW
         SLa7Pr1XSLYBhycUkm1M+4pCsg1rHFJItgr7WwrJViTOKSRbnb+LCslWylGFtE7lnncV0jrPILBjnENj
         yzLJsvwAxfocm1sqTEwAAAAASUVORK5CYII=
 </value>
   </data>
+  <metadata name="timer2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>104, 17</value>
+  </metadata>
   <data name="$this.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         /9j/4AAQSkZJRgABAQEAAAAAAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsN
