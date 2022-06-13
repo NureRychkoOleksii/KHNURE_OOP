@@ -13,17 +13,28 @@ namespace WindowsFormsApp1
         private bool _slash = true;
         private int _count = 0;
         private int _score = 0;
-        public List<PictureBox> _walls = new List<PictureBox>();
+        private List<PictureBox> _walls = new List<PictureBox>();
 
-        public List<PictureBox> _energyBalls = new List<PictureBox>();
+        private List<PictureBox> _energyBalls = new List<PictureBox>();
+
+        private PictureBox _tp = new PictureBox()
+        {
+            Name = $"tp",
+            Size = new Size(15, 15),
+            Location = new Point(new Random().Next(1, 66) * 10, new Random().Next(1, 33) * 15),
+            BackColor = Color.Yellow
+        };
 
         public Form1()
         {
             InitializeComponent();
             Music music = new Music();
             Items items = new Items();
+            player.BackgroundImage.Tag = "slash";
             items.CreateItems();
             music.Play();
+            this.Controls.Add(_tp);
+            _tp.BringToFront();
             timer1.Tick += new EventHandler(Update);
             timer1.Tick += new EventHandler(ChangeBallDirection);
             timer1.Interval = 100;
@@ -51,14 +62,14 @@ namespace WindowsFormsApp1
             {
                 Name = $"wall{++_count}",
                 Size = new Size(15, 15),
-                Location = new Point(rand.Next(1, 66) * 10, rand.Next(1, 66) * 10),
+                Location = new Point(rand.Next(1, 66) * 10, rand.Next(1, 33) * 15),
                 BackColor = Color.Red
             };
             var picture2 = new PictureBox()
             {
                 Name = $"energyBall{++_count}",
                 Size = new Size(15, 15),
-                Location = new Point(rand.Next(1, 66) * 10, rand.Next(1, 66) * 10),
+                Location = new Point(rand.Next(1, 66) * 10, rand.Next(1, 33) * 15),
                 BackColor = Color.Green
             };
             _walls.Add(picture1);
@@ -97,9 +108,10 @@ namespace WindowsFormsApp1
 
         private void ChangeImage()
         {
-            if(player.BackgroundImage.Tag == "reverseSlash")
+            if(player.BackgroundImage.Tag.Equals("reverseSlash"))
             {
                 player.BackgroundImage = Image.FromFile(@"C:\Users\moonler\OneDrive - Kharkiv National University of Radioelectronics\Desktop\slash.png");
+                player.BackgroundImage.Tag = "slash";
             }
             else
             {
@@ -145,6 +157,10 @@ namespace WindowsFormsApp1
                 scoreBox.Text = Convert.ToString(_score);
                 _energyBalls.Remove(item);
                 this.Controls.Remove(item);
+            }
+            if(ball.Location.X == _tp.Location.X && ball.Location.Y == _tp.Location.Y)
+            {
+                ball.Location = new Point(new Random().Next(1, 660), new Random().Next(1, 660));
             }
         }
 
@@ -198,7 +214,7 @@ namespace WindowsFormsApp1
 
         private void ChangeBallAndWallSlash(string dir)
         {
-            if (player.BackgroundImage.Tag == "slash")
+            if (player.BackgroundImage.Tag.Equals("slash"))
             {
                 switch (dir)
                 {
