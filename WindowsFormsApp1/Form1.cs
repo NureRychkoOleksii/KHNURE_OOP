@@ -37,7 +37,7 @@ namespace WindowsFormsApp1
             _tp.BringToFront();
             timer1.Tick += new EventHandler(Update);
             timer1.Tick += new EventHandler(ChangeBallDirection);
-            timer1.Interval = 100;
+            timer1.Interval = 20;
             timer1.Start();
             timer2.Tick += new EventHandler(CreateItems);
             timer2.Interval = 100;
@@ -47,7 +47,7 @@ namespace WindowsFormsApp1
 
         private void Update(Object myObject, EventArgs eventsArgs)
         {
-            ball.Location = new Point(ball.Location.X + _dirXBall * 10, ball.Location.Y + _dirYBall * 10);
+            ball.Location = new Point(ball.Location.X + _dirXBall * 5, ball.Location.Y + _dirYBall * 5);
         }
 
         private void CreateItems(object sender, EventArgs e)
@@ -62,14 +62,14 @@ namespace WindowsFormsApp1
             {
                 Name = $"wall{++_count}",
                 Size = new Size(15, 15),
-                Location = new Point(rand.Next(1, 66) * 10, rand.Next(1, 33) * 15),
+                Location = new Point(rand.Next(1, 44) * 15, rand.Next(1, 44) * 15),
                 BackColor = Color.Red
             };
             var picture2 = new PictureBox()
             {
                 Name = $"energyBall{++_count}",
                 Size = new Size(15, 15),
-                Location = new Point(rand.Next(1, 66) * 10, rand.Next(1, 33) * 15),
+                Location = new Point(rand.Next(1, 44) * 15, rand.Next(1, 44) * 15),
                 BackColor = Color.Green
             };
             _walls.Add(picture1);
@@ -82,23 +82,23 @@ namespace WindowsFormsApp1
         
         private void OKP(object sender, KeyEventArgs e)
         {
-            if(_score == _energyBalls.Count())
+            if(_score == 10)
             {
                 this.Close();
             }
             switch (e.KeyCode.ToString())
             {
                 case "Right":
-                    player.Location = new Point(player.Location.X + 10, player.Location.Y);
+                    player.Location = new Point(player.Location.X + 5, player.Location.Y);
                     break;
                 case "Left":
-                    player.Location = new Point(player.Location.X - 10, player.Location.Y);
+                    player.Location = new Point(player.Location.X - 5, player.Location.Y);
                     break;
                 case "Down":
-                    player.Location = new Point(player.Location.X, player.Location.Y + 10);
+                    player.Location = new Point(player.Location.X, player.Location.Y + 5);
                     break;
                 case "Up":
-                    player.Location = new Point(player.Location.X, player.Location.Y - 10);
+                    player.Location = new Point(player.Location.X, player.Location.Y - 5);
                     break;
                 case "Tab":
                     ChangeImage();
@@ -161,6 +161,7 @@ namespace WindowsFormsApp1
             if(ball.Location.X == _tp.Location.X && ball.Location.Y == _tp.Location.Y)
             {
                 ball.Location = new Point(new Random().Next(1, 660), new Random().Next(1, 660));
+                this.Controls.Remove(_tp);
             }
         }
 
