@@ -1,16 +1,23 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
-    public partial class Form2 : Form
+    public partial class Form3 : Form
     {
         Thread th;
-        public Form2()
+        public Form3()
         {
             InitializeComponent();
-            textBox.Enabled = false;
+            textBox1.Enabled = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -23,12 +30,7 @@ namespace WindowsFormsApp1
 
         private void OpenNewForm(object obj)
         {
-            Application.Run(new Form3());
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            this.Close();
+            Application.Run(new Form1());
         }
     }
 }
