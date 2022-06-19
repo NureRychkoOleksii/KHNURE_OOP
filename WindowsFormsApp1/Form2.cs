@@ -16,19 +16,24 @@ namespace WindowsFormsApp1
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
-            th = new Thread(OpenNewForm);
+            th = new Thread(OpenNewForm1);
             th.SetApartmentState(ApartmentState.STA);
             th.Start();
         }
 
-        private void OpenNewForm(object obj)
+        private void OpenNewForm1(object obj)
         {
-            Application.Run(new Form3());
+            Application.Run(new RegistrationAndLoginForm());
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

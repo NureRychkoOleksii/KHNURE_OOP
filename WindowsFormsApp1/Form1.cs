@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 using WindowsFormsApp1.Models;
 
@@ -10,10 +11,12 @@ namespace WindowsFormsApp1
     public partial class Form1 : Form
     {
         private int _dirXBall = 1, _dirYBall = 0;
+        private Thread _th;
         private bool _slash = true;
         private int _count = 0;
         private int _score = 0;
         private List<PictureBox> _walls = new List<PictureBox>();
+        private readonly User _user;
 
         private List<PictureBox> _energyBalls = new List<PictureBox>();
 
@@ -25,9 +28,10 @@ namespace WindowsFormsApp1
             BackColor = Color.Yellow
         };
 
-        public Form1()
+        public Form1(User user)
         {
             InitializeComponent();
+            _user = user;
             Music music = new Music();
             Items items = new Items();
             player.BackgroundImage.Tag = "slash";
@@ -82,10 +86,6 @@ namespace WindowsFormsApp1
         
         private void OKP(object sender, KeyEventArgs e)
         {
-            if(_score == 10)
-            {
-                this.Close();
-            }
             switch (e.KeyCode.ToString())
             {
                 case "Right":
@@ -163,6 +163,18 @@ namespace WindowsFormsApp1
                 ball.Location = new Point(new Random().Next(1, 660), new Random().Next(1, 660));
                 this.Controls.Remove(_tp);
             }
+            if(_score == 6)
+            {
+                this.Close();
+                _th = new Thread(OpenNewForm);
+                _th.SetApartmentState(ApartmentState.STA);
+                _th.Start();
+            }
+        }
+
+        private void OpenNewForm()
+        {
+            Application.Run(new Form4(_user));
         }
 
         private void ChangeInteractionDirection()

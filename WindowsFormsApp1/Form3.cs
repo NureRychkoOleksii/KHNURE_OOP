@@ -8,14 +8,17 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApp1.Models;
 
 namespace WindowsFormsApp1
 {
     public partial class Form3 : Form
     {
         Thread th;
-        public Form3()
+        private readonly User _user;
+        public Form3(User user)
         {
+            _user = user;
             InitializeComponent();
             textBox1.Enabled = false;
         }
@@ -30,7 +33,7 @@ namespace WindowsFormsApp1
 
         private void OpenNewForm(object obj)
         {
-            Application.Run(new Form1());
+            Application.Run(new Form1(_user));
         }
     }
 }
