@@ -35,7 +35,7 @@ namespace PL.StartupMethods
             menu.DrawMenu();
         }
 
-        public void DrawItems(DrawBorder border, Music music, Teleport tp, out List<Pixel> itemsList, out List<Pixel> walls, Wall player, Ball ball, Items item) 
+        public void DrawItems(DrawBorder border, Music music, Teleport tp, out List<Pixel> itemsList, out List<Pixel> walls, Player player, Ball ball, Items item) 
         {
             item = new Items();
             itemsList = new List<Pixel>();
@@ -60,7 +60,7 @@ namespace PL.StartupMethods
             player.DrawSlash();
         }
 
-        public Wall PlayerCheckings(Wall player, ref Ball ball, ref Direction currentDirection, ref Direction currentDirectionWall, ref List<Pixel> walls, ref List<Pixel> items)
+        public Player PlayerCheckings(Player player, ref Ball ball, ref Direction currentDirection, ref Direction currentDirectionWall, ref List<Pixel> walls, ref List<Pixel> items)
         {
             if (player.WallPixel.X == ball.BallPixel.X && player.WallPixel.Y == ball.BallPixel.Y)
             {
@@ -226,29 +226,28 @@ namespace PL.StartupMethods
             return false;
         }
 
-        private bool ComparePlayerAndWalls(Wall wall, List<Pixel> walls)
+        private bool ComparePlayerAndWalls(Player player, List<Pixel> walls)
         {
             bool result = false;
-            var tempRes = false;
-            var tempWallsY = walls.Where(w => w.Y == wall.WallPixel.Y);
-            var tempWallsX = walls.Where(w => w.X == wall.WallPixel.X);
+            var tempWallsY = walls.Where(w => w.Y == player.WallPixel.Y);
+            var tempWallsX = walls.Where(w => w.X == player.WallPixel.X);
             if(tempWallsX != null)
             {
-                tempRes = tempWallsX.Any(w => w.Y - 1 == wall.WallPixel.Y || w.Y + 1 == wall.WallPixel.Y);
+               result = tempWallsX.Any(w => w.Y - 1 == player.WallPixel.Y || w.Y + 1 == player.WallPixel.Y);
             }
             if (tempWallsY != null)
             {
-                if(tempRes)
+                if(result)
                 {
-                    return tempRes;
+                    return result;
                 }
-                result = tempWallsY.Any(w => w.X - 1 == wall.WallPixel.X || w.X + 1 == wall.WallPixel.X);
+                result = tempWallsY.Any(w => w.X - 1 == player.WallPixel.X || w.X + 1 == player.WallPixel.X);
             }
 
             return result;
         }
 
-        private bool ComparePlayerAndBalls(Wall wall, List<Pixel> items)
+        private bool ComparePlayerAndBalls(Player wall, List<Pixel> items)
         {
             bool result = false;
             var tempRes = false;

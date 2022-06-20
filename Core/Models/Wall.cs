@@ -1,13 +1,8 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 
 namespace Core.Models
 {
-    public class Wall
+    public class Player
     {
         private const char _wallCharSlash = '/';
         private const char _wallCharBackSlash = '\\';
@@ -17,7 +12,7 @@ namespace Core.Models
 
         public char SlashWall { get; set; } = _wallCharSlash;
 
-        public Wall(int initialX, int initialY)
+        public Player(int initialX, int initialY)
         {
             WallPixel = new Pixel(initialX, initialY, _color, 1);
         }
