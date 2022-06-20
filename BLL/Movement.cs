@@ -7,10 +7,10 @@ namespace BLL
     {
         public Direction ReadMovement(Direction currentDirection, ref bool changeWall)
         {
-            //if (!Console.KeyAvailable)
-            //{
-            //    return currentDirection;
-            //}
+            if (!Console.KeyAvailable)
+            {
+                return currentDirection;
+            }
 
             ConsoleKey key = Console.ReadKey(true).Key;
 

@@ -1,9 +1,4 @@
 ﻿using Core.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.NewModels
 {
@@ -25,6 +20,7 @@ namespace Core.NewModels
                 Direction.Up => Y -= 1,
                 Direction.Down => Y += 1,
             };
+            Draw(X, Y);
         }
     }
 }

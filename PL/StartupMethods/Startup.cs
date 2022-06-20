@@ -7,6 +7,7 @@ using System.Linq;
 using BLL.Interfaces;
 using Core.Models;
 using Core.NewModels;
+using System.Threading;
 
 namespace PL.StartupMethods
 {
@@ -27,7 +28,7 @@ namespace PL.StartupMethods
         private const int _screenWidth = _mapWidth * 2;
         private const int _screenHeight = _mapHeight * 2;
 
-        private int _frameRate = 50;
+        private int _frameRate = 100;
 
         private readonly ConsoleMethods _console= new ConsoleMethods();
         private readonly Methods _console2= new Methods();
@@ -152,41 +153,41 @@ namespace PL.StartupMethods
                     ball = (Core.NewModels.Ball)i;
                 }
             }
-            Console.CursorVisible = false;
             Console.ReadKey();
+            Console.CursorVisible = false;
             var timeWatch = new TimeCheck();
             Direction currentDirection = Direction.Right;
             Direction currentDirectionPlayer = Direction.Stop;
+            var oldMovementPlayer = currentDirectionPlayer;
             var movement = new Movement();
             var count = 0;
-            Stopwatch sw = new Stopwatch();
-
-            timeWatch.StartTimeChecking();
             while (true)
             {
-                sw.Restart();
-                var oldMovementPlayer = currentDirectionPlayer;
                 bool changeWall = false;
-
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
+                int x = player.X, y = player.Y;
+                int ballX = ball.X, ballY = ball.Y;
                 while (sw.ElapsedMilliseconds <= _frameRate)
                 {
                     if (currentDirectionPlayer == oldMovementPlayer)
                     {
                         currentDirectionPlayer = movement.ReadMovement(currentDirectionPlayer, ref changeWall);
+                        currentDirectionPlayer = FrameTick(currentDirectionPlayer, player);
+                        player.Move(currentDirectionPlayer, false);
+                        _console2.map[x, y] = new BaseElement(x, y);
+                        _console2.map[player.X, player.Y] = new Core.NewModels.Player(player.X, player.Y);
                     }
                 }
-                int x = player.X, y = player.Y;
-                int ballX = ball.X, ballY = ball.Y;
+
                 currentDirectionPlayer = FrameTick(currentDirectionPlayer, player);
-                player.Move(currentDirectionPlayer, false);
                 currentDirection = FrameTickBall(currentDirection, ball);
                 ball.Move(currentDirection);
-                _console2.map[x, y] = new BaseElement(x, y);
                 _console2.map[ballX, ballY] = new BaseElement(ballX, ballY);
                 _console2.map[ball.X, ball.Y] = new Core.NewModels.Ball(ball.X, ball.Y);
-                _console2.map[player.X, player.Y] = new Core.NewModels.Player(player.X, player.Y);
                 _console2.UpdateMap();
                 currentDirectionPlayer = Direction.Stop;
+                sw.Reset();
             }
         }
 
