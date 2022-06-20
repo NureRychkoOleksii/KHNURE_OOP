@@ -15,6 +15,7 @@ namespace PL.StartupMethods
         private readonly IUserService _userService;
         private Dictionary<Direction, (int,int)> directions = new Dictionary<Direction, (int,int)>();
         Core.NewModels.Player player;
+        Core.NewModels.Ball ball;
         public Startup(IUserService service)
         {
             _userService = service;
@@ -146,6 +147,10 @@ namespace PL.StartupMethods
                 {
                     player = (Core.NewModels.Player)i;
                 }
+                else if(i is Core.NewModels.Ball)
+                {
+                    ball = (Core.NewModels.Ball)i;
+                }
             }
             Console.CursorVisible = false;
             Console.ReadKey();
@@ -171,16 +176,21 @@ namespace PL.StartupMethods
                     }
                 }
                 int x = player.X, y = player.Y;
+                int ballX = ball.X, ballY = ball.Y;
                 currentDirectionPlayer = FrameTick(currentDirectionPlayer, player);
                 player.Move(currentDirectionPlayer, false);
+                currentDirection = FrameTickBall(currentDirection, ball);
+                ball.Move(currentDirection);
                 _console2.map[x, y] = new BaseElement(x, y);
+                _console2.map[ballX, ballY] = new BaseElement(ballX, ballY);
+                _console2.map[ball.X, ball.Y] = new Core.NewModels.Ball(ball.X, ball.Y);
                 _console2.map[player.X, player.Y] = new Core.NewModels.Player(player.X, player.Y);
                 _console2.UpdateMap();
                 currentDirectionPlayer = Direction.Stop;
             }
         }
 
-        public Direction FrameTick(Direction currentDirection, Core.NewModels.Player player)
+        private Direction FrameTick(Direction currentDirection, Core.NewModels.Player player)
         {
             var selectedDirection = directions.Where(d => d.Key == currentDirection).FirstOrDefault();
             foreach (var item in _console2.map)
@@ -193,22 +203,44 @@ namespace PL.StartupMethods
             return currentDirection;
         }
 
+        private Direction FrameTickBall(Direction dir, Core.NewModels.Ball ball)
+        {
+            var selectedDirection = directions.Where(d => d.Key == dir).FirstOrDefault();
+            if(ball.X + 1 == _console2.map.GetLength(0) || ball.Y + 1 == _console2.map.GetLength(1))
+            {
+                return ChangeDirection(dir);
+            }
+            foreach (var item in _console2.map)
+            {
+                if (ball.X + selectedDirection.Value.Item1 == item.X && ball.Y + selectedDirection.Value.Item2 == item.Y && (item is EnergyBall))
+                {
+                    return dir;
+                }
+
+                if (ball.X + selectedDirection.Value.Item1 == item.X && ball.Y + selectedDirection.Value.Item2 == item.Y && (item is Wall))
+                {
+                    return ChangeDirection(dir);
+                }
+            }
+            return dir;
+        }
+
         private Direction ChangeDirection(Direction dir)
         {
             switch (dir)
             {
                 case Direction.Right:
                     return Direction.Left;
-                    break;
+
                 case Direction.Left:
                     return Direction.Right;
-                    break;
+
                 case Direction.Up:
                     return Direction.Down;
-                    break;
+
                 case Direction.Down:
                     return Direction.Up;
-                    break;
+
             }
             return dir;
         }

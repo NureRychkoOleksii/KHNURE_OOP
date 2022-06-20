@@ -34,6 +34,9 @@ namespace PL.StartupMethods
             }
             int x = random.Next(50), y = random.Next(30);
             map[x, y] = new Player(x, y);
+            x = random.Next(50);
+            y = random.Next(30);
+            map[x, y] = new Ball(x, y);
             Console.SetCursorPosition(15, 5);
             foreach(var item in map)
             {
@@ -47,6 +50,9 @@ namespace PL.StartupMethods
                         break;
                     case Player:
                         item.Draw(item.X, item.Y, '/', ConsoleColor.Red);
+                        break;
+                    case Ball:
+                        item.Draw(item.X, item.Y, '█', ConsoleColor.Blue);
                         break;
                     default:
                         item.Draw(item.X, item.Y);
@@ -69,6 +75,9 @@ namespace PL.StartupMethods
                         break;
                     case Player:
                         item.Draw(item.X, item.Y, '/', ConsoleColor.Red);
+                        break;
+                    case Ball:
+                        item.Draw(item.X, item.Y, '█', ConsoleColor.Blue);
                         break;
                     default:
                         item.Draw(item.X, item.Y);
