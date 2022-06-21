@@ -160,10 +160,10 @@ namespace PL.StartupMethods
             Direction currentDirectionPlayer = Direction.Stop;
             var oldMovementPlayer = currentDirectionPlayer;
             var movement = new Movement();
+            bool changeWall = false;
             var count = 0;
             while (true)
             {
-                bool changeWall = false;
                 Stopwatch sw = new Stopwatch();
                 sw.Start();
                 int x = player.X, y = player.Y;
@@ -173,21 +173,29 @@ namespace PL.StartupMethods
                     if (currentDirectionPlayer == oldMovementPlayer)
                     {
                         currentDirectionPlayer = movement.ReadMovement(currentDirectionPlayer, ref changeWall);
-                        currentDirectionPlayer = FrameTick(currentDirectionPlayer, player);
-                        player.Move(currentDirectionPlayer, false);
-                        _console2.map[x, y] = new BaseElement(x, y);
-                        _console2.map[player.X, player.Y] = new Core.NewModels.Player(player.X, player.Y);
                     }
                 }
-
-                currentDirectionPlayer = FrameTick(currentDirectionPlayer, player);
                 currentDirection = FrameTickBall(currentDirection, ball);
+                currentDirectionPlayer = FrameTick(currentDirectionPlayer, player);
+                if(currentDirectionPlayer != Direction.Stop)
+                {
+                    player.Move(currentDirectionPlayer, false);
+                    _console2.map[x, y] = new BaseElement(x, y);
+                    _console2.map[player.X, player.Y] = new Core.NewModels.Player(player.X, player.Y) { reverseSlash = player.reverseSlash};
+                }
+                if (changeWall)
+                {
+                    var temp = (Core.NewModels.Player)_console2.map[player.X, player.Y];
+                    temp.reverseSlash = !temp.reverseSlash;
+                    player.reverseSlash = !player.reverseSlash;
+                }
                 ball.Move(currentDirection);
                 _console2.map[ballX, ballY] = new BaseElement(ballX, ballY);
                 _console2.map[ball.X, ball.Y] = new Core.NewModels.Ball(ball.X, ball.Y);
                 _console2.UpdateMap();
                 currentDirectionPlayer = Direction.Stop;
                 sw.Reset();
+                changeWall = false;
             }
         }
 
@@ -200,6 +208,10 @@ namespace PL.StartupMethods
                 {
                     return Direction.Stop;
                 }
+                else if (player.X == 0 || player.Y == 0 || player.X + 1== _console2.map.GetLength(0) || player.Y + 1 == _console2.map.GetLength(1))
+                {
+                    return ChangeDirection(currentDirection);
+                }
             }
             return currentDirection;
         }
@@ -207,7 +219,7 @@ namespace PL.StartupMethods
         private Direction FrameTickBall(Direction dir, Core.NewModels.Ball ball)
         {
             var selectedDirection = directions.Where(d => d.Key == dir).FirstOrDefault();
-            if(ball.X + 1 == _console2.map.GetLength(0) || ball.Y + 1 == _console2.map.GetLength(1))
+            if(ball.X + 1 == _console2.map.GetLength(0) || ball.Y + 1 == _console2.map.GetLength(1) || ball.X == 0  || ball.Y == 0)
             {
                 return ChangeDirection(dir);
             }
@@ -222,8 +234,55 @@ namespace PL.StartupMethods
                 {
                     return ChangeDirection(dir);
                 }
+                if(ball.X + selectedDirection.Value.Item1 == item.X && ball.Y + selectedDirection.Value.Item2 == item.Y && (item is Core.NewModels.Player))
+                {
+                    return ChangeDirectioWithPlayer(dir, player);
+                }
             }
             return dir;
+        }
+
+        private Direction ChangeDirectioWithPlayer(Direction dir, Core.NewModels.Player player)
+        {
+            Direction res = dir;
+            if (!player.reverseSlash)
+            {
+                switch (dir)
+                {
+                    case Direction.Left:
+                        res = Direction.Down;
+                        break;
+                    case Direction.Right:
+                        res = Direction.Up;
+                        break;
+                    case Direction.Down:
+                        res = Direction.Left;
+                        break;
+                    case Direction.Up:
+                        res = Direction.Right;
+                        break;
+                }
+            }
+            else
+            {
+                switch(dir)
+                {
+                    case Direction.Left:
+                        res = Direction.Up;
+                        break;
+                    case Direction.Right:
+                        res = Direction.Down;
+                        break;
+                    case Direction.Down:
+                        res = Direction.Right;
+                        break;
+                    case Direction.Up:
+                        res = Direction.Left;
+                        break;
+                }
+            }
+
+            return res;
         }
 
         private Direction ChangeDirection(Direction dir)

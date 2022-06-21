@@ -46,7 +46,15 @@ namespace PL.StartupMethods
                         item.Draw(item.X, item.Y, '%', ConsoleColor.Green);
                         break;
                     case Player:
-                        item.Draw(item.X, item.Y, '/', ConsoleColor.Red);
+                        var k = (Player)item;
+                        if (!k.reverseSlash)
+                        {
+                            item.Draw(item.X, item.Y, '/', ConsoleColor.Red);
+                        }
+                        else
+                        {
+                            item.Draw(item.X, item.Y, '\\', ConsoleColor.Red);
+                        }
                         break;
                     case Ball:
                         item.Draw(item.X, item.Y, '█', ConsoleColor.Blue);
@@ -71,7 +79,15 @@ namespace PL.StartupMethods
                         item.Draw(item.X, item.Y, '%', ConsoleColor.Green);
                         break;
                     case Player:
-                        item.Draw(item.X, item.Y, '/', ConsoleColor.Red);
+                        var k = (Player)item;
+                        if(!k.reverseSlash)
+                        {
+                            item.Draw(item.X, item.Y, '/', ConsoleColor.Red);
+                        }
+                        else
+                        {
+                            item.Draw(item.X, item.Y, '\\', ConsoleColor.Red);
+                        }
                         break;
                     case Ball:
                         item.Draw(item.X, item.Y, '█', ConsoleColor.Blue);

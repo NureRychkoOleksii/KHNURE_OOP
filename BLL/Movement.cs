@@ -14,7 +14,7 @@ namespace BLL
 
             ConsoleKey key = Console.ReadKey(true).Key;
 
-            switch(key)
+            switch (key)
             {
                 case ConsoleKey.UpArrow:
                     currentDirection = Direction.Up;
@@ -30,12 +30,13 @@ namespace BLL
                     break;
                 case ConsoleKey.Tab:
                     currentDirection = Direction.Stop;
-                    changeWall = true;
+                    changeWall = !changeWall;
                     break;
                 default:
                     currentDirection = Direction.Stop;
                     break;
             }
+
 
             return currentDirection;
         }

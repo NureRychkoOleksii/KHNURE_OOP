@@ -9,7 +9,8 @@ namespace Core.NewModels
 {
     public class Player : BaseElement
     {
-        public const char pixel = '@';
+        public const char pixel = '/';
+        public bool reverseSlash = false;
         public Player(int x, int y, string type = "player") : base(x, y, type)
         {
             X = x;
