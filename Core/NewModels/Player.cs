@@ -17,7 +17,7 @@ namespace Core.NewModels
             Y = y;
             ElementType = type;
         }
-        public void Move(Direction direction, bool changeWall)
+        public void Move(Direction direction)
         {
             Clear(X,Y);
 

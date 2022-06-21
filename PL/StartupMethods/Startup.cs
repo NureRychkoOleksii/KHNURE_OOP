@@ -139,8 +139,6 @@ namespace PL.StartupMethods
             directions.Add(Direction.Up, (0, -1));
             directions.Add(Direction.Down, (0, 1));
             _console.SetConsole(100, 60);
-            //var drawBorder = new DrawBorder(_mapWidth, _mapHeight);
-            //drawBorder.Draw();
             _console2.CreateMap();
             foreach(var i in _console2.map)
             {
@@ -184,7 +182,7 @@ namespace PL.StartupMethods
                 currentDirectionPlayer = FrameTick(currentDirectionPlayer, player);
                 if(currentDirectionPlayer != Direction.Stop)
                 {
-                    player.Move(currentDirectionPlayer, false);
+                    player.Move(currentDirectionPlayer);
                     _console2.map[x, y] = new BaseElement(x, y);
                     _console2.map[player.X, player.Y] = new Core.NewModels.Player(player.X, player.Y) { reverseSlash = player.reverseSlash};
                 }
@@ -215,7 +213,7 @@ namespace PL.StartupMethods
             {
                 if(player.X + selectedDirection.Value.Item1 == item.X && player.Y + selectedDirection.Value.Item2 == item.Y &&(item is Wall || item is EnergyBall))
                 {
-                    return Direction.Stop;
+                    return Direction.Stop ;
                 }
                 else if (player.X == 0 || player.Y == 0 || player.X + 1== _console2.map.GetLength(0) || player.Y + 1 == _console2.map.GetLength(1))
                 {
@@ -246,73 +244,41 @@ namespace PL.StartupMethods
                 }
                 if(ball.X + selectedDirection.Value.Item1 == item.X && ball.Y + selectedDirection.Value.Item2 == item.Y && (item is Core.NewModels.Player))
                 {
-                    return ChangeDirectioWithPlayer(dir, player);
+                    return ChangeDirectionWithPlayer(dir, player);
                 }
             }
             return dir;
         }
 
-        private Direction ChangeDirectioWithPlayer(Direction dir, Core.NewModels.Player player)
+        private Direction ChangeDirectionWithPlayer(Direction dir, Core.NewModels.Player player)
         {
-            Direction res = dir;
             if (!player.reverseSlash)
             {
-                switch (dir)
+                if(dir == Direction.Up || dir == Direction.Down)
                 {
-                    case Direction.Left:
-                        res = Direction.Down;
-                        break;
-                    case Direction.Right:
-                        res = Direction.Up;
-                        break;
-                    case Direction.Down:
-                        res = Direction.Left;
-                        break;
-                    case Direction.Up:
-                        res = Direction.Right;
-                        break;
+                    return (Direction)(((int)dir + 1) % 3);
+                }
+                else
+                {
+                    return (Direction)(Math.Abs(((int)dir - 1)) % 4);
                 }
             }
             else
             {
-                switch(dir)
+                if (dir == Direction.Up || dir == Direction.Down)
                 {
-                    case Direction.Left:
-                        res = Direction.Up;
-                        break;
-                    case Direction.Right:
-                        res = Direction.Down;
-                        break;
-                    case Direction.Down:
-                        res = Direction.Right;
-                        break;
-                    case Direction.Up:
-                        res = Direction.Left;
-                        break;
+                    return (Direction)(Math.Abs(((int)dir - 1)) % 4);
+                }
+                else
+                {
+                    return (Direction)(((int)dir + 1) % 3);
                 }
             }
-
-            return res;
         }
 
         private Direction ChangeDirection(Direction dir)
         {
-            switch (dir)
-            {
-                case Direction.Right:
-                    return Direction.Left;
-
-                case Direction.Left:
-                    return Direction.Right;
-
-                case Direction.Up:
-                    return Direction.Down;
-
-                case Direction.Down:
-                    return Direction.Up;
-
-            }
-            return dir;
+            return (Direction)(((int)dir + 2) % 4);
         }
     }
 
