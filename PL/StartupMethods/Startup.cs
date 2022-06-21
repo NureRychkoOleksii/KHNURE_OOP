@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using BLL;
+using BLL.Services;
 using System.Linq;
 using BLL.Interfaces;
 using Core.Models;
 using Core.NewModels;
+using PL.Services;
+using BLL;
 
 namespace PL.StartupMethods
 {
@@ -30,7 +32,6 @@ namespace PL.StartupMethods
 
         private int _frameRate = 100;
 
-        private readonly ConsoleMethods _console= new ConsoleMethods();
         private readonly Methods _console2= new Methods();
         private readonly DrawMenu _drawMenu = new DrawMenu();
 
@@ -138,7 +139,10 @@ namespace PL.StartupMethods
             directions.Add(Direction.Left, (-1, 0));
             directions.Add(Direction.Up, (0, -1));
             directions.Add(Direction.Down, (0, 1));
-            _console.SetConsole(100, 60);
+            Console.SetWindowSize(150, 100);
+            Console.SetBufferSize(150, 100);
+            Console.SetWindowSize(100, 60);
+            Console.SetBufferSize(100, 60);
             _console2.CreateMap();
             foreach(var i in _console2.map)
             {
@@ -260,7 +264,7 @@ namespace PL.StartupMethods
                 }
                 else
                 {
-                    return (Direction)(Math.Abs(((int)dir - 1)) % 4);
+                    return (Direction)(Math.Abs(((int)dir - 1)) % 3);
                 }
             }
             else

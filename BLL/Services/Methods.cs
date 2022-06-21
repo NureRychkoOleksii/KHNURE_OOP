@@ -1,8 +1,11 @@
 ﻿using Core.NewModels;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-
-namespace PL.StartupMethods
+namespace BLL.Services
 {
     public class Methods
     {
@@ -12,9 +15,9 @@ namespace PL.StartupMethods
         public void CreateMap()
         {
             Random random = new Random();
-            for(int i =0;i<map.GetLength(0);i++)
+            for (int i = 0; i < map.GetLength(0); i++)
             {
-                for(int j = 0; j < map.GetLength(1);j++)
+                for (int j = 0; j < map.GetLength(1); j++)
                 {
                     int randNumb = random.Next(100);
                     map[i, j] = randNumb switch
@@ -23,7 +26,7 @@ namespace PL.StartupMethods
                         < 10 => new Wall(i, j),
                         _ => new BaseElement(i, j)
                     };
-                    if (map[i,j] is EnergyBall)
+                    if (map[i, j] is EnergyBall)
                     {
                         scoreToWin++;
                     }
@@ -35,9 +38,9 @@ namespace PL.StartupMethods
             y = random.Next(30);
             map[x, y] = new Ball(x, y);
             Console.SetCursorPosition(15, 5);
-            foreach(var item in map)
+            foreach (var item in map)
             {
-                switch(item)
+                switch (item)
                 {
                     case Wall:
                         item.Draw(item.X, item.Y, '#', ConsoleColor.Gray);
@@ -68,7 +71,7 @@ namespace PL.StartupMethods
 
         public void UpdateMap()
         {
-            foreach(var item in map)
+            foreach (var item in map)
             {
                 switch (item)
                 {
@@ -80,7 +83,7 @@ namespace PL.StartupMethods
                         break;
                     case Player:
                         var k = (Player)item;
-                        if(!k.reverseSlash)
+                        if (!k.reverseSlash)
                         {
                             item.Draw(item.X, item.Y, '/', ConsoleColor.Red);
                         }
