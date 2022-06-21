@@ -1,9 +1,5 @@
 ﻿using Core.NewModels;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BLL.Services
 {
@@ -15,20 +11,47 @@ namespace BLL.Services
         public void CreateMap()
         {
             Random random = new Random();
+            for (int k = 0; k < 2; k++)
+            {
+                int a = random.Next(25);
+                for (int i = a; i < (a + 5); i++)
+                {
+                    for (int j = a; j < (a + 5); j++)
+                    {
+                        if (i == j)
+                        {
+                            map[i, j] = new Wall(i, j);
+                        }
+                        //map[i, ((a + 4) - j + 1) + a - 1] = new Wall(i, ((a + 4) - j + 1) + a - 1);
+                        else if ((i + j) - a == a + 4)
+                        {
+                            map[i, j] = new Wall(i, j);
+                        }
+                        else
+                        {
+                            map[i, j] = new BaseElement(i, j);
+                        }
+                    }
+                }
+            }
+
             for (int i = 0; i < map.GetLength(0); i++)
             {
                 for (int j = 0; j < map.GetLength(1); j++)
                 {
-                    int randNumb = random.Next(100);
-                    map[i, j] = randNumb switch
+                    if (map[i, j] == null)
                     {
-                        < 5 => new EnergyBall(i, j),
-                        < 10 => new Wall(i, j),
-                        _ => new BaseElement(i, j)
-                    };
-                    if (map[i, j] is EnergyBall)
-                    {
-                        scoreToWin++;
+                        int randNumb = random.Next(100);
+                        map[i, j] = randNumb switch
+                        {
+                            <= 1 => new EnergyBall(i, j),
+                            <= 2 => new Wall(i, j),
+                            _ => new BaseElement(i, j)
+                        };
+                        if (map[i, j] is EnergyBall)
+                        {
+                            scoreToWin++;
+                        }
                     }
                 }
             }

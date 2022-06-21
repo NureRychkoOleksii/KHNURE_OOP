@@ -78,20 +78,24 @@
             // score
             // 
             this.score.AutoSize = true;
+            this.score.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
             this.score.Location = new System.Drawing.Point(897, 36);
             this.score.Name = "score";
-            this.score.Size = new System.Drawing.Size(38, 13);
+            this.score.Size = new System.Drawing.Size(115, 39);
             this.score.TabIndex = 4;
             this.score.Text = "Score:";
             // 
             // scoreBox
             // 
             this.scoreBox.AutoSize = true;
-            this.scoreBox.Location = new System.Drawing.Point(910, 52);
+            this.scoreBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.scoreBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
+            this.scoreBox.Location = new System.Drawing.Point(934, 87);
             this.scoreBox.Name = "scoreBox";
-            this.scoreBox.Size = new System.Drawing.Size(13, 13);
+            this.scoreBox.Size = new System.Drawing.Size(38, 41);
             this.scoreBox.TabIndex = 5;
             this.scoreBox.Text = "0";
+            this.scoreBox.Click += new System.EventHandler(this.scoreBox_Click);
             // 
             // Form1
             // 

@@ -278,6 +278,11 @@ namespace WindowsFormsApp1
 
         }
 
+        private void scoreBox_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void timer1_Tick(object sender, EventArgs e)
         {
 
