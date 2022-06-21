@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Threading.Tasks;
 using BLL;
 using System.Linq;
 using BLL.Interfaces;
 using Core.Models;
 using Core.NewModels;
-using System.Threading;
 
 namespace PL.StartupMethods
 {
@@ -17,6 +15,8 @@ namespace PL.StartupMethods
         private Dictionary<Direction, (int,int)> directions = new Dictionary<Direction, (int,int)>();
         Core.NewModels.Player player;
         Core.NewModels.Ball ball;
+        private int _score = 0;
+        private int _total = 0;
         public Startup(IUserService service)
         {
             _userService = service;
@@ -152,7 +152,12 @@ namespace PL.StartupMethods
                 {
                     ball = (Core.NewModels.Ball)i;
                 }
+                else if (i is EnergyBall)
+                {
+                    _total++;
+                }
             }
+
             Console.ReadKey();
             Console.CursorVisible = false;
             var timeWatch = new TimeCheck();
@@ -196,6 +201,10 @@ namespace PL.StartupMethods
                 currentDirectionPlayer = Direction.Stop;
                 sw.Reset();
                 changeWall = false;
+                if (_score == _total)
+                {
+                    break;
+                }
             }
         }
 
@@ -227,6 +236,7 @@ namespace PL.StartupMethods
             {
                 if (ball.X + selectedDirection.Value.Item1 == item.X && ball.Y + selectedDirection.Value.Item2 == item.Y && (item is EnergyBall))
                 {
+                    _score++;
                     return dir;
                 }
 
