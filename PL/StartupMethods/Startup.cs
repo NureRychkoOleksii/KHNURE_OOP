@@ -8,6 +8,7 @@ using Core.Models;
 using Core.NewModels;
 using PL.Services;
 using BLL;
+using System.Threading.Tasks;
 
 namespace PL.StartupMethods
 {
@@ -32,7 +33,7 @@ namespace PL.StartupMethods
         private readonly Methods _console2= new Methods();
         private readonly DrawMenu _drawMenu = new DrawMenu();
 
-        public void StartGame()
+        public async Task StartGame()
         {
             directions.Add(Direction.Right, (1, 0));
             directions.Add(Direction.Left, (-1, 0));
@@ -44,8 +45,11 @@ namespace PL.StartupMethods
             Console.SetBufferSize(100, 60);
             var menu = new DrawMainMenu();
             menu.DrawMenu();
+
+            var login = new DrawLogin();
             if (Console.ReadKey(true).Key == ConsoleKey.D1)
             {
+                var user = await login.Login(_userService);
                 _console2.CreateMap();
                 foreach (var i in _console2.map)
                 {
@@ -70,8 +74,10 @@ namespace PL.StartupMethods
                 Direction currentDirectionPlayer = Direction.Stop;
                 var oldMovementPlayer = currentDirectionPlayer;
                 var movement = new Movement();
+                var time = new TimeCheck();
                 bool changeWall = false;
                 var count = 0;
+                time.StartTimeChecking();
                 while (true)
                 {
                     Stopwatch sw = new Stopwatch();
@@ -108,6 +114,12 @@ namespace PL.StartupMethods
                     changeWall = false;
                     if (_score == _total)
                     {
+                        time.StartTimeChecking();
+                        user.Record = time.stopwatch.Elapsed.ToString();
+                        await _userService.UpdateUser(user, user.Id);
+                        Console.Clear();
+                        Console.SetCursorPosition(50, 30);
+                        Console.WriteLine($"You won! your record: ${user.Record}");
                         break;
                     }
                 }
@@ -176,7 +188,7 @@ namespace PL.StartupMethods
             {
                 if(dir == Direction.Up || dir == Direction.Down)
                 {
-                    return (Direction)(((int)dir + 1) % 3);
+                    return (Direction)(((int)dir + 1) % 4);
                 }
                 else
                 {
@@ -185,13 +197,17 @@ namespace PL.StartupMethods
             }
             else
             {
-                if (dir == Direction.Up || dir == Direction.Down)
+                if (dir == Direction.Down)
                 {
-                    return (Direction)(Math.Abs(((int)dir - 1)) % 4);
+                    return (Direction)(Math.Abs(((int)dir - 1)) % 3);
+                }
+                else if (dir == Direction.Up)
+                {
+                    return (Direction)((int)dir+3);
                 }
                 else
                 {
-                    return (Direction)(((int)dir + 1) % 3);
+                    return (Direction)(((int)dir + 1) % 4);
                 }
             }
         }

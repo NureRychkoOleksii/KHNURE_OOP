@@ -9,7 +9,7 @@ namespace BLL
 {
     public class TimeCheck
     {
-        private Stopwatch stopwatch = new Stopwatch();
+        public Stopwatch stopwatch = new Stopwatch();
         public void StartTimeChecking()
         {
             stopwatch.Start();
