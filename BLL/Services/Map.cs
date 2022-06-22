@@ -3,11 +3,23 @@ using System;
 
 namespace BLL.Services
 {
-    public class Methods
+    public class Map
     {
         public BaseElement[,] map = new BaseElement[50, 30];
         public int scoreToWin = 0;
 
+
+        public BaseElement this[int x, int y]
+        {
+            get
+            {
+                return map[x,y];
+            }
+            set
+            {
+                map[x, y] = value;
+            }
+        }
         public void CreateMap()
         {
             Random random = new Random();

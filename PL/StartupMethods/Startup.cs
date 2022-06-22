@@ -30,7 +30,7 @@ namespace PL.StartupMethods
 
         private int _frameRate = 50;
 
-        private readonly Methods _console2= new Methods();
+        private readonly Map map= new Map();
         private readonly DrawMenu _drawMenu = new DrawMenu();
 
         public async Task StartGame()
@@ -50,8 +50,8 @@ namespace PL.StartupMethods
             if (Console.ReadKey(true).Key == ConsoleKey.D1)
             {
                 var user = await login.Login(_userService);
-                _console2.CreateMap();
-                foreach (var i in _console2.map)
+                map.CreateMap();
+                foreach (var i in map.map)
                 {
                     if (i is Core.NewModels.Player)
                     {
@@ -96,19 +96,19 @@ namespace PL.StartupMethods
                     if (currentDirectionPlayer != Direction.Stop)
                     {
                         player.Move(currentDirectionPlayer);
-                        _console2.map[x, y] = new BaseElement(x, y);
-                        _console2.map[player.X, player.Y] = new Core.NewModels.Player(player.X, player.Y) { reverseSlash = player.reverseSlash };
+                        map[x, y] = new BaseElement(x, y);
+                        map[player.X, player.Y] = new Core.NewModels.Player(player.X, player.Y) { reverseSlash = player.reverseSlash };
                     }
                     if (changeWall)
                     {
-                        var temp = (Core.NewModels.Player)_console2.map[player.X, player.Y];
+                        var temp = (Core.NewModels.Player)map[player.X, player.Y];
                         temp.reverseSlash = !temp.reverseSlash;
                         player.reverseSlash = !player.reverseSlash;
                     }
                     ball.Move(currentDirection);
-                    _console2.map[ballX, ballY] = new BaseElement(ballX, ballY);
-                    _console2.map[ball.X, ball.Y] = new Core.NewModels.Ball(ball.X, ball.Y);
-                    _console2.UpdateMap();
+                    map[ballX, ballY] = new BaseElement(ballX, ballY);
+                    map[ball.X, ball.Y] = new Core.NewModels.Ball(ball.X, ball.Y);
+                    map.UpdateMap();
                     currentDirectionPlayer = Direction.Stop;
                     sw.Reset();
                     changeWall = false;
@@ -141,13 +141,13 @@ namespace PL.StartupMethods
         private Direction FrameTick(Direction currentDirection, Core.NewModels.Player player)
         {
             var selectedDirection = directions.Where(d => d.Key == currentDirection).FirstOrDefault();
-            foreach (var item in _console2.map)
+            foreach (var item in map.map)
             {
                 if(player.X + selectedDirection.Value.Item1 == item.X && player.Y + selectedDirection.Value.Item2 == item.Y &&(item is Wall || item is EnergyBall))
                 {
                     return Direction.Stop ;
                 }
-                else if (player.X == 0 || player.Y == 0 || player.X + 1== _console2.map.GetLength(0) || player.Y + 1 == _console2.map.GetLength(1))
+                else if (player.X == 0 || player.Y == 0 || player.X + 1== map.map.GetLength(0) || player.Y + 1 == map.map.GetLength(1))
                 {
                     return ChangeDirection(currentDirection);
                 }
@@ -158,11 +158,11 @@ namespace PL.StartupMethods
         private Direction FrameTickBall(Direction dir, Core.NewModels.Ball ball)
         {
             var selectedDirection = directions.Where(d => d.Key == dir).FirstOrDefault();
-            if(ball.X + 1 == _console2.map.GetLength(0) || ball.Y + 1 == _console2.map.GetLength(1) || ball.X == 0  || ball.Y == 0)
+            if(ball.X + 1 == map.map.GetLength(0) || ball.Y + 1 == map.map.GetLength(1) || ball.X == 0  || ball.Y == 0)
             {
                 return ChangeDirection(dir);
             }
-            foreach (var item in _console2.map)
+            foreach (var item in map.map)
             {
                 if (ball.X + selectedDirection.Value.Item1 == item.X && ball.Y + selectedDirection.Value.Item2 == item.Y && (item is EnergyBall))
                 {
