@@ -5,11 +5,11 @@ namespace BLL
 {
     public class Movement
     {
-        public Direction ReadMovement(Direction currentDirection, ref bool changeWall)
+        public void ProcessKey(ref Direction currentDirection, ref bool changeWall)
         {
             if (!Console.KeyAvailable)
             {
-                return currentDirection;
+                return;
             }
 
             ConsoleKey key = Console.ReadKey(true).Key;
@@ -36,9 +36,6 @@ namespace BLL
                     currentDirection = Direction.Stop;
                     break;
             }
-
-
-            return currentDirection;
         }
     }
 }

@@ -9,11 +9,8 @@ namespace Core.NewModels
     public class Wall : BaseElement
     {
         public const char pixel = '#';
-        public Wall(int x, int y, string type = "wall") : base(x, y, type)
+        public Wall(int x, int y) : base(x, y)
         {
-            X = x;
-            Y = y;
-            ElementType = type;
         }
     }
 }

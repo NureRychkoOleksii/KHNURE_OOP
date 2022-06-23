@@ -11,11 +11,8 @@ namespace Core.NewModels
     {
         public const char pixel = '/';
         public bool reverseSlash = false;
-        public Player(int x, int y, string type = "player") : base(x, y, type)
+        public Player(int x, int y) : base(x, y)
         {
-            X = x;
-            Y = y;
-            ElementType = type;
         }
         public void Move(Direction direction)
         {

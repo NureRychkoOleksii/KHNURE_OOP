@@ -39,6 +39,7 @@ namespace PL.StartupMethods
             directions.Add(Direction.Left, (-1, 0));
             directions.Add(Direction.Up, (0, -1));
             directions.Add(Direction.Down, (0, 1));
+            directions.Add(Direction.Stop, (0, 0));
             Console.SetWindowSize(150, 100);
             Console.SetBufferSize(150, 100);
             Console.SetWindowSize(100, 60);
@@ -88,7 +89,7 @@ namespace PL.StartupMethods
                     {
                         if (currentDirectionPlayer == oldMovementPlayer)
                         {
-                            currentDirectionPlayer = movement.ReadMovement(currentDirectionPlayer, ref changeWall);
+                            movement.ProcessKey(ref currentDirectionPlayer, ref changeWall);
                         }
                     }
                     currentDirection = FrameTickBall(currentDirection, ball);
@@ -140,10 +141,10 @@ namespace PL.StartupMethods
 
         private Direction FrameTick(Direction currentDirection, Core.NewModels.Player player)
         {
-            var selectedDirection = directions.Where(d => d.Key == currentDirection).FirstOrDefault();
+            var (dx, dy) = directions[currentDirection];
             foreach (var item in map.map)
             {
-                if(player.X + selectedDirection.Value.Item1 == item.X && player.Y + selectedDirection.Value.Item2 == item.Y &&(item is Wall || item is EnergyBall))
+                if(player.X + dx == item.X && player.Y + dy == item.Y &&(item is Wall || item is EnergyBall))
                 {
                     return Direction.Stop ;
                 }
@@ -157,24 +158,24 @@ namespace PL.StartupMethods
 
         private Direction FrameTickBall(Direction dir, Core.NewModels.Ball ball)
         {
-            var selectedDirection = directions.Where(d => d.Key == dir).FirstOrDefault();
-            if(ball.X + 1 == map.map.GetLength(0) || ball.Y + 1 == map.map.GetLength(1) || ball.X == 0  || ball.Y == 0)
+            var (dx, dy) = directions[dir];
+            if (ball.X + 1 == map.map.GetLength(0) || ball.Y + 1 == map.map.GetLength(1) || ball.X == 0  || ball.Y == 0)
             {
                 return ChangeDirection(dir);
             }
             foreach (var item in map.map)
             {
-                if (ball.X + selectedDirection.Value.Item1 == item.X && ball.Y + selectedDirection.Value.Item2 == item.Y && (item is EnergyBall))
+                if (ball.X + dx == item.X && ball.Y + dy == item.Y && (item is EnergyBall))
                 {
                     _score++;
                     return dir;
                 }
 
-                if (ball.X + selectedDirection.Value.Item1 == item.X && ball.Y + selectedDirection.Value.Item2 == item.Y && (item is Wall))
+                if (ball.X + dx == item.X && ball.Y + dy == item.Y && (item is Wall))
                 {
                     return ChangeDirection(dir);
                 }
-                if(ball.X + selectedDirection.Value.Item1 == item.X && ball.Y + selectedDirection.Value.Item2 == item.Y && (item is Core.NewModels.Player))
+                if(ball.X + dx == item.X && ball.Y + dy == item.Y && (item is Core.NewModels.Player))
                 {
                     return ChangeDirectionWithPlayer(dir, player);
                 }
@@ -184,32 +185,16 @@ namespace PL.StartupMethods
 
         private Direction ChangeDirectionWithPlayer(Direction dir, Core.NewModels.Player player)
         {
-            if (!player.reverseSlash)
+
+            var vertical = dir == Direction.Up || dir == Direction.Down;
+            int delta;
+            delta = vertical ? 1 : -1;
+            if (player.reverseSlash)
             {
-                if(dir == Direction.Up || dir == Direction.Down)
-                {
-                    return (Direction)(((int)dir + 1) % 4);
-                }
-                else
-                {
-                    return (Direction)(Math.Abs(((int)dir - 1)) % 3);
-                }
+                delta *= -1;
             }
-            else
-            {
-                if (dir == Direction.Down)
-                {
-                    return (Direction)(Math.Abs(((int)dir - 1)) % 3);
-                }
-                else if (dir == Direction.Up)
-                {
-                    return (Direction)((int)dir+3);
-                }
-                else
-                {
-                    return (Direction)(((int)dir + 1) % 4);
-                }
-            }
+
+            return (Direction)(((int)dir + delta) % 4);
         }
 
         private Direction ChangeDirection(Direction dir)

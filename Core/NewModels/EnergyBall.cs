@@ -6,11 +6,8 @@ namespace Core.NewModels
     {
         public const char pixel = '@';
 
-        public EnergyBall(int x, int y, string type = "energyBall") : base(x, y, type)
+        public EnergyBall(int x, int y) : base(x, y)
         {
-            X = x;
-            Y = y;
-            ElementType = type;
         }
     }
 }

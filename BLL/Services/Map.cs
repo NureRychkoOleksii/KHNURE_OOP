@@ -34,7 +34,6 @@ namespace BLL.Services
                         {
                             map[i, j] = new Wall(i, j);
                         }
-                        //map[i, ((a + 4) - j + 1) + a - 1] = new Wall(i, ((a + 4) - j + 1) + a - 1);
                         else if ((i + j) - a == a + 4)
                         {
                             map[i, j] = new Wall(i, j);

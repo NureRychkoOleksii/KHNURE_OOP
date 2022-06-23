@@ -4,16 +4,14 @@ namespace Core.NewModels
 {
     public class BaseElement
     {
-        public string ElementType { get; set; }
         public int X { get; set; }
         public int Y { get; set; }
 
 
-        public BaseElement(int x, int y, string type = "default")
+        public BaseElement(int x, int y)
         {
             X = x;
             Y = y;
-            ElementType = type;
         }
 
         public virtual void Draw(int X, int Y, char pixel = ' ', ConsoleColor Color = ConsoleColor.Black)
