@@ -18,23 +18,9 @@ namespace Core.NewModels
         {
             Clear(X,Y);
 
-            switch (direction)
-            {
-                case Direction.Right:
-                    X += 1;
-                    break;
-                case Direction.Left:
-                    X -= 1;
-                    break;
-                case Direction.Up:
-                    Y -= 1;
-                    break;
-                case Direction.Down:
-                    Y += 1;
-                    break;
-                case Direction.Stop:
-                    break;
-            }
+            var (dx, dy) = DirectionsDictionary.directions[direction];
+            X += dx;
+            Y += dy;
         }
     }
 }

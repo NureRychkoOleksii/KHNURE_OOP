@@ -11,13 +11,11 @@ namespace Core.NewModels
         public void Move(Direction direction, bool eat = false)
         {
             Clear(X,Y);
-            var tempDir = direction switch
-            {
-                Direction.Right => X += 1,
-                Direction.Left => X -= 1,
-                Direction.Up => Y -= 1,
-                Direction.Down => Y += 1,
-            };
+
+            var (dx, dy) = DirectionsDictionary.directions[direction];
+            X += dx;
+            Y += dy;
+
             Draw(X, Y);
         }
     }

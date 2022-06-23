@@ -15,7 +15,7 @@ namespace PL.StartupMethods
     public class Startup
     {
         private readonly IUserService _userService;
-        private Dictionary<Direction, (int,int)> directions = new Dictionary<Direction, (int,int)>();
+        public static Dictionary<Direction, (int,int)> directions = new Dictionary<Direction, (int,int)>();
         Core.NewModels.Player player;
         Core.NewModels.Ball ball;
         private int _score = 0;
