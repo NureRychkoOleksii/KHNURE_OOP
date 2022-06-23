@@ -24,7 +24,7 @@ namespace PL.StartupMethods
             return currentDirection;
         }
 
-        public Direction FrameTickBall(Direction dir, Core.NewModels.Ball ball, Map map, Core.NewModels.Player player, ref int _score)
+        public Direction FrameTickBall(Direction dir, ref Core.NewModels.Ball ball, Map map, Core.NewModels.Player player, ref int _score)
         {
             var (dx, dy) = DirectionsDictionary.directions[dir];
             if (ball.X + 1 == map.map.GetLength(0) || ball.Y + 1 == map.map.GetLength(1) || ball.X == 0 || ball.Y == 0)
@@ -41,6 +41,12 @@ namespace PL.StartupMethods
                     }    
                     else if(!item.isHorizontal)
                     {
+                        int ballX = ball.X;
+                        int ballY = ball.Y;
+                        map[ballX, ballY] = new Empty(ballX, ballY);
+                        map[ball.X, ball.Y] = new Core.NewModels.Ball(ball.X, ball.Y);
+                        ball.X += dx;
+                        ball.Y += dy;
                         return ChangeDirectionWithPlayer(dir, player);
                     }
                     else if(item.isCollecting)

@@ -64,7 +64,7 @@ namespace PL.StartupMethods
                             movement.ProcessKey(ref currentDirectionPlayer, ref changeWall);
                         }
                     }
-                    currentDirection = _check.FrameTickBall(currentDirection, ball, map, player, ref _score);
+                    currentDirection = _check.FrameTickBall(currentDirection, ref ball, map, player, ref _score);
                     currentDirectionPlayer = _check.FrameTick(currentDirectionPlayer, player,map);
                     if (currentDirectionPlayer != Direction.Stop)
                     {
