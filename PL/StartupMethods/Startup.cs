@@ -97,7 +97,7 @@ namespace PL.StartupMethods
                     if (currentDirectionPlayer != Direction.Stop)
                     {
                         player.Move(currentDirectionPlayer);
-                        map[x, y] = new BaseElement(x, y);
+                        map[x, y] = new Empty(x, y);
                         map[player.X, player.Y] = new Core.NewModels.Player(player.X, player.Y) { reverseSlash = player.reverseSlash };
                     }
                     if (changeWall)
@@ -107,7 +107,7 @@ namespace PL.StartupMethods
                         player.reverseSlash = !player.reverseSlash;
                     }
                     ball.Move(currentDirection);
-                    map[ballX, ballY] = new BaseElement(ballX, ballY);
+                    map[ballX, ballY] = new Empty(ballX, ballY);
                     map[ball.X, ball.Y] = new Core.NewModels.Ball(ball.X, ball.Y);
                     map.UpdateMap();
                     currentDirectionPlayer = Direction.Stop;

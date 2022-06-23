@@ -40,7 +40,7 @@ namespace BLL.Services
                         }
                         else
                         {
-                            map[i, j] = new BaseElement(i, j);
+                            map[i, j] = new Empty(i, j);
                         }
                     }
                 }
@@ -57,7 +57,7 @@ namespace BLL.Services
                         {
                             <= 1 => new EnergyBall(i, j),
                             <= 2 => new Wall(i, j),
-                            _ => new BaseElement(i, j)
+                            _ => new Empty(i, j)
                         };
                         if (map[i, j] is EnergyBall)
                         {
@@ -96,8 +96,8 @@ namespace BLL.Services
                     case Ball:
                         item.Draw(item.X, item.Y, '█', ConsoleColor.Blue);
                         break;
-                    default:
-                        item.Draw(item.X, item.Y);
+                    case Empty:
+                        item.Draw(item.X, item.Y, ' ');
                         break;
                 }
             }
@@ -129,8 +129,8 @@ namespace BLL.Services
                     case Ball:
                         item.Draw(item.X, item.Y, '█', ConsoleColor.Blue);
                         break;
-                    default:
-                        item.Draw(item.X, item.Y);
+                    case Empty:
+                        item.Draw(item.X, item.Y, ' ');
                         break;
                 }
             }
