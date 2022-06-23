@@ -1,11 +1,6 @@
 ﻿using BLL.Services;
 using Core.Models;
 using Core.NewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PL.StartupMethods
 {
@@ -16,7 +11,8 @@ namespace PL.StartupMethods
             var (dx, dy) = DirectionsDictionary.directions[currentDirection];
             foreach (var item in map.map)
             {
-                if (player.X + dx == item.X && player.Y + dy == item.Y && (item is Wall || item is EnergyBall))
+                var condition = player.X + dx == item.X && player.Y + dy == item.Y;
+                if (condition && (item.isStopping || item.isCollecting))
                 {
                     return Direction.Stop;
                 }
@@ -37,19 +33,22 @@ namespace PL.StartupMethods
             }
             foreach (var item in map.map)
             {
-                if (ball.X + dx == item.X && ball.Y + dy == item.Y && (item is EnergyBall))
+                if (ball.X + dx == item.X && ball.Y + dy == item.Y)
                 {
-                    _score++;
-                    return dir;
-                }
+                    if(item.isStopping && item.isHorizontal)
+                    {
+                        return ChangeDirection(dir);
+                    }    
+                    else if(!item.isHorizontal)
+                    {
+                        return ChangeDirectionWithPlayer(dir, player);
+                    }
+                    else if(item.isCollecting)
+                    {
+                        _score++;
+                        return dir;
+                    }
 
-                if (ball.X + dx == item.X && ball.Y + dy == item.Y && (item is Wall))
-                {
-                    return ChangeDirection(dir);
-                }
-                if (ball.X + dx == item.X && ball.Y + dy == item.Y && (item is Core.NewModels.Player))
-                {
-                    return ChangeDirectionWithPlayer(dir, player);
                 }
             }
             return dir;

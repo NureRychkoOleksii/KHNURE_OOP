@@ -13,6 +13,8 @@ namespace Core.NewModels
         public bool reverseSlash = false;
         public Player(int x, int y) : base(x, y)
         {
+            isStopping = true;
+            isHorizontal = false;
         }
         public void Move(Direction direction)
         {

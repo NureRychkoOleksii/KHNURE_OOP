@@ -7,6 +7,12 @@ namespace Core.NewModels
         public int X { get; set; }
         public int Y { get; set; }
 
+        public bool isStopping = false;
+
+        public bool isHorizontal = true;
+
+        public bool isCollecting = false;
+
 
         public BaseElement(int x, int y)
         {

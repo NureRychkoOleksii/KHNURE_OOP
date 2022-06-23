@@ -8,6 +8,7 @@ namespace Core.NewModels
 
         public EnergyBall(int x, int y) : base(x, y)
         {
+            isCollecting = true;
         }
     }
 }
