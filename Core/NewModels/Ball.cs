@@ -16,7 +16,7 @@ namespace Core.NewModels
             X += dx;
             Y += dy;
 
-            Draw(X, Y);
+            Draw();
         }
     }
 }

@@ -17,6 +17,7 @@ namespace PL.StartupMethods
         Core.NewModels.Ball ball = new Core.NewModels.Ball(0,0);
         private int _score = 0;
         private int _total = 0;
+        ConsoleGraphic graphic = new ConsoleGraphic();
         public Startup(IUserService service)
         {
             _userService = service;
@@ -28,6 +29,7 @@ namespace PL.StartupMethods
 
         public async Task StartGame()
         {
+            BaseElement.DrawElement += graphic.Draw;
             Console.SetWindowSize(150, 100);
             Console.SetBufferSize(150, 100);
             Console.SetWindowSize(100, 60);

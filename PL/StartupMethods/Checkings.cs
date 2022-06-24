@@ -63,7 +63,7 @@ namespace PL.StartupMethods
         public Direction ChangeDirectionWithPlayer(Direction dir, Core.NewModels.Player player)
         {
 
-            var vertical = dir == Direction.Up || dir == Direction.Down;
+            var vertical = (dir == Direction.Up || dir == Direction.Down);
             int delta;
             delta = vertical ? 1 : -1;
             if (player.reverseSlash)

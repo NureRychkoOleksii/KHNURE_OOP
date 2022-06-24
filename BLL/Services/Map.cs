@@ -29,10 +29,14 @@ namespace BLL.Services
                 int a = random.Next(2, 25);
                 for (int i = a; i < (a + 5); i++)
                 {
-                    if (i >= a + 3)
+                    if (i == a + 3)
                     {
-                        l -=2 ;
+                        l--;
                     }
+                    else if(i > a+3)
+                    {
+                        l -= 2;
+                    }    
                     for (int j = a; j < (a + 5); j++)
                     {
                         if(i == a+2)
@@ -138,32 +142,33 @@ namespace BLL.Services
             Console.SetCursorPosition(15, 5);
             foreach (var item in map)
             {
-                switch (item)
-                {
-                    case Wall:
-                        item.Draw(item.X, item.Y, '#', ConsoleColor.Gray);
-                        break;
-                    case EnergyBall:
-                        item.Draw(item.X, item.Y, '%', ConsoleColor.Green);
-                        break;
-                    case Player:
-                        var k = (Player)item;
-                        if (!k.reverseSlash)
-                        {
-                            item.Draw(item.X, item.Y, '/', ConsoleColor.Red);
-                        }
-                        else
-                        {
-                            item.Draw(item.X, item.Y, '\\', ConsoleColor.Red);
-                        }
-                        break;
-                    case Ball:
-                        item.Draw(item.X, item.Y, '█', ConsoleColor.Blue);
-                        break;
-                    case Empty:
-                        item.Draw(item.X, item.Y, ' ');
-                        break;
-                }
+                item.Draw();
+                //switch (item)
+                //{
+                //    case Wall:
+                //        item.Draw(item.X, item.Y, '#', ConsoleColor.Gray);
+                //        break;
+                //    case EnergyBall:
+                //        item.Draw(item.X, item.Y, '%', ConsoleColor.Green);
+                //        break;
+                //    case Player:
+                //        var k = (Player)item;
+                //        if (!k.reverseSlash)
+                //        {
+                //            item.Draw(item.X, item.Y, '/', ConsoleColor.Red);
+                //        }
+                //        else
+                //        {
+                //            item.Draw(item.X, item.Y, '\\', ConsoleColor.Red);
+                //        }
+                //        break;
+                //    case Ball:
+                //        item.Draw(item.X, item.Y, '█', ConsoleColor.Blue);
+                //        break;
+                //    case Empty:
+                //        item.Draw(item.X, item.Y, ' ');
+                //        break;
+                //}
             }
         }
 
@@ -171,32 +176,7 @@ namespace BLL.Services
         {
             foreach (var item in map)
             {
-                switch (item)
-                {
-                    case Wall:
-                        item.Draw(item.X, item.Y, '#', ConsoleColor.Gray);
-                        break;
-                    case EnergyBall:
-                        item.Draw(item.X, item.Y, '%', ConsoleColor.Green);
-                        break;
-                    case Player:
-                        var k = (Player)item;
-                        if (!k.reverseSlash)
-                        {
-                            item.Draw(item.X, item.Y, '/', ConsoleColor.Red);
-                        }
-                        else
-                        {
-                            item.Draw(item.X, item.Y, '\\', ConsoleColor.Red);
-                        }
-                        break;
-                    case Ball:
-                        item.Draw(item.X, item.Y, '█', ConsoleColor.Blue);
-                        break;
-                    case Empty:
-                        item.Draw(item.X, item.Y, ' ');
-                        break;
-                }
+                item.Draw();
             }
         }
     }

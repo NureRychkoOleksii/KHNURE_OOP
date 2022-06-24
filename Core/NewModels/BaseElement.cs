@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Drawing;
 
 namespace Core.NewModels
 {
     public class BaseElement
     {
+        public static event EventHandler DrawElement;
         public int X { get; set; }
         public int Y { get; set; }
 
@@ -20,17 +22,9 @@ namespace Core.NewModels
             Y = y;
         }
 
-        public virtual void Draw(int X, int Y, char pixel = ' ', ConsoleColor Color = ConsoleColor.Black)
+        public virtual void Draw()
         {
-            Console.ForegroundColor = Color;
-            for (int x = 0; x < 2; x++)
-            {
-                for (int y = 0; y < 2; y++)
-                {
-                    Console.SetCursorPosition(X * 2 + x, Y * 2 + y);
-                    Console.Write(pixel);
-                }
-            }
+            DrawElement?.Invoke(this, EventArgs.Empty);
         }
 
 
