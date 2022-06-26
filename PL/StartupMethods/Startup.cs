@@ -24,12 +24,13 @@ namespace PL.StartupMethods
         }
         private int _frameRate = 50;
 
-        private readonly Core.NewModels.Map map= new Core.NewModels.Map();
+        private readonly BLL.Services.Map map= new BLL.Services.Map();
         private readonly Checkings _check = new Checkings();
 
         public async Task StartGame()
         {
             BaseElement.DrawElement += graphic.Draw;
+            BaseElement.ClearElement += graphic.Clear;
             Console.SetWindowSize(150, 100);
             Console.SetBufferSize(150, 100);
             Console.SetWindowSize(100, 60);
@@ -70,6 +71,7 @@ namespace PL.StartupMethods
                     currentDirectionPlayer = _check.FrameTick(currentDirectionPlayer, player,map);
                     if (currentDirectionPlayer != Direction.Stop)
                     {
+                        //player.Clear(player.X, player.Y);
                         player.Move(currentDirectionPlayer);
                         map[x, y] = new Empty(x, y);
                         map[player.X, player.Y] = new Core.NewModels.Player(player.X, player.Y) { reverseSlash = player.reverseSlash };
@@ -80,6 +82,7 @@ namespace PL.StartupMethods
                         temp.reverseSlash = !temp.reverseSlash;
                         player.reverseSlash = !player.reverseSlash;
                     }
+                    //ball.Clear(ball.X, ball.Y);
                     ball.Move(currentDirection);
                     map[ballX, ballY] = new Empty(ballX, ballY);
                     map[ball.X, ball.Y] = new Core.NewModels.Ball(ball.X, ball.Y);

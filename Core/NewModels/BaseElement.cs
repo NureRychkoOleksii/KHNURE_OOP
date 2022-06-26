@@ -6,6 +6,7 @@ namespace Core.NewModels
     public class BaseElement
     {
         public static event EventHandler DrawElement;
+        public static event EventHandler ClearElement;
         public int X { get; set; }
         public int Y { get; set; }
 
@@ -30,14 +31,7 @@ namespace Core.NewModels
 
         public virtual void Clear(int X, int Y)
         {
-            for (int x = 0; x < 2; x++)
-            {
-                for (int y = 0; y < 2; y++)
-                {
-                    Console.SetCursorPosition(X * 2 + x, Y * 2 + y);
-                    Console.Write(' ');
-                }
-            }
+            ClearElement?.Invoke(this, EventArgs.Empty);
         }
 
     }

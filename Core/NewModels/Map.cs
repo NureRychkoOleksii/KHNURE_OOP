@@ -6,7 +6,7 @@ namespace Core.NewModels
 
     public class Map
     {
-        public BaseElement[,] map = new BaseElement[50, 30];
+        public BaseElement[,] map = new BaseElement[52,52];
         public int scoreToWin = 0;
 
 
@@ -27,7 +27,7 @@ namespace Core.NewModels
             for (int k = 0; k < 2; k++)
             {
                 int l = 2;
-                int a = random.Next(2, 25);
+                int a = random.Next(2, 45);
                 for (int i = a; i < (a + 5); i++)
                 {
                     if (i == a + 3)
@@ -68,7 +68,7 @@ namespace Core.NewModels
             }
             for (int k = 0; k < 2; k++)
             {
-                int a = random.Next(25);
+                int a = random.Next(45);
                 for (int i = a; i < (a + 5); i++)
                 {
                     for (int j = a; j < (a + 5); j++)
@@ -90,7 +90,7 @@ namespace Core.NewModels
             }
             for (int k = 0; k < 3; k++)
             {
-                int a = random.Next(2, 25);
+                int a = random.Next(2, 45);
                 for (int i = a; i < (a + 5); i++)
                 {
                     for (int j = a; j < (a + 5); j++)
@@ -135,42 +135,12 @@ namespace Core.NewModels
                     }
                 }
             }
-            int x = random.Next(50), y = random.Next(30);
+            int x = random.Next(50), y = random.Next(50);
             map[x, y] = new Player(x, y);
             x = random.Next(50);
-            y = random.Next(30);
+            y = random.Next(50);
             map[x, y] = new Ball(x, y);
-            Console.SetCursorPosition(15, 5);
-            foreach (var item in map)
-            {
-                item.Draw();
-                //switch (item)
-                //{
-                //    case Wall:
-                //        item.Draw(item.X, item.Y, '#', ConsoleColor.Gray);
-                //        break;
-                //    case EnergyBall:
-                //        item.Draw(item.X, item.Y, '%', ConsoleColor.Green);
-                //        break;
-                //    case Player:
-                //        var k = (Player)item;
-                //        if (!k.reverseSlash)
-                //        {
-                //            item.Draw(item.X, item.Y, '/', ConsoleColor.Red);
-                //        }
-                //        else
-                //        {
-                //            item.Draw(item.X, item.Y, '\\', ConsoleColor.Red);
-                //        }
-                //        break;
-                //    case Ball:
-                //        item.Draw(item.X, item.Y, '█', ConsoleColor.Blue);
-                //        break;
-                //    case Empty:
-                //        item.Draw(item.X, item.Y, ' ');
-                //        break;
-                //}
-            }
+            UpdateMap();
         }
 
         public void UpdateMap()

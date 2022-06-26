@@ -39,5 +39,22 @@ namespace PL.StartupMethods
                 }
             }
         }
+
+        public void Clear(object? sender, EventArgs e)
+        {
+            if (sender is not BaseElement pixel)
+            {
+                return;
+            }
+
+            for (int x = 0; x < 2; x++)
+            {
+                for (int y = 0; y < 2; y++)
+                {
+                    Console.SetCursorPosition(pixel.X * 2 + x, pixel.Y * 2 + y);
+                    Console.Write(' ');
+                }
+            }
+        }
     }
 }

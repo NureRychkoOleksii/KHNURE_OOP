@@ -1,0 +1,5 @@
+﻿Build started...
+1>------ Build started: Project: WinFormsApp, Configuration: Debug Any CPU ------
+1>Skipping analyzers to speed up the build. You can execute 'Build' or 'Rebuild' command to run analyzers.
+1>WinFormsApp -> E:\laby oop\WinFormsApp\bin\Debug\net5.0-windows\WinFormsApp.dll
+========== Build: 1 succeeded, 0 failed, 1 up-to-date, 0 skipped ==========

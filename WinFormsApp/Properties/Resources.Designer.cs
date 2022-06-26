@@ -63,6 +63,16 @@ namespace WinFormsApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap energyBall {
+            get {
+                object obj = ResourceManager.GetObject("energyBall", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap reverseSlash {
             get {
                 object obj = ResourceManager.GetObject("reverseSlash", resourceCulture);

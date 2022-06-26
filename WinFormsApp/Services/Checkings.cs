@@ -1,12 +1,11 @@
-﻿using BLL.Services;
-using Core.Models;
+﻿using Core.Models;
 using Core.NewModels;
 
-namespace PL.StartupMethods
+namespace WinFormsApp.Services
 {
     public class Checkings
     {
-        public Direction FrameTick(Direction currentDirection, Core.NewModels.Player player, BLL.Services.Map map)
+        public Direction FrameTick(Direction currentDirection, Core.NewModels.Player player, Core.NewModels.Map map)
         {
             var (dx, dy) = DirectionsDictionary.directions[currentDirection];
             foreach (var item in map.map)
@@ -24,7 +23,7 @@ namespace PL.StartupMethods
             return currentDirection;
         }
 
-        public Direction FrameTickBall(Direction dir, ref Core.NewModels.Ball ball, BLL.Services.Map map, Core.NewModels.Player player, ref int _score)
+        public Direction FrameTickBall(Direction dir, ref Core.NewModels.Ball ball, Core.NewModels.Map map, Core.NewModels.Player player, ref int _score)
         {
             var (dx, dy) = DirectionsDictionary.directions[dir];
             if (ball.X + 1 == map.map.GetLength(0) || ball.Y + 1 == map.map.GetLength(1) || ball.X == 0 || ball.Y == 0)

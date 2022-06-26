@@ -5,177 +5,160 @@ using System.Drawing;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
-using WinFormsApp.Models;
+using Core.Models;
+using WinFormsApp.Services;
+using User = WinFormsApp.Models.User;
 
 namespace WinFormsApp
 {
     public partial class Form1 : Form
     {
-        private int _dirXBall = 1, _dirYBall = 0;
         private Thread _th;
-        private bool _slash = true;
-        private int _count = 0;
+        private User _user = new User();
+        private Direction _currentDir = Direction.Stop;
+        private Direction _currentBallDir = Direction.Right;
+        private Core.NewModels.Player _player = new Core.NewModels.Player(0,0);
+        private Core.NewModels.Ball _ball = new Core.NewModels.Ball(0, 0);
+        private Map map = new Map();
+        private int _total = 0;
         private int _score = 0;
-        private List<PictureBox> _walls = new List<PictureBox>();
-        private readonly User _user;
+
+        private GraphicEngine _graphicEngine;
+        Checkings checkings = new Checkings();
 
         private List<PictureBox> _energyBalls = new List<PictureBox>();
 
-        private PictureBox _tp = new PictureBox()
-        {
-            Name = $"tp",
-            Size = new Size(15, 15),
-            Location = new Point(new Random().Next(1, 66) * 10, new Random().Next(1, 33) * 15),
-            BackColor = Color.Yellow
-        };
+        // private PictureBox _tp = new PictureBox()
+        // {
+        //     Name = $"tp",
+        //     Size = new Size(15, 15),
+        //     Location = new Point(new Random().Next(1, 66) * 10, new Random().Next(1, 33) * 15),
+        //     BackColor = Color.Yellow
+        // };
 
         public Form1(User user)
         {
             InitializeComponent();
-            var graphicEngine = new GraphicEngine(this);
-            BaseElement.DrawElement += graphicEngine.Draw;
+            _graphicEngine = new GraphicEngine(this);
+            BaseElement.DrawElement += _graphicEngine.Draw;
+            BaseElement.ClearElement += _graphicEngine.Clear;
+            map.CreateMap();
+            DetermineElements(ref _player, ref _ball);
+            _graphicEngine.playerPicturebox.Tag = "slash";
             _user = user;
-            Music music = new Music();
-            Items items = new Items();
-            player.BackgroundImage.Tag = "slash";
-            items.CreateItems();
-            music.Play();
-            this.Controls.Add(_tp);
-            _tp.BringToFront();
-            timer1.Tick += new EventHandler(Update);
-            timer1.Tick += new EventHandler(ChangeBallDirection);
-            timer1.Interval = 20;
+            timer1.Interval = 300;
             timer1.Start();
-            timer2.Tick += new EventHandler(CreateItems);
-            timer2.Interval = 100;
-            timer2.Start();
-            this.KeyDown += new KeyEventHandler(OKP);
+            this.KeyDown += UpdateKeyEventHandler;
         }
 
-        private void Update(Object myObject, EventArgs eventsArgs)
+        private void timer1_Tick(object sender, EventArgs e)
         {
-            ball.Location = new Point(ball.Location.X + _dirXBall * 5, ball.Location.Y + _dirYBall * 5);
-        }
-
-        private void CreateItems(object sender, EventArgs e)
-        {
-            Random rand = new Random();
-            if (_count == 10)
-            {
-                timer2.Tick -= new EventHandler(CreateItems);
-                timer2.Enabled = false;
-            }
-            var picture1 = new PictureBox()
-            {
-                Name = $"wall{++_count}",
-                Parent = pictureBox1,
-                Size = new Size(15, 15),
-                Location = new Point(pictureBox1.Location.X + rand.Next(1, 44) * 15, pictureBox1.Location.Y + rand.Next(1, 44) * 15),
-                BackColor = Color.Red
-            };
-            var picture2 = new PictureBox()
-            {
-                Name = $"energyBall{++_count}",
-                Parent = pictureBox1,
-                Size = new Size(15, 15),
-                Location = new Point(pictureBox1.Location.X + rand.Next(1, 44) * 15,
-                pictureBox1.Location.Y + rand.Next(1, 44) * 15),
-                BackColor = Color.Green
-            };
-            _walls.Add(picture1);
-            this.Controls.Add(picture1);
-            picture1.BringToFront();
-            _energyBalls.Add(picture2);
-            this.Controls.Add(picture2);
-            picture2.BringToFront();
-        }
-        
-        private void OKP(object sender, KeyEventArgs e)
-        {
-            switch (e.KeyCode.ToString())
-            {
-                case "Right":
-                    player.Location = new Point(player.Location.X + 5, player.Location.Y);
-                    break;
-                case "Left":
-                    player.Location = new Point(player.Location.X - 5, player.Location.Y);
-                    break;
-                case "Down":
-                    player.Location = new Point(player.Location.X, player.Location.Y + 5);
-                    break;
-                case "Up":
-                    player.Location = new Point(player.Location.X, player.Location.Y - 5);
-                    break;
-                case "Tab":
-                    ChangeImage();
-                    break;
-            }
-        }
-
-        private void ChangeImage()
-        {
-            if(player.BackgroundImage.Tag.Equals("reverseSlash"))
-            {
-                player.BackgroundImage = Image.FromFile(@"C:\Users\moonler\OneDrive - Kharkiv National University of Radioelectronics\Desktop\slash.png");
-                player.BackgroundImage.Tag = "slash";
-            }
-            else
-            {
-                player.BackgroundImage = Image.FromFile(@"C:\Users\moonler\OneDrive - Kharkiv National University of Radioelectronics\Desktop\reverseSlash.png");
-                player.BackgroundImage.Tag = "reverseSlash";
-            }
-        }
-
-        private void ChangeBallDirection(object sender, EventArgs e)
-        {
-            if(ball.Location.X < 0)
-            {
-                _dirXBall = 1;
-            }
-            else if(ball.Location.X >= 660)
-            {
-                _dirXBall = -1;
-            }
-            else if (ball.Location.Y >= 660)
-            {
-                _dirYBall = -1;
-            }
-            else if (ball.Location.Y < 0)
-            {
-                _dirYBall = 1;
-            }
-
-            if(player.Location.X == ball.Location.X && player.Location.Y == ball.Location.Y)
-            {
-                if(_slash)
-                {
-                    ChangeBallAndWallSlash(DefineDirection());
-                }
-            }
-            if(_walls.Any(w => w.Location.X == ball.Location.X && w.Location.Y == ball.Location.Y))
-            {
-                ChangeInteractionDirection();
-            }
-            var item = _energyBalls.FirstOrDefault(w => w.Location.X == ball.Location.X && w.Location.Y == ball.Location.Y);
-            if (item != null)
-            {
-                _score++;
-                scoreBox.Text = Convert.ToString(_score);
-                _energyBalls.Remove(item);
-                this.Controls.Remove(item);
-            }
-            if(ball.Location.X == _tp.Location.X && ball.Location.Y == _tp.Location.Y)
-            {
-                ball.Location = new Point(new Random().Next(1, 660), new Random().Next(1, 660));
-                this.Controls.Remove(_tp);
-            }
-            if(_score == 6)
+            if (_score == _total)
             {
                 this.Close();
                 _th = new Thread(OpenNewForm);
                 _th.SetApartmentState(ApartmentState.STA);
                 _th.Start();
             }
+            CheckBall();
+            var (dx, dy) = DirectionsDictionary.directions[_currentBallDir];
+            //_currentDir = checkings.FrameTick(_currentDir, _player, map);
+            int ballX = _ball.X, ballY = _ball.Y;
+            map[ballX, ballY] = new Empty(ballX, ballY);
+            _ball.X += dx;
+            _ball.Y += dy;
+            map[_ball.X, _ball.Y] = new Core.NewModels.Ball(_ball.X, _ball.Y);
+            _graphicEngine.ballPictureBox.Location = new Point(_graphicEngine.ballPictureBox.Location.X + dx * 15, _graphicEngine.ballPictureBox.Location.Y + dy * 15);
+            //map.UpdateMap();
+        }
+
+        private void CheckBall()
+        {
+            var (dx, dy) = DirectionsDictionary.directions[_currentBallDir];
+            if (_ball.X + 1 == map.map.GetLength(0) || _ball.Y + 1 == map.map.GetLength(1) || _ball.X == 0 || _ball.Y == 0)
+            {
+                _currentBallDir = checkings.ChangeDirection(_currentBallDir);
+            }
+            foreach (var item in map.map)
+            {
+                if (_ball.X + dx == item.X && _ball.Y + dy == item.Y)
+                {
+                    if (item.isStopping && item.isHorizontal)
+                    {
+                        _currentBallDir = checkings.ChangeDirection(_currentBallDir);
+                    }
+                    else if (!item.isHorizontal)
+                    {
+                        _currentBallDir = checkings.ChangeDirectionWithPlayer(_currentBallDir, _player);
+                    }
+                    else if (item.isCollecting)
+                    {
+                        foreach(var i in this.Controls)
+                        {
+                            if(i is PictureBox picture)
+                            {
+                                if(picture.Location.X == (item.X * 15) && picture.Location.Y == (item.Y * 15))
+                                {
+                                    this.Controls.Remove(picture);
+                                }
+                            }
+                        }
+                        map[item.X, item.Y] = new Empty(item.X, item.Y);
+                        _score++;
+                    }
+
+                }
+            }
+        }
+
+        private void UpdateKeyEventHandler(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode.ToString())
+            {
+                case "Right":
+                    _currentDir = Direction.Right;
+                    break;
+                case "Left":
+                    _currentDir = Direction.Left;
+                    break;
+                case "Down":
+                    _currentDir = Direction.Down;
+                    break;
+                case "Up":
+                    _currentDir = Direction.Up;
+                    break;
+                case "Tab":
+                    ChangeImage();
+                    _currentDir = Direction.Stop;
+                    break;
+            }
+            var (dx, dy) = DirectionsDictionary.directions[_currentDir];
+            _currentDir = checkings.FrameTick(_currentDir, _player, map);
+            if (_currentDir != Direction.Stop)
+            {
+                _graphicEngine.playerPicturebox.Location = new Point(_graphicEngine.playerPicturebox.Location.X + dx * 15, _graphicEngine.playerPicturebox.Location.Y + dy * 15);
+                (dx,dy) = DirectionsDictionary.directions[_currentDir];
+                map[_player.X, _player.Y] = new Empty(_player.X, _player.Y);
+                _player.X += dx;
+                _player.Y += dy;
+                map[_player.X, _player.Y] = new Core.NewModels.Player(_player.X, _player.Y) { reverseSlash = _player.reverseSlash };
+            }
+        }
+
+        private void ChangeImage()
+        {
+            _player.reverseSlash = !_player.reverseSlash;
+            if (!_player.reverseSlash)
+            {
+                _graphicEngine.playerPicturebox.BackgroundImage = Image.FromFile(@"C:\Users\moonler\OneDrive - Kharkiv National University of Radioelectronics\Desktop\slash.png");
+                _graphicEngine.playerPicturebox.BackgroundImage.Tag = "slash";
+            }
+            else
+            {
+                _graphicEngine.playerPicturebox.BackgroundImage = Image.FromFile(@"C:\Users\moonler\OneDrive - Kharkiv National University of Radioelectronics\Desktop\reverseSlash.png");
+                _graphicEngine.playerPicturebox.BackgroundImage.Tag = "reverseSlash";
+            }
+
         }
 
         private void OpenNewForm()
@@ -183,102 +166,24 @@ namespace WinFormsApp
             Application.Run(new Form4(_user));
         }
 
-        private void ChangeInteractionDirection()
+        private void DetermineElements(ref Core.NewModels.Player player, ref Core.NewModels.Ball ball)
         {
-            if(_dirXBall != 0)
+            foreach (var i in map.map)
             {
-                switch(_dirXBall)
+                if (i is Core.NewModels.Player)
                 {
-                    case 1:
-                        _dirXBall = -1;
-                        break;
-                    case -1:
-                        _dirXBall = 1;
-                        break;
+                    player = (Core.NewModels.Player)i;
                 }
-            }
-            else
-            {
-                switch(_dirYBall)
+                else if (i is Core.NewModels.Ball)
                 {
-                    case 1:
-                        _dirYBall = -1;
-                        break;
-                    case -1:
-                        _dirYBall = 1;
-                        break;
+                    ball = (Core.NewModels.Ball)i;
+                }
+                else if (i is EnergyBall)
+                {
+                    _total++;
                 }
             }
         }
-
-        private string DefineDirection()
-        {
-            if(_dirXBall == 1)
-            {
-                return "right";
-            }
-            else if(_dirXBall == -1)
-            {
-                return "left";
-            }
-            else if(_dirYBall == 1)
-            {
-                return "down";
-            }
-            else
-            {
-                return "up";
-            }
-        }
-
-        private void ChangeBallAndWallSlash(string dir)
-        {
-            if (player.BackgroundImage.Tag.Equals("slash"))
-            {
-                switch (dir)
-                {
-                    case "right":
-                        _dirXBall = 0;
-                        _dirYBall = -1;
-                        break;
-                    case "left":
-                        _dirXBall = 0;
-                        _dirYBall = 1;
-                        break;
-                    case "up":
-                        _dirXBall = 1;
-                        _dirYBall = 0;
-                        break;
-                    case "down":
-                        _dirXBall = -1;
-                        _dirYBall = 0;
-                        break;
-                }
-            }
-            else
-            {
-                switch (dir)
-                {
-                    case "right":
-                        _dirXBall = 0;
-                        _dirYBall = 1;
-                        break;
-                    case "left":
-                        _dirXBall = 0;
-                        _dirYBall = -1;
-                        break;
-                    case "up":
-                        _dirXBall = -1;
-                        _dirYBall = 0;
-                        break;
-                    case "down":
-                        _dirXBall = 1;
-                        _dirYBall = 0;
-                        break;
-                }
-            }
-        }
-
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
@@ -289,7 +194,7 @@ namespace WinFormsApp
 
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
 
         }
