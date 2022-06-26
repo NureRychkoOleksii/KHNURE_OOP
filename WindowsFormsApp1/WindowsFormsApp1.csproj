@@ -73,6 +73,7 @@
     <Compile Include="Form4.Designer.cs">
       <DependentUpon>Form4.cs</DependentUpon>
     </Compile>
+    <Compile Include="GraphicEngine.cs" />
     <Compile Include="Models\Items.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Music.cs" />

@@ -24,7 +24,7 @@ namespace PL.StartupMethods
         }
         private int _frameRate = 50;
 
-        private readonly Map map= new Map();
+        private readonly Core.NewModels.Map map= new Core.NewModels.Map();
         private readonly Checkings _check = new Checkings();
 
         public async Task StartGame()
