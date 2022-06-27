@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using Core.Models;
@@ -69,7 +68,6 @@ namespace WinFormsApp
             _ball.Y += dy;
             map[_ball.X, _ball.Y] = new Core.NewModels.Ball(_ball.X, _ball.Y);
             _graphicEngine.ballPictureBox.Location = new Point(_graphicEngine.ballPictureBox.Location.X + dx * 15, _graphicEngine.ballPictureBox.Location.Y + dy * 15);
-            //map.UpdateMap();
         }
 
         private void CheckBall()
@@ -93,18 +91,20 @@ namespace WinFormsApp
                     }
                     else if (item.isCollecting)
                     {
-                        foreach(var i in this.Controls)
+                        foreach(var i in pictureBox1.Controls)
                         {
                             if(i is PictureBox picture)
                             {
-                                if(picture.Location.X == (item.X * 15) && picture.Location.Y == (item.Y * 15))
+                                if(picture.Location.X == item.X * 15 && picture.Location.Y == item.Y * 15 )
                                 {
-                                    this.Controls.Remove(picture);
+                                    pictureBox1.Controls.Remove(picture);
+                                    break;
                                 }
                             }
                         }
                         map[item.X, item.Y] = new Empty(item.X, item.Y);
                         _score++;
+                        scoreBox.Text = Convert.ToString(_score);
                     }
 
                 }

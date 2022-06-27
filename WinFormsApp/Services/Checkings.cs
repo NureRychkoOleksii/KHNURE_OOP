@@ -67,6 +67,10 @@ namespace WinFormsApp.Services
             delta = vertical ? 1 : -1;
             if (player.reverseSlash)
             {
+                if (dir == Direction.Up)
+                {
+                    return Direction.Left;
+                }
                 delta *= -1;
             }
 

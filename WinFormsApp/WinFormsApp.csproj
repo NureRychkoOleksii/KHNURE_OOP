@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj" />
+    <ProjectReference Include="..\PL\PL.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -48,6 +49,9 @@
   <ItemGroup>
     <None Update="Data\Users.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\67c6554ec556b781e012230459bea2df.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

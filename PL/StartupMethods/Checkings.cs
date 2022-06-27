@@ -1,6 +1,7 @@
 ﻿using BLL.Services;
 using Core.Models;
 using Core.NewModels;
+using System;
 
 namespace PL.StartupMethods
 {
@@ -63,15 +64,32 @@ namespace PL.StartupMethods
         public Direction ChangeDirectionWithPlayer(Direction dir, Core.NewModels.Player player)
         {
 
-            var vertical = (dir == Direction.Up || dir == Direction.Down);
-            int delta;
-            delta = vertical ? 1 : -1;
-            if (player.reverseSlash)
+            if (!player.reverseSlash)
             {
-                delta *= -1;
+                if (dir == Direction.Up || dir == Direction.Down)
+                {
+                    return (Direction)(((int)dir + 1) % 4);
+                }
+                else
+                {
+                    return (Direction)(Math.Abs(((int)dir - 1)) % 3);
+                }
             }
-
-            return (Direction)(((int)dir + delta) % 4);
+            else
+            {
+                if (dir == Direction.Down)
+                {
+                    return (Direction)(Math.Abs(((int)dir - 1)) % 3);
+                }
+                else if (dir == Direction.Up)
+                {
+                    return (Direction)((int)dir + 3);
+                }
+                else
+                {
+                    return (Direction)(((int)dir + 1) % 4);
+                }
+            }
         }
 
         public Direction ChangeDirection(Direction dir)
