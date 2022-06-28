@@ -17,30 +17,30 @@ namespace DAL.Services
             _data = new List<TEntity>();
         }
 
-        public async Task<IEnumerable<TEntity>> GetAllAsync(string path)
+        public IEnumerable<TEntity> GetAllAsync(string path)
         {
-            return await _serializationWorker.Deserialize<IEnumerable<TEntity>>(path);
+            return _serializationWorker.Deserialize<IEnumerable<TEntity>>(path);
         }
 
-        public async Task<TEntity> GetById(string path, int id)
+        public TEntity GetById(string path, int id)
         {
-            var res = await GetAllAsync(path);
+            var res = GetAllAsync(path);
             return res.Where(user => user.Id == id).FirstOrDefault();
         }
 
-        public async Task CreateObject(TEntity obj, string path)
+        public void CreateObject(TEntity obj, string path)
         {
-            _data = (await GetAllAsync(path)).ToList();
+            _data = GetAllAsync(path).ToList();
             obj.Id = ++_data.OrderBy(x => x.Id).FirstOrDefault().Id;
             _data.Add(obj);
-            await _serializationWorker.Serialize<IEnumerable<TEntity>>(_data, path);
+            _serializationWorker.Serialize<IEnumerable<TEntity>>(_data, path);
         }
 
-        public async Task DeleteObject(TEntity obj, string path)
+        public void DeleteObject(TEntity obj, string path)
         {
-            _data = (await _serializationWorker.Deserialize<IEnumerable<TEntity>>(path)).ToList();
+            _data = _serializationWorker.Deserialize<IEnumerable<TEntity>>(path).ToList();
             _data.RemoveAll(x => x.Id == obj.Id);
-            await _serializationWorker.Serialize<IEnumerable<TEntity>>(_data, path);
+            _serializationWorker.Serialize<IEnumerable<TEntity>>(_data, path);
         }
     }
 }

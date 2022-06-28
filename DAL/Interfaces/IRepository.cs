@@ -9,12 +9,12 @@ namespace DAL.Interfaces
 {
     public interface IRepository<TEntity> where TEntity : IdKey
     {
-        Task<IEnumerable<TEntity>> GetAllAsync(string path);
+        IEnumerable<TEntity>GetAllAsync(string path);
 
-        Task<TEntity> GetById(string path, int id);
+        TEntity GetById(string path, int id);
 
-        Task CreateObject(TEntity obj, string path);
+        void CreateObject(TEntity obj, string path);
 
-        Task DeleteObject(TEntity obj, string path);
+        void DeleteObject(TEntity obj, string path);
     }
 }

@@ -7,15 +7,15 @@ namespace DAL.Services
 {
     class SerializationWorker : ISerializationWorker
     {
-        public async Task Serialize<TEntity>(TEntity obj, string jsonFileName)
+        public void Serialize<TEntity>(TEntity obj, string jsonFileName)
         {
             var json = JsonConvert.SerializeObject(obj);
-            await File.WriteAllTextAsync(jsonFileName, json);
+            File.WriteAllText(jsonFileName, json);
         }
 
-        public async Task<TEntity> Deserialize<TEntity>(string fileName)
+        public TEntity Deserialize<TEntity>(string fileName)
         {
-            var json = await File.ReadAllTextAsync(fileName);
+            var json = File.ReadAllText(fileName);
             return JsonConvert.DeserializeObject<TEntity>(json);
         }
     }

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WinFormsApp.Models;
+using Core.Models;
 
 namespace WinFormsApp
 {

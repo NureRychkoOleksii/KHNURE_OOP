@@ -16,26 +16,26 @@ namespace BLL
             _repository = repository;
         }
 
-        public async Task AddUser(User user)
+        public void AddUser(User user)
         {
-            await _repository.CreateObject(user, _path);
+            _repository.CreateObject(user, _path);
         }
         
-        public async Task<User?> GetUserById(int id)
+        public User? GetUserById(int id)
         {
-            return await _repository.GetById(_path, id);
+            return _repository.GetById(_path, id);
         }
 
-        public async Task<IEnumerable<User>> GetUsers()
+        public IEnumerable<User> GetUsers()
         {
-            return await _repository.GetAllAsync(_path);
+            return _repository.GetAllAsync(_path);
         }
 
-        public async Task UpdateUser(User user, int id)
+        public void UpdateUser(User user, int id)
         {
-            var userGet = await _repository.GetById(_path, id);
-            await _repository.DeleteObject(userGet, _path);
-            await _repository.CreateObject(user, _path);
+            var userGet = _repository.GetById(_path, id);
+            _repository.DeleteObject(userGet, _path);
+            _repository.CreateObject(user, _path);
         }
     }
 }

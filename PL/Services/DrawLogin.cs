@@ -8,7 +8,7 @@ namespace PL.Services
 {
     public class DrawLogin
     {
-        public async Task<User> Login(IUserService _userService)
+        public User Login(IUserService _userService)
         {
             Console.Clear();
             Console.WriteLine(@"   __             _        __                                                          __ 
@@ -23,7 +23,7 @@ namespace PL.Services
             var nick = Console.ReadLine();
             Console.WriteLine("enter your password");
             var pass = Console.ReadLine();
-            var user = (await _userService.GetUsers()).Where(u => u.Name == nick && u.Password == pass);
+            var user = _userService.GetUsers().Where(u => u.Name == nick && u.Password == pass);
             if(user.FirstOrDefault() != null)
             {
                 return user.FirstOrDefault();
@@ -31,7 +31,7 @@ namespace PL.Services
             else
             {
                 var res = new User() { Id = 0, Name = nick, Password = pass, Record = "0" };
-                await _userService.AddUser(res);
+                _userService.AddUser(res);
                 return res;
             }
         }

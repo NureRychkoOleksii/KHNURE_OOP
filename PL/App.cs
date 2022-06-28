@@ -13,9 +13,9 @@ namespace PL
             _startup = startup;
         }
 
-        public async Task Start()
+        public void Start()
         {
-            await _startup.StartGame();
+            _startup.StartGame();
         }
     }
 }

@@ -27,7 +27,7 @@ namespace PL.StartupMethods
         private readonly BLL.Services.Map map= new BLL.Services.Map();
         private readonly Checkings _check = new Checkings();
 
-        public async Task StartGame()
+        public void StartGame()
         {
             BaseElement.DrawElement += graphic.Draw;
             BaseElement.ClearElement += graphic.Clear;
@@ -47,7 +47,7 @@ namespace PL.StartupMethods
             var login = new DrawLogin();
             if (Console.ReadKey(true).Key == ConsoleKey.D1)
             {
-                var user = await login.Login(_userService);
+                var user = login.Login(_userService);
                 map.CreateMap();
                 DetermineElements(ref player, ref ball);
 
@@ -94,7 +94,7 @@ namespace PL.StartupMethods
                     {
                         time.StartTimeChecking();
                         user.Record = time.stopwatch.Elapsed.ToString();
-                        await _userService.UpdateUser(user, user.Id);
+                        _userService.UpdateUser(user, user.Id);
                         Console.Clear();
                         Console.SetCursorPosition(50, 30);
                         Console.WriteLine($"You won! your record: ${user.Record}");

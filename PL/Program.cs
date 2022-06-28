@@ -8,12 +8,12 @@ namespace PL
 {
     class Program
     {
-        static async Task Main()
+        static void Main()
         {
             var services = new ServiceCollection();
             ConfigureServices(services);
             var serviceProvider = services.BuildServiceProvider();
-            await serviceProvider.GetService<App>()?.Start();
+            serviceProvider.GetService<App>()?.Start();
         }
 
         public static void ConfigureServices(IServiceCollection services)
