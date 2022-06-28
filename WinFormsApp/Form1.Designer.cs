@@ -44,7 +44,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.pictureBox1.BackColor = System.Drawing.Color.Aqua;
             this.pictureBox1.Location = new System.Drawing.Point(307, 12);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pictureBox1.Name = "pictureBox1";

@@ -38,10 +38,11 @@
             // 
             this.textBox.BackColor = System.Drawing.SystemColors.Window;
             this.textBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox.Location = new System.Drawing.Point(236, 21);
+            this.textBox.Location = new System.Drawing.Point(236, 12);
+            this.textBox.Multiline = true;
             this.textBox.Name = "textBox";
             this.textBox.ReadOnly = true;
-            this.textBox.Size = new System.Drawing.Size(160, 13);
+            this.textBox.Size = new System.Drawing.Size(160, 29);
             this.textBox.TabIndex = 0;
             this.textBox.Text = "Welcome to the New Ball Game!";
             // 
@@ -69,7 +70,7 @@
             // 
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(629, 364);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
