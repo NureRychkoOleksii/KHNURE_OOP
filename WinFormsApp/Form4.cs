@@ -1,6 +1,6 @@
 ﻿using System.Threading;
 using System.Windows.Forms;
-using WinFormsApp.Models;
+using Core.Models;
 
 namespace WinFormsApp
 {

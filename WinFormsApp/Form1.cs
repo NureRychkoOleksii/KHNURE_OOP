@@ -6,7 +6,9 @@ using System.Threading;
 using System.Windows.Forms;
 using Core.Models;
 using WinFormsApp.Services;
-using User = WinFormsApp.Models.User;
+using BLL;
+using DAL.Interfaces;
+using BLL.Interfaces;
 
 namespace WinFormsApp
 {
@@ -21,6 +23,8 @@ namespace WinFormsApp
         private Map map = new Map();
         private int _total = 0;
         private int _score = 0;
+        TimeCheck time = new TimeCheck();
+        private readonly IUserService _userService;
 
         private GraphicEngine _graphicEngine;
         Checkings checkings = new Checkings();
@@ -38,11 +42,14 @@ namespace WinFormsApp
         public Form1(User user)
         {
             InitializeComponent();
+            Music music = new Music();
+            music.Play();
             _graphicEngine = new GraphicEngine(this);
             BaseElement.DrawElement += _graphicEngine.Draw;
             BaseElement.ClearElement += _graphicEngine.Clear;
             map.CreateMap();
             DetermineElements(ref _player, ref _ball);
+            time.StartTimeChecking();
             _graphicEngine.playerPicturebox.Tag = "slash";
             _user = user;
             timer1.Interval = 300;
@@ -54,6 +61,9 @@ namespace WinFormsApp
         {
             if (_score == _total)
             {
+                time.StopTimeChecking();
+                _user.Record = time.stopwatch.Elapsed.ToString();
+                _userService.UpdateUser(_user, _user.Id);
                 this.Close();
                 _th = new Thread(OpenNewForm);
                 _th.SetApartmentState(ApartmentState.STA);
@@ -61,7 +71,6 @@ namespace WinFormsApp
             }
             CheckBall();
             var (dx, dy) = DirectionsDictionary.directions[_currentBallDir];
-            //_currentDir = checkings.FrameTick(_currentDir, _player, map);
             int ballX = _ball.X, ballY = _ball.Y;
             map[ballX, ballY] = new Empty(ballX, ballY);
             _ball.X += dx;

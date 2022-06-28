@@ -24,6 +24,32 @@ namespace Core.NewModels
         public void CreateMap()
         {
             Random random = new Random();
+            for (int k = 0; k < 3; k++)
+            {
+                int a = random.Next(2, 45);
+                for (int i = a; i < (a + 5); i++)
+                {
+                    for (int j = a; j < (a + 5); j++)
+                    {
+                        if (i == a || i == a + 4 || j == a || j == a + 4)
+                        {
+                            if (j == a + 3 && i == a)
+                            {
+                                map[i, j] = new Empty(i, j);
+                                continue;
+                            }
+                            map[i, j] = new Wall(i, j);
+                            continue;
+                        }
+                        int q = random.Next(100);
+                        map[i, j] = q switch
+                        {
+                            <= 25 => new EnergyBall(i, j),
+                            _ => new Empty(i, j),
+                        };
+                    }
+                }
+            }
             for (int k = 0; k < 2; k++)
             {
                 int l = 2;
@@ -88,33 +114,6 @@ namespace Core.NewModels
                     }
                 }
             }
-            for (int k = 0; k < 3; k++)
-            {
-                int a = random.Next(2, 45);
-                for (int i = a; i < (a + 5); i++)
-                {
-                    for (int j = a; j < (a + 5); j++)
-                    {
-                        if (i == a || i == a + 4 || j == a || j == a + 4)
-                        {
-                            if (j == a + 3 && i == a)
-                            {
-                                map[i, j] = new Empty(i, j);
-                                continue;
-                            }
-                            map[i, j] = new Wall(i, j);
-                            continue;
-                        }
-                        int q = random.Next(100);
-                        map[i, j] = q switch
-                        {
-                            <= 25 => new EnergyBall(i, j),
-                            _ => new Empty(i, j),
-                        };
-                    }
-                }
-            }
-
             for (int i = 0; i < map.GetLength(0); i++)
             {
                 for (int j = 0; j < map.GetLength(1); j++)
