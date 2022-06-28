@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
-using WinFormsApp.Models;
+using Core.Models;
 using WinFormsApp.Services;
 
 namespace WinFormsApp

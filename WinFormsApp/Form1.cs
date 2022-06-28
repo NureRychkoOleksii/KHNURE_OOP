@@ -25,33 +25,23 @@ namespace WinFormsApp
         private int _score = 0;
         TimeCheck time = new TimeCheck();
         private readonly IUserService _userService;
+        private GameMethods _game = new GameMethods();
 
         private GraphicEngine _graphicEngine;
         Checkings checkings = new Checkings();
 
-        private List<PictureBox> _energyBalls = new List<PictureBox>();
-
-        // private PictureBox _tp = new PictureBox()
-        // {
-        //     Name = $"tp",
-        //     Size = new Size(15, 15),
-        //     Location = new Point(new Random().Next(1, 66) * 10, new Random().Next(1, 33) * 15),
-        //     BackColor = Color.Yellow
-        // };
-
         public Form1(User user)
         {
             InitializeComponent();
+            _user = user;
             Music music = new Music();
             music.Play();
             _graphicEngine = new GraphicEngine(this);
             BaseElement.DrawElement += _graphicEngine.Draw;
             BaseElement.ClearElement += _graphicEngine.Clear;
-            map.CreateMap();
+            _game.StartGame(ref map, ref time);
             DetermineElements(ref _player, ref _ball);
-            time.StartTimeChecking();
             _graphicEngine.playerPicturebox.Tag = "slash";
-            _user = user;
             timer1.Interval = 300;
             timer1.Start();
             this.KeyDown += UpdateKeyEventHandler;
@@ -61,63 +51,21 @@ namespace WinFormsApp
         {
             if (_score == _total)
             {
-                time.StopTimeChecking();
-                _user.Record = time.stopwatch.Elapsed.ToString();
-                _userService.UpdateUser(_user, _user.Id);
-                this.Close();
-                _th = new Thread(OpenNewForm);
-                _th.SetApartmentState(ApartmentState.STA);
-                _th.Start();
+                EndGame();
             }
-            CheckBall();
-            var (dx, dy) = DirectionsDictionary.directions[_currentBallDir];
-            int ballX = _ball.X, ballY = _ball.Y;
-            map[ballX, ballY] = new Empty(ballX, ballY);
-            _ball.X += dx;
-            _ball.Y += dy;
-            map[_ball.X, _ball.Y] = new Core.NewModels.Ball(_ball.X, _ball.Y);
-            _graphicEngine.ballPictureBox.Location = new Point(_graphicEngine.ballPictureBox.Location.X + dx * 15, _graphicEngine.ballPictureBox.Location.Y + dy * 15);
+            _game.CheckBall(ref _currentBallDir, ref _ball, ref map, checkings, ref _player, this, ref _score);
+            _game.MoveBall(ref _currentBallDir, ref _ball, ref map, ref _graphicEngine);
         }
 
-        private void CheckBall()
+        private void EndGame()
         {
-            var (dx, dy) = DirectionsDictionary.directions[_currentBallDir];
-            if (_ball.X + 1 == map.map.GetLength(0) || _ball.Y + 1 == map.map.GetLength(1) || _ball.X == 0 || _ball.Y == 0)
-            {
-                _currentBallDir = checkings.ChangeDirection(_currentBallDir);
-            }
-            foreach (var item in map.map)
-            {
-                if (_ball.X + dx == item.X && _ball.Y + dy == item.Y)
-                {
-                    if (item.isStopping && item.isHorizontal)
-                    {
-                        _currentBallDir = checkings.ChangeDirection(_currentBallDir);
-                    }
-                    else if (!item.isHorizontal)
-                    {
-                        _currentBallDir = checkings.ChangeDirectionWithPlayer(_currentBallDir, _player);
-                    }
-                    else if (item.isCollecting)
-                    {
-                        foreach(var i in pictureBox1.Controls)
-                        {
-                            if(i is PictureBox picture)
-                            {
-                                if(picture.Location.X == item.X * 15 && picture.Location.Y == item.Y * 15 )
-                                {
-                                    pictureBox1.Controls.Remove(picture);
-                                    break;
-                                }
-                            }
-                        }
-                        map[item.X, item.Y] = new Empty(item.X, item.Y);
-                        _score++;
-                        scoreBox.Text = Convert.ToString(_score);
-                    }
-
-                }
-            }
+            time.StopTimeChecking();
+            _user.Record = time.stopwatch.Elapsed.ToString();
+            _userService.UpdateUser(_user, _user.Id);
+            this.Close();
+            _th = new Thread(OpenNewForm);
+            _th.SetApartmentState(ApartmentState.STA);
+            _th.Start();
         }
 
         private void UpdateKeyEventHandler(object sender, KeyEventArgs e)
@@ -141,17 +89,7 @@ namespace WinFormsApp
                     _currentDir = Direction.Stop;
                     break;
             }
-            var (dx, dy) = DirectionsDictionary.directions[_currentDir];
-            _currentDir = checkings.FrameTick(_currentDir, _player, map);
-            if (_currentDir != Direction.Stop)
-            {
-                _graphicEngine.playerPicturebox.Location = new Point(_graphicEngine.playerPicturebox.Location.X + dx * 15, _graphicEngine.playerPicturebox.Location.Y + dy * 15);
-                (dx,dy) = DirectionsDictionary.directions[_currentDir];
-                map[_player.X, _player.Y] = new Empty(_player.X, _player.Y);
-                _player.X += dx;
-                _player.Y += dy;
-                map[_player.X, _player.Y] = new Core.NewModels.Player(_player.X, _player.Y) { reverseSlash = _player.reverseSlash };
-            }
+            _game.MovePlayer(ref _currentDir, ref map, checkings, ref _graphicEngine, ref _player);
         }
 
         private void ChangeImage()
@@ -192,20 +130,6 @@ namespace WinFormsApp
                     _total++;
                 }
             }
-        }
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void scoreBox_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -51,7 +51,6 @@
             this.pictureBox1.Size = new System.Drawing.Size(797, 788);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // timer1
             // 
@@ -79,7 +78,6 @@
             this.scoreBox.Size = new System.Drawing.Size(38, 41);
             this.scoreBox.TabIndex = 5;
             this.scoreBox.Text = "0";
-            this.scoreBox.Click += new System.EventHandler(this.scoreBox_Click);
             // 
             // ball
             // 
@@ -114,7 +112,6 @@
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "Form1";
             this.Text = "New Ball Game";
-            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ball)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.player)).EndInit();
@@ -127,10 +124,10 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.Label score;
-        private System.Windows.Forms.Label scoreBox;
         public System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox ball;
         private System.Windows.Forms.PictureBox player;
+        public System.Windows.Forms.Label scoreBox;
     }
 }
 
