@@ -25,6 +25,8 @@ namespace PL.StartupMethods
         private Methods methods = new Methods();
         private Core.Methods.TimeCheck time;
         private int _frameRate = 50;
+        bool changeWall = false;
+        EventHandler functionForMovement;
 
         private Core.NewModels.Map map= new Core.NewModels.Map();
         private readonly Checkings _check = new Checkings();
@@ -64,6 +66,7 @@ namespace PL.StartupMethods
         {
             BaseElement.DrawElement += graphic.Draw;
             BaseElement.ClearElement += graphic.Clear;
+            functionForMovement += ChangeWall;
             Console.SetWindowSize(140, 100);
             Console.SetBufferSize(300, 350);
             var menu = new DrawMainMenu();
@@ -82,7 +85,6 @@ namespace PL.StartupMethods
 
         private void Start()
         {
-            bool changeWall = false;
             Stopwatch sw = new Stopwatch();
             CheckTick(ref sw,ref changeWall);
             MakeAction(changeWall);
@@ -105,9 +107,14 @@ namespace PL.StartupMethods
             sw.Start();
             while (sw.ElapsedMilliseconds <= _frameRate)
             {
-                var movement = new Movement();
-                movement.ProcessKey(ref currentDirectionPlayer, ref changeWall);
+                var movement = new Core.NewModels.Movement();
+                movement.ProcessKey(ref currentDirectionPlayer, functionForMovement);
             }
+        }
+        
+        private void ChangeWall(object sender, EventArgs e)
+        {
+            changeWall = !changeWall;
         }
 
         private void MakeAction(bool changeWall)

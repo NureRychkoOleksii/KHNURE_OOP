@@ -1,5 +1,4 @@
-﻿using BLL;
-using BLL.Interfaces;
+﻿using Core.Methods;
 using Core.Models;
 using System;
 using System.Linq;

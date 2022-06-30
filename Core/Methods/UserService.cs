@@ -1,13 +1,14 @@
-﻿using BLL.Interfaces;
-using Core.Models;
-using DAL.Interfaces;
+﻿using Core.Models;
 using DAL.Services;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
-namespace BLL
+namespace Core.Methods
 {
-    public class UserService : IUserService
+    public class UserService
     {
         private readonly Repository<User> _repository = new Repository<User>();
         private string _path = "..\\..\\..\\..\\DAL\\JSON\\Users.json";
@@ -16,7 +17,7 @@ namespace BLL
         {
             _repository.CreateObject(user, _path);
         }
-        
+
         public User? GetUserById(int id)
         {
             return _repository.GetById(_path, id);

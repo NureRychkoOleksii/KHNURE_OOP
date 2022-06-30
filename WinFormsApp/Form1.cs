@@ -8,6 +8,7 @@ using Core.Models;
 using WinFormsApp.Services;
 using BLL;
 using BLL.Interfaces;
+using Core.Methods;
 
 namespace WinFormsApp
 {
@@ -22,7 +23,7 @@ namespace WinFormsApp
         private Map map = new Map();
         private int _total = 0;
         private int _score = 0;
-        TimeCheck time = new TimeCheck();
+        Core.Methods.TimeCheck time = new Core.Methods.TimeCheck();
         private readonly IUserService _userService;
         private GameMethods _game = new GameMethods();
 

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using DAL.Interfaces;
 using Newtonsoft.Json;
 
-namespace Core.Services
+namespace DAL.Services
 {
     class SerializationWorker : ISerializationWorker
     {
