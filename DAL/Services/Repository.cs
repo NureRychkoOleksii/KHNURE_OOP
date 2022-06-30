@@ -6,14 +6,13 @@ using System.Threading.Tasks;
 
 namespace DAL.Services
 {
-    public class Repository<TEntity> : IRepository<TEntity> where TEntity : IdKey
+    public class Repository<TEntity> where TEntity : IdKey
     {
-        private readonly ISerializationWorker _serializationWorker;
+        private readonly SerializationWorker _serializationWorker = new SerializationWorker();
         private List<TEntity> _data;
 
-        public Repository(ISerializationWorker serializationWorker)
+        public Repository()
         {
-            _serializationWorker = serializationWorker;
             _data = new List<TEntity>();
         }
 

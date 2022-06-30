@@ -10,23 +10,8 @@ namespace PL
     {
         static void Main()
         {
-            var services = new ServiceCollection();
-            ConfigureServices(services);
-            var serviceProvider = services.BuildServiceProvider();
-            serviceProvider.GetService<App>()?.Start();
-        }
-
-        public static void ConfigureServices(IServiceCollection services)
-        {
-            //var configuration = new ConfigurationBuilder()
-            //    .SetBasePath(Directory.GetCurrentDirectory())
-            //    .AddJsonFile("appsettings.json", optional: false)
-            //    .AddEnvironmentVariables()
-            //    .Build();
-            //services.Configure<AppSettings>(configuration.GetSection("AppSettings"));
-            services.AddScoped<App>();
-            services.AddScoped<Startup>();
-            BLL.DependencyRegistrar.ConfigureServices(services);
+            App app = new App();
+            app.Start();
         }
     }
 }

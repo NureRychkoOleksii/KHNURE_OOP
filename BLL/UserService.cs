@@ -1,6 +1,7 @@
 ﻿using BLL.Interfaces;
 using Core.Models;
 using DAL.Interfaces;
+using DAL.Services;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -8,13 +9,8 @@ namespace BLL
 {
     public class UserService : IUserService
     {
-        private readonly IRepository<User> _repository;
+        private readonly Repository<User> _repository = new Repository<User>();
         private string _path = "..\\..\\..\\..\\DAL\\JSON\\Users.json";
-
-        public UserService(IRepository<User> repository)
-        {
-            _repository = repository;
-        }
 
         public void AddUser(User user)
         {

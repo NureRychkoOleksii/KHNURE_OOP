@@ -1,4 +1,5 @@
-﻿using BLL.Interfaces;
+﻿using BLL;
+using BLL.Interfaces;
 using Core.Models;
 using System;
 using System.Linq;
@@ -8,7 +9,7 @@ namespace PL.Services
 {
     public class DrawLogin
     {
-        public User Login(IUserService _userService)
+        public User Login(UserService _userService)
         {
             Console.Clear();
             Console.WriteLine(@"   __             _        __                                                          __ 

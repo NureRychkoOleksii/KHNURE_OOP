@@ -7,12 +7,13 @@ using Core.NewModels;
 using PL.Services;
 using BLL;
 using System.Threading.Tasks;
+using Core.Methods;
 
 namespace PL.StartupMethods
 {
     public class Startup
     {
-        private readonly IUserService _userService;
+        private UserService _userService = new UserService();
         Core.NewModels.Player player = new Core.NewModels.Player(0,0);
         Core.NewModels.Ball ball = new Core.NewModels.Ball(0,0);
         Direction currentDirection = Direction.Right;
@@ -21,11 +22,8 @@ namespace PL.StartupMethods
         private int _total = 0;
         ConsoleGraphic graphic = new ConsoleGraphic();
         private User user = new User();
-        private TimeCheck time;
-        public Startup(IUserService service)
-        {
-            _userService = service;
-        }
+        private Methods methods = new Methods();
+        private Core.Methods.TimeCheck time;
         private int _frameRate = 50;
 
         private Core.NewModels.Map map= new Core.NewModels.Map();
@@ -71,14 +69,14 @@ namespace PL.StartupMethods
             var menu = new DrawMainMenu();
             menu.DrawMenu();
         }
-        private void BeforeStart(out User user, out TimeCheck time, DrawLogin login)
+        private void BeforeStart(out User user, out Core.Methods.TimeCheck time, DrawLogin login)
         {
             user = login.Login(_userService);
             map.CreateMap();
-            DetermineElements(ref player, ref ball);
+            methods.DetermineElements(ref player, ref ball, map, ref _total);
             Console.ReadKey();
             Console.CursorVisible = false;
-            time = new TimeCheck();
+            time = new Core.Methods.TimeCheck();
             time.StartTimeChecking();
         }
 
@@ -118,25 +116,6 @@ namespace PL.StartupMethods
             currentDirectionPlayer = _check.FrameTick(currentDirectionPlayer, player, map);
             player.Action(ref map, currentDirectionPlayer, changeWall);
             ball.Action(ref map, currentDirection);
-        }
-
-        private void DetermineElements(ref Core.NewModels.Player player, ref Core.NewModels.Ball ball)
-        {
-            foreach (var i in map.map)
-            {
-                if (i is Core.NewModels.Player)
-                {
-                    player = (Core.NewModels.Player)i;
-                }
-                else if (i is Core.NewModels.Ball)
-                {
-                    ball = (Core.NewModels.Ball)i;
-                }
-                else if (i is EnergyBall)
-                {
-                    _total++;
-                }
-            }
         }
     }
 }

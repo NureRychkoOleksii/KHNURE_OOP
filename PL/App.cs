@@ -6,12 +6,8 @@ namespace PL
 {
     public class App 
     {
-        private readonly Startup _startup;
+        private readonly Startup _startup = new Startup();
 
-        public App(Startup startup)
-        {
-            _startup = startup;
-        }
 
         public void Start()
         {
