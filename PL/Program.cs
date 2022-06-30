@@ -2,9 +2,9 @@
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using PL.StartupMethods;
+using Console.StartupMethods;
 
-namespace PL
+namespace Console
 {
     class Program
     {

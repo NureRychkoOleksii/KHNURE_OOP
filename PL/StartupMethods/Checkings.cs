@@ -2,7 +2,7 @@
 using Core.NewModels;
 using System;
 
-namespace PL.StartupMethods
+namespace Console.StartupMethods
 {
     public class Checkings
     {

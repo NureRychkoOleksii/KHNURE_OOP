@@ -2,10 +2,10 @@
 using System.Diagnostics;
 using Core.Models;
 using Core.NewModels;
-using PL.Services;
+using Console.Services;
 using Core.Methods;
 
-namespace PL.StartupMethods
+namespace Console.StartupMethods
 {
     public class Startup
     {
@@ -30,7 +30,7 @@ namespace PL.StartupMethods
         public void StartGame()
         {
             SettingConsole();
-            if (Console.ReadKey(true).Key == ConsoleKey.D1)
+            if (System.Console.ReadKey(true).Key == ConsoleKey.D1)
             {
                 var login = new DrawLogin();
                 BeforeStart(out user, out time, login);
@@ -44,17 +44,17 @@ namespace PL.StartupMethods
                     }
                 }
             }
-            else if (Console.ReadKey(true).Key == ConsoleKey.D2)
+            else if (System.Console.ReadKey(true).Key == ConsoleKey.D2)
             {
-                Console.WriteLine("Ok...");
+                System.Console.WriteLine("Ok...");
             }
-            else if(Console.ReadKey(true).Key == ConsoleKey.Escape)
+            else if(System.Console.ReadKey(true).Key == ConsoleKey.Escape)
             {
-                Console.WriteLine("It's not right button, but ok, you won (Easter egg for Vitaliy Nikolaevich)");
+                System.Console.WriteLine("It's not right button, but ok, you won (Easter egg for Vitaliy Nikolaevich)");
             }
             else
             {
-                Console.WriteLine("Bruh, learn how to read");
+                System.Console.WriteLine("Bruh, learn how to read");
             }
         }
         
@@ -63,8 +63,8 @@ namespace PL.StartupMethods
             BaseElement.DrawElement += graphic.Draw;
             BaseElement.ClearElement += graphic.Clear;
             functionForMovement += ChangeWall;
-            Console.SetWindowSize(140, 100);
-            Console.SetBufferSize(300, 350);
+            System.Console.SetWindowSize(140, 100);
+            System.Console.SetBufferSize(300, 350);
             var menu = new DrawMainMenu();
             menu.DrawMenu();
         }
@@ -73,8 +73,8 @@ namespace PL.StartupMethods
             user = login.Login(_userService);
             map.CreateMap();
             methods.DetermineElements(ref player, ref ball, map, ref _total);
-            Console.ReadKey();
-            Console.CursorVisible = false;
+            System.Console.ReadKey();
+            System.Console.CursorVisible = false;
             time = new TimeCheck();
             time.StartTimeChecking();
         }
@@ -93,9 +93,9 @@ namespace PL.StartupMethods
             time.StartTimeChecking();
             user.Record = time.stopwatch.Elapsed.ToString();
             _userService.UpdateUser(user, user.Id);
-            Console.Clear();
-            Console.SetCursorPosition(50, 30);
-            Console.WriteLine($"You won! your record: ${user.Record}");
+            System.Console.Clear();
+            System.Console.SetCursorPosition(50, 30);
+            System.Console.WriteLine($"You won! your record: ${user.Record}");
         }
 
         private void CheckTick(ref Stopwatch sw, ref bool changeWall)

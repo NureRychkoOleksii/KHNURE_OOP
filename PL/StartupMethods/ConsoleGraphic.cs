@@ -1,6 +1,6 @@
 ﻿using Core.NewModels;
 using System;
-namespace PL.StartupMethods
+namespace Console.StartupMethods
 {
     public class ConsoleGraphic
     {
@@ -29,13 +29,13 @@ namespace PL.StartupMethods
                 Ball => ConsoleColor.Blue,
                 _ => ConsoleColor.Black
             };
-            Console.ForegroundColor = color;
+            System.Console.ForegroundColor = color;
             for (int x = 0; x < 2; x++)
             {
                 for (int y = 0; y < 2; y++)
                 {
-                    Console.SetCursorPosition(pixel.X * 2 + x, pixel.Y * 2 + y);
-                    Console.Write(symbol);
+                    System.Console.SetCursorPosition(pixel.X * 2 + x, pixel.Y * 2 + y);
+                    System.Console.Write(symbol);
                 }
             }
         }
@@ -51,8 +51,8 @@ namespace PL.StartupMethods
             {
                 for (int y = 0; y < 2; y++)
                 {
-                    Console.SetCursorPosition(pixel.X * 2 + x, pixel.Y * 2 + y);
-                    Console.Write(' ');
+                    System.Console.SetCursorPosition(pixel.X * 2 + x, pixel.Y * 2 + y);
+                    System.Console.Write(' ');
                 }
             }
         }

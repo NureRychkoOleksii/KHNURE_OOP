@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using PL.StartupMethods;
+using Console.StartupMethods;
 
-namespace PL
+namespace Console
 {
     public class App 
     {
