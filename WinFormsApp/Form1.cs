@@ -7,14 +7,13 @@ using System.Windows.Forms;
 using Core.Models;
 using WinFormsApp.Services;
 using BLL;
-using DAL.Interfaces;
 using BLL.Interfaces;
 
 namespace WinFormsApp
 {
     public partial class Form1 : Form
     {
-        private Thread _th;
+        private Thread _thread;
         private User _user = new User();
         private Direction _currentDir = Direction.Stop;
         private Direction _currentBallDir = Direction.Right;
@@ -41,7 +40,6 @@ namespace WinFormsApp
             BaseElement.ClearElement += _graphicEngine.Clear;
             _game.StartGame(ref map, ref time);
             DetermineElements(ref _player, ref _ball);
-            _graphicEngine.playerPicturebox.Tag = "slash";
             timer1.Interval = 300;
             timer1.Start();
             this.KeyDown += UpdateKeyEventHandler;
@@ -63,9 +61,9 @@ namespace WinFormsApp
             _user.Record = time.stopwatch.Elapsed.ToString();
             _userService.UpdateUser(_user, _user.Id);
             this.Close();
-            _th = new Thread(OpenNewForm);
-            _th.SetApartmentState(ApartmentState.STA);
-            _th.Start();
+            _thread = new Thread(OpenNewForm);
+            _thread.SetApartmentState(ApartmentState.STA);
+            _thread.Start();
         }
 
         private void UpdateKeyEventHandler(object sender, KeyEventArgs e)
@@ -98,14 +96,11 @@ namespace WinFormsApp
             if (!_player.reverseSlash)
             {
                 _graphicEngine.playerPicturebox.BackgroundImage = Image.FromFile(@"C:\Users\moonler\OneDrive - Kharkiv National University of Radioelectronics\Desktop\slash.png");
-                _graphicEngine.playerPicturebox.BackgroundImage.Tag = "slash";
             }
             else
             {
                 _graphicEngine.playerPicturebox.BackgroundImage = Image.FromFile(@"C:\Users\moonler\OneDrive - Kharkiv National University of Radioelectronics\Desktop\reverseSlash.png");
-                _graphicEngine.playerPicturebox.BackgroundImage.Tag = "reverseSlash";
             }
-
         }
 
         private void OpenNewForm()

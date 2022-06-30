@@ -34,11 +34,11 @@ namespace WinFormsApp.Services
             {
                 if (ball.X + dx == item.X && ball.Y + dy == item.Y)
                 {
-                    if(item.isStopping && item.isHorizontal)
+                    if(item.isStopping && item.isAngleChanging)
                     {
                         return ChangeDirection(dir);
                     }    
-                    else if(!item.isHorizontal)
+                    else if(!item.isAngleChanging)
                     {
                         int ballX = ball.X;
                         int ballY = ball.Y;

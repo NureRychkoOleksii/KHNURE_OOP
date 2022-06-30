@@ -12,7 +12,7 @@ namespace Core.NewModels
 
         public bool isStopping = false;
 
-        public bool isHorizontal = true;
+        public bool isAngleChanging = false;
 
         public bool isCollecting = false;
 

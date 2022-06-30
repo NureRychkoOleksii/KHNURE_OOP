@@ -24,17 +24,17 @@ namespace PL.StartupMethods
         }
         private int _frameRate = 50;
 
-        private readonly BLL.Services.Map map= new BLL.Services.Map();
+        private Core.NewModels.Map map= new Core.NewModels.Map();
         private readonly Checkings _check = new Checkings();
 
         public void StartGame()
         {
             BaseElement.DrawElement += graphic.Draw;
             BaseElement.ClearElement += graphic.Clear;
-            Console.SetWindowSize(150, 100);
-            Console.SetBufferSize(150, 100);
-            Console.SetWindowSize(100, 60);
-            Console.SetBufferSize(100, 60);
+            Console.SetWindowSize(140, 100);
+            Console.SetBufferSize(300, 350);
+            //Console.SetWindowSize(200, 150);
+            //Console.SetBufferSize(200, 150);
             Direction currentDirection = Direction.Right;
             Direction currentDirectionPlayer = Direction.Stop;
             var oldMovementPlayer = currentDirectionPlayer;
@@ -50,7 +50,6 @@ namespace PL.StartupMethods
                 var user = login.Login(_userService);
                 map.CreateMap();
                 DetermineElements(ref player, ref ball);
-
                 Console.ReadKey();
                 Console.CursorVisible = false;
                 time.StartTimeChecking();
@@ -58,8 +57,6 @@ namespace PL.StartupMethods
                 {
                     Stopwatch sw = new Stopwatch();
                     sw.Start();
-                    int x = player.X, y = player.Y;
-                    int ballX = ball.X, ballY = ball.Y;
                     while (sw.ElapsedMilliseconds <= _frameRate)
                     {
                         if (currentDirectionPlayer == oldMovementPlayer)
@@ -68,28 +65,12 @@ namespace PL.StartupMethods
                         }
                     }
                     currentDirection = _check.FrameTickBall(currentDirection, ref ball, map, player, ref _score);
-                    currentDirectionPlayer = _check.FrameTick(currentDirectionPlayer, player,map);
-                    if (currentDirectionPlayer != Direction.Stop)
-                    {
-                        //player.Clear(player.X, player.Y);
-                        player.Move(currentDirectionPlayer);
-                        map[x, y] = new Empty(x, y);
-                        map[player.X, player.Y] = new Core.NewModels.Player(player.X, player.Y) { reverseSlash = player.reverseSlash };
-                    }
-                    if (changeWall)
-                    {
-                        var temp = (Core.NewModels.Player)map[player.X, player.Y];
-                        temp.reverseSlash = !temp.reverseSlash;
-                        player.reverseSlash = !player.reverseSlash;
-                    }
-                    //ball.Clear(ball.X, ball.Y);
-                    ball.Move(currentDirection);
-                    map[ballX, ballY] = new Empty(ballX, ballY);
-                    map[ball.X, ball.Y] = new Core.NewModels.Ball(ball.X, ball.Y);
+                    currentDirectionPlayer = _check.FrameTick(currentDirectionPlayer, player, map);
+                    player.Action(ref map, currentDirectionPlayer, changeWall);
+                    ball.Action(ref map, currentDirection);
                     map.UpdateMap();
                     currentDirectionPlayer = Direction.Stop;
                     sw.Reset();
-                    changeWall = false;
                     if (_score == _total)
                     {
                         time.StartTimeChecking();

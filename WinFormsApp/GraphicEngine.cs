@@ -43,17 +43,17 @@ namespace WinFormsApp
                 BackgroundImage = image
             };
 
-                if (sender is Player)
-                {
-                    playerPicturebox = picture;
-                    picture.BackgroundImageLayout = ImageLayout.Stretch;
-                }
+            if (sender is Player)
+            {
+                playerPicturebox = picture;
+                picture.BackgroundImageLayout = ImageLayout.Stretch;
+            }
 
-                if (sender is Ball)
-                {
-                    ballPictureBox = picture;
-                    picture.BackgroundImageLayout = ImageLayout.Stretch;
-                }
+            if (sender is Ball)
+            {
+                ballPictureBox = picture;
+                picture.BackgroundImageLayout = ImageLayout.Stretch;
+            }
             _form.pictureBox1.Controls.Add(picture);
             picture.BringToFront();
         }

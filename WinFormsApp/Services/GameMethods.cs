@@ -41,11 +41,11 @@ namespace WinFormsApp.Services
             {
                 if (_ball.X + dx == item.X && _ball.Y + dy == item.Y)
                 {
-                    if (item.isStopping && item.isHorizontal)
+                    if (item.isStopping && item.isAngleChanging)
                     {
                         _currentBallDir = checkings.ChangeDirection(_currentBallDir);
                     }
-                    else if (!item.isHorizontal)
+                    else if (!item.isAngleChanging)
                     {
                         _currentBallDir = checkings.ChangeDirectionWithPlayer(_currentBallDir, _player);
                     }

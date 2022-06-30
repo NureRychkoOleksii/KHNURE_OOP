@@ -6,7 +6,7 @@ namespace Core.NewModels
 
     public class Map
     {
-        public BaseElement[,] map = new BaseElement[52,52];
+        public BaseElement[,] map = new BaseElement[48,48];
         public int scoreToWin = 0;
 
 
@@ -26,7 +26,7 @@ namespace Core.NewModels
             Random random = new Random();
             for (int k = 0; k < 3; k++)
             {
-                int a = random.Next(2, 45);
+                int a = random.Next(2, 40);
                 for (int i = a; i < (a + 5); i++)
                 {
                     for (int j = a; j < (a + 5); j++)
@@ -53,7 +53,7 @@ namespace Core.NewModels
             for (int k = 0; k < 2; k++)
             {
                 int l = 2;
-                int a = random.Next(2, 45);
+                int a = random.Next(2, 40);
                 for (int i = a; i < (a + 5); i++)
                 {
                     if (i == a + 3)
@@ -94,7 +94,7 @@ namespace Core.NewModels
             }
             for (int k = 0; k < 2; k++)
             {
-                int a = random.Next(45);
+                int a = random.Next(40);
                 for (int i = a; i < (a + 5); i++)
                 {
                     for (int j = a; j < (a + 5); j++)
@@ -134,10 +134,10 @@ namespace Core.NewModels
                     }
                 }
             }
-            int x = random.Next(50), y = random.Next(50);
+            int x = random.Next(5,25), y = random.Next(5,25);
             map[x, y] = new Player(x, y);
-            x = random.Next(50);
-            y = random.Next(50);
+            x = random.Next(5, 25);
+            y = random.Next(5, 25);
             map[x, y] = new Ball(x, y);
             UpdateMap();
         }

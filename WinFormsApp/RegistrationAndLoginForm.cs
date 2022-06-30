@@ -12,7 +12,7 @@ namespace WinFormsApp
         private readonly SerializationWorker _serializationWorker = new SerializationWorker();
         private List<User> _data = new List<User>();
         private readonly string _path = "..\\..\\..\\Data\\Users.json";
-        private Thread _th;
+        private Thread _thread;
         private static User _user;
         public RegistrationAndLoginForm()
         {
@@ -27,20 +27,20 @@ namespace WinFormsApp
                 Password = textBox2.Text,
                 Record = "0"
             };
-            if (GetByName(_path, textBox1.Text) != null)
+            if (GetUserByName(_path, textBox1.Text) != null)
             {
                 this.Close();
-                _th = new Thread(OpenNewForm);
-                _th.SetApartmentState(ApartmentState.STA);
-                _th.Start();
+                _thread = new Thread(OpenNewForm);
+                _thread.SetApartmentState(ApartmentState.STA);
+                _thread.Start();
             }
             else
             {
                 CreateObject(_user, _path);
                 this.Close();
-                _th = new Thread(OpenNewForm);
-                _th.SetApartmentState(ApartmentState.STA);
-                _th.Start();
+                _thread = new Thread(OpenNewForm);
+                _thread.SetApartmentState(ApartmentState.STA);
+                _thread.Start();
             }
         }
 
@@ -49,20 +49,20 @@ namespace WinFormsApp
             Application.Run(new Form3(_user));
         }
 
-        public IEnumerable<User> GetAll(string path)
+        public IEnumerable<User> GetAllUsers(string path)
         {
             return _serializationWorker.Deserialize<IEnumerable<User>>(path);
         }
 
-        public User GetByName(string path, string name)
+        public User GetUserByName(string path, string name)
         {
-            var res = GetAll(path);
+            var res = GetAllUsers(path);
             return res.Where(user => user.Name == name).FirstOrDefault();
         }
 
         public void CreateObject(User obj, string path)
         {
-            _data = GetAll(path).ToList();
+            _data = GetAllUsers(path).ToList();
             _data.Add(obj);
             _serializationWorker.Serialize<IEnumerable<User>>(_data, path);
         }

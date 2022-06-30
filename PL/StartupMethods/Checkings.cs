@@ -7,7 +7,7 @@ namespace PL.StartupMethods
 {
     public class Checkings
     {
-        public Direction FrameTick(Direction currentDirection, Core.NewModels.Player player, BLL.Services.Map map)
+        public Direction FrameTick(Direction currentDirection, Core.NewModels.Player player, Core.NewModels.Map map)
         {
             var (dx, dy) = DirectionsDictionary.directions[currentDirection];
             foreach (var item in map.map)
@@ -25,38 +25,35 @@ namespace PL.StartupMethods
             return currentDirection;
         }
 
-        public Direction FrameTickBall(Direction dir, ref Core.NewModels.Ball ball, BLL.Services.Map map, Core.NewModels.Player player, ref int _score)
+        public Direction FrameTickBall(Direction dir, ref Core.NewModels.Ball ball, Core.NewModels.Map map, Core.NewModels.Player player, ref int _score)
         {
             var (dx, dy) = DirectionsDictionary.directions[dir];
             if (ball.X + 1 == map.map.GetLength(0) || ball.Y + 1 == map.map.GetLength(1) || ball.X == 0 || ball.Y == 0)
             {
                 return ChangeDirection(dir);
             }
-            foreach (var item in map.map)
+
+            var item = map[ball.X + dx, ball.Y + dy];
+            if (ball.X + dx == item.X && ball.Y + dy == item.Y)
             {
-                if (ball.X + dx == item.X && ball.Y + dy == item.Y)
+                if(item.isStopping)
                 {
-                    if(item.isStopping && item.isHorizontal)
+                    if(item.isAngleChanging)
                     {
-                        return ChangeDirection(dir);
-                    }    
-                    else if(!item.isHorizontal)
-                    {
-                        int ballX = ball.X;
-                        int ballY = ball.Y;
-                        map[ballX, ballY] = new Empty(ballX, ballY);
-                        map[ball.X, ball.Y] = new Core.NewModels.Ball(ball.X, ball.Y);
-                        ball.X += dx;
-                        ball.Y += dy;
+                        ball.Action(ref map, dir);
                         return ChangeDirectionWithPlayer(dir, player);
                     }
-                    else if(item.isCollecting)
+                    else
                     {
-                        _score++;
-                        return dir;
+                        return ChangeDirection(dir);
                     }
-
                 }
+                else if (item.isCollecting)
+                {
+                    _score++;
+                    return dir;
+                }
+
             }
             return dir;
         }

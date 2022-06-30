@@ -18,5 +18,13 @@ namespace Core.NewModels
 
             Draw();
         }
+
+        public void Action(ref Map map, Direction currentDirection)
+        {
+            int ballX = this.X, ballY = this.Y;
+            this.Move(currentDirection);
+            map[ballX, ballY] = new Empty(ballX, ballY);
+            map[this.X, this.Y] = new Ball(this.X, this.Y);
+        }
     }
 }
