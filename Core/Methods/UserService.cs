@@ -11,7 +11,7 @@ namespace Core.Methods
     public class UserService
     {
         private readonly Repository<User> _repository = new Repository<User>();
-        private string _path = "..\\..\\..\\..\\DAL\\JSON\\Users.json";
+        private string _path = "JSON\\Users.json";
 
         public void AddUser(User user)
         {

@@ -17,4 +17,10 @@
       <ProjectReference Include="..\Core\Core.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="JSON\Users.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>
