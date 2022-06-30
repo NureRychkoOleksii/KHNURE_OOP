@@ -3,7 +3,6 @@ using System.Diagnostics;
 using Core.Models;
 using Core.NewModels;
 using PL.Services;
-using System.Threading.Tasks;
 using Core.Methods;
 
 namespace PL.StartupMethods
@@ -20,12 +19,12 @@ namespace PL.StartupMethods
         ConsoleGraphic graphic = new ConsoleGraphic();
         private User user = new User();
         private Methods methods = new Methods();
-        private Core.Methods.TimeCheck time;
+        private TimeCheck time;
         private int _frameRate = 50;
         bool changeWall = false;
         EventHandler functionForMovement;
 
-        private Core.NewModels.Map map= new Core.NewModels.Map();
+        private Map map= new Map();
         private readonly Checkings _check = new Checkings();
 
         public void StartGame()
@@ -76,7 +75,7 @@ namespace PL.StartupMethods
             methods.DetermineElements(ref player, ref ball, map, ref _total);
             Console.ReadKey();
             Console.CursorVisible = false;
-            time = new Core.Methods.TimeCheck();
+            time = new TimeCheck();
             time.StartTimeChecking();
         }
 

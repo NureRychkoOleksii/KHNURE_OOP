@@ -94,11 +94,11 @@ namespace WinFormsApp
             _player.reverseSlash = !_player.reverseSlash;
             if (!_player.reverseSlash)
             {
-                _graphicEngine.playerPicturebox.BackgroundImage = Image.FromFile(@"C:\Users\moonler\OneDrive - Kharkiv National University of Radioelectronics\Desktop\slash.png");
+                _graphicEngine.playerPicturebox.BackgroundImage = Properties.Resources.slash;
             }
             else
             {
-                _graphicEngine.playerPicturebox.BackgroundImage = Image.FromFile(@"C:\Users\moonler\OneDrive - Kharkiv National University of Radioelectronics\Desktop\reverseSlash.png");
+                _graphicEngine.playerPicturebox.BackgroundImage = Properties.Resources.reverseSlash;
             }
         }
 
