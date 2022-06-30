@@ -15,9 +15,13 @@ namespace PL.StartupMethods
         private readonly IUserService _userService;
         Core.NewModels.Player player = new Core.NewModels.Player(0,0);
         Core.NewModels.Ball ball = new Core.NewModels.Ball(0,0);
+        Direction currentDirection = Direction.Right;
+        Direction currentDirectionPlayer = Direction.Stop;
         private int _score = 0;
         private int _total = 0;
         ConsoleGraphic graphic = new ConsoleGraphic();
+        private User user = new User();
+        private TimeCheck time;
         public Startup(IUserService service)
         {
             _userService = service;
@@ -29,56 +33,17 @@ namespace PL.StartupMethods
 
         public void StartGame()
         {
-            BaseElement.DrawElement += graphic.Draw;
-            BaseElement.ClearElement += graphic.Clear;
-            Console.SetWindowSize(140, 100);
-            Console.SetBufferSize(300, 350);
-            //Console.SetWindowSize(200, 150);
-            //Console.SetBufferSize(200, 150);
-            Direction currentDirection = Direction.Right;
-            Direction currentDirectionPlayer = Direction.Stop;
-            var oldMovementPlayer = currentDirectionPlayer;
-            var movement = new Movement();
-            var time = new TimeCheck();
-            bool changeWall = false;
-            var menu = new DrawMainMenu();
-            menu.DrawMenu();
-
-            var login = new DrawLogin();
+            SettingConsole();
             if (Console.ReadKey(true).Key == ConsoleKey.D1)
             {
-                var user = login.Login(_userService);
-                map.CreateMap();
-                DetermineElements(ref player, ref ball);
-                Console.ReadKey();
-                Console.CursorVisible = false;
-                time.StartTimeChecking();
+                var login = new DrawLogin();
+                BeforeStart(out user, out time, login);
                 while (true)
                 {
-                    Stopwatch sw = new Stopwatch();
-                    sw.Start();
-                    while (sw.ElapsedMilliseconds <= _frameRate)
-                    {
-                        if (currentDirectionPlayer == oldMovementPlayer)
-                        {
-                            movement.ProcessKey(ref currentDirectionPlayer, ref changeWall);
-                        }
-                    }
-                    currentDirection = _check.FrameTickBall(currentDirection, ref ball, map, player, ref _score);
-                    currentDirectionPlayer = _check.FrameTick(currentDirectionPlayer, player, map);
-                    player.Action(ref map, currentDirectionPlayer, changeWall);
-                    ball.Action(ref map, currentDirection);
-                    map.UpdateMap();
-                    currentDirectionPlayer = Direction.Stop;
-                    sw.Reset();
+                    Start();
                     if (_score == _total)
                     {
-                        time.StartTimeChecking();
-                        user.Record = time.stopwatch.Elapsed.ToString();
-                        _userService.UpdateUser(user, user.Id);
-                        Console.Clear();
-                        Console.SetCursorPosition(50, 30);
-                        Console.WriteLine($"You won! your record: ${user.Record}");
+                        End();
                         break;
                     }
                 }
@@ -96,6 +61,65 @@ namespace PL.StartupMethods
                 Console.WriteLine("Bruh, learn how to read");
             }
         }
+        
+        private void SettingConsole()
+        {
+            BaseElement.DrawElement += graphic.Draw;
+            BaseElement.ClearElement += graphic.Clear;
+            Console.SetWindowSize(140, 100);
+            Console.SetBufferSize(300, 350);
+            var menu = new DrawMainMenu();
+            menu.DrawMenu();
+        }
+        private void BeforeStart(out User user, out TimeCheck time, DrawLogin login)
+        {
+            user = login.Login(_userService);
+            map.CreateMap();
+            DetermineElements(ref player, ref ball);
+            Console.ReadKey();
+            Console.CursorVisible = false;
+            time = new TimeCheck();
+            time.StartTimeChecking();
+        }
+
+        private void Start()
+        {
+            bool changeWall = false;
+            Stopwatch sw = new Stopwatch();
+            CheckTick(ref sw,ref changeWall);
+            MakeAction(changeWall);
+            map.UpdateMap();
+            currentDirectionPlayer = Direction.Stop;
+        }
+
+        private void End()
+        {
+            time.StartTimeChecking();
+            user.Record = time.stopwatch.Elapsed.ToString();
+            _userService.UpdateUser(user, user.Id);
+            Console.Clear();
+            Console.SetCursorPosition(50, 30);
+            Console.WriteLine($"You won! your record: ${user.Record}");
+        }
+
+        private void CheckTick(ref Stopwatch sw, ref bool changeWall)
+        {
+            sw.Start();
+            while (sw.ElapsedMilliseconds <= _frameRate)
+            {
+                var movement = new Movement();
+                movement.ProcessKey(ref currentDirectionPlayer, ref changeWall);
+            }
+        }
+
+        private void MakeAction(bool changeWall)
+        {
+            currentDirection = _check.FrameTickBall(currentDirection, ref ball, map, player, ref _score);
+            currentDirectionPlayer = _check.FrameTick(currentDirectionPlayer, player, map);
+            player.Action(ref map, currentDirectionPlayer, changeWall);
+            ball.Action(ref map, currentDirection);
+        }
+
         private void DetermineElements(ref Core.NewModels.Player player, ref Core.NewModels.Ball ball)
         {
             foreach (var i in map.map)
