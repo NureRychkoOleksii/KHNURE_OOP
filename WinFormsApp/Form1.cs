@@ -28,7 +28,7 @@ namespace WinFormsApp
         private Movement movement = new Movement();
 
         private GraphicEngine _graphicEngine;
-        Checkings checkings = new Checkings();
+        Methods checkings = new Methods();
 
         public Form1(User user)
         {
@@ -41,7 +41,7 @@ namespace WinFormsApp
             BaseElement.ClearElement += _graphicEngine.Clear;
             functionForMovement += ChangeImage;
             _game.StartGame(ref map, ref time);
-            DetermineElements(ref _player, ref _ball);
+            checkings.DetermineElements(ref _player, ref _ball, map, ref _total);
             timer1.Interval = 300;
             timer1.Start();
             this.KeyDown += UpdateKeyEventHandler;
@@ -71,7 +71,13 @@ namespace WinFormsApp
         private void UpdateKeyEventHandler(object sender, KeyEventArgs e)
         {
             _currentDir = movement.ProcessKeyWinForms(e.KeyCode.ToString(), functionForMovement);
-            _game.MovePlayer(ref _currentDir, ref map, checkings, ref _graphicEngine, ref _player);
+            var (dx, dy) = DirectionsDictionary.directions[_currentDir];
+            _currentDir = checkings.FrameTick(_currentDir, _player, map);
+            if (_currentDir != Direction.Stop)
+            {
+                _graphicEngine.playerPicturebox.Location = new Point(_graphicEngine.playerPicturebox.Location.X + dx * 15, _graphicEngine.playerPicturebox.Location.Y + dy * 15);
+                _player.Action(ref map, _currentDir);
+            }
         }
 
         private void ChangeImage(object? sender, EventArgs e)
@@ -90,25 +96,6 @@ namespace WinFormsApp
         private void OpenNewForm()
         {
             Application.Run(new Form4(_user));
-        }
-
-        private void DetermineElements(ref Core.NewModels.Player player, ref Core.NewModels.Ball ball)
-        {
-            foreach (var i in map.map)
-            {
-                if (i is Core.NewModels.Player)
-                {
-                    player = (Core.NewModels.Player)i;
-                }
-                else if (i is Core.NewModels.Ball)
-                {
-                    ball = (Core.NewModels.Ball)i;
-                }
-                else if (i is EnergyBall)
-                {
-                    _total++;
-                }
-            }
         }
     }
 }

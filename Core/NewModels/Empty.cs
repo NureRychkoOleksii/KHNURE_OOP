@@ -10,6 +10,9 @@ namespace Core.NewModels
     {
         public Empty(int x, int y) : base(x, y)
         {
+            isAngleChanging = false;
+            isCollecting = false;
+            isStopping = false;
         }
     }
 }

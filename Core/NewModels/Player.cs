@@ -24,7 +24,7 @@ namespace Core.NewModels
             Y += dy;
         }
 
-        public void Action(ref Map map, Direction currentDirectionPlayer, bool changeWall)
+        public void Action(ref Map map, Direction currentDirectionPlayer, bool changeWall = false)
         {
             int x = this.X, y = this.Y;
             this.Move(currentDirectionPlayer);

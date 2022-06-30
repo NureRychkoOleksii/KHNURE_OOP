@@ -42,7 +42,7 @@ namespace Core.Methods
             return currentDirection;
         }
 
-        public Direction FrameTickBall(Direction dir, ref Core.NewModels.Ball ball, Core.NewModels.Map map, Core.NewModels.Player player, ref int _score)
+        public Direction FrameTickBall(Direction dir, ref Core.NewModels.Ball ball, Core.NewModels.Map map, NewModels.Player player, ref int _score)
         {
             var (dx, dy) = DirectionsDictionary.directions[dir];
             if (ball.X + 1 == map.map.GetLength(0) || ball.Y + 1 == map.map.GetLength(1) || ball.X == 0 || ball.Y == 0)
