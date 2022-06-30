@@ -41,5 +41,29 @@ namespace Core.NewModels
                     break;
             }
         }
+
+        public Direction ProcessKeyWinForms(string key, EventHandler function)
+        {
+            switch (key)
+            {
+                case "Right":
+                    return Direction.Right;
+                    break;
+                case "Left":
+                    return Direction.Left;
+                    break;
+                case "Down":
+                    return Direction.Down;
+                    break;
+                case "Up":
+                    return Direction.Up;
+                    break;
+                case "Tab":
+                    function.Invoke(this, EventArgs.Empty);
+                    return Direction.Stop;
+                    break;
+            }
+            return Direction.Right;
+        }
     }
 }

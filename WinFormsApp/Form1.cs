@@ -13,6 +13,7 @@ namespace WinFormsApp
     public partial class Form1 : Form
     {
         private Thread _thread;
+        private EventHandler functionForMovement;
         private User _user = new User();
         private Direction _currentDir = Direction.Stop;
         private Direction _currentBallDir = Direction.Right;
@@ -24,6 +25,7 @@ namespace WinFormsApp
         Core.Methods.TimeCheck time = new Core.Methods.TimeCheck();
         private readonly UserService _userService;
         private GameMethods _game = new GameMethods();
+        private Movement movement = new Movement();
 
         private GraphicEngine _graphicEngine;
         Checkings checkings = new Checkings();
@@ -37,6 +39,7 @@ namespace WinFormsApp
             _graphicEngine = new GraphicEngine(this);
             BaseElement.DrawElement += _graphicEngine.Draw;
             BaseElement.ClearElement += _graphicEngine.Clear;
+            functionForMovement += ChangeImage;
             _game.StartGame(ref map, ref time);
             DetermineElements(ref _player, ref _ball);
             timer1.Interval = 300;
@@ -67,29 +70,11 @@ namespace WinFormsApp
 
         private void UpdateKeyEventHandler(object sender, KeyEventArgs e)
         {
-            switch (e.KeyCode.ToString())
-            {
-                case "Right":
-                    _currentDir = Direction.Right;
-                    break;
-                case "Left":
-                    _currentDir = Direction.Left;
-                    break;
-                case "Down":
-                    _currentDir = Direction.Down;
-                    break;
-                case "Up":
-                    _currentDir = Direction.Up;
-                    break;
-                case "Tab":
-                    ChangeImage();
-                    _currentDir = Direction.Stop;
-                    break;
-            }
+            _currentDir = movement.ProcessKeyWinForms(e.KeyCode.ToString(), functionForMovement);
             _game.MovePlayer(ref _currentDir, ref map, checkings, ref _graphicEngine, ref _player);
         }
 
-        private void ChangeImage()
+        private void ChangeImage(object? sender, EventArgs e)
         {
             _player.reverseSlash = !_player.reverseSlash;
             if (!_player.reverseSlash)
