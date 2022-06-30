@@ -6,8 +6,6 @@ using System.Threading;
 using System.Windows.Forms;
 using Core.Models;
 using WinFormsApp.Services;
-using BLL;
-using BLL.Interfaces;
 using Core.Methods;
 
 namespace WinFormsApp
@@ -24,7 +22,7 @@ namespace WinFormsApp
         private int _total = 0;
         private int _score = 0;
         Core.Methods.TimeCheck time = new Core.Methods.TimeCheck();
-        private readonly IUserService _userService;
+        private readonly UserService _userService;
         private GameMethods _game = new GameMethods();
 
         private GraphicEngine _graphicEngine;
