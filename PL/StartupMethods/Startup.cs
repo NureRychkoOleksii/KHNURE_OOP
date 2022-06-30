@@ -25,7 +25,6 @@ namespace Console.StartupMethods
         EventHandler functionForMovement;
 
         private Map map= new Map();
-        private readonly Checkings _check = new Checkings();
 
         public void StartGame()
         {
@@ -115,8 +114,8 @@ namespace Console.StartupMethods
 
         private void MakeAction(bool changeWall)
         {
-            currentDirection = _check.FrameTickBall(currentDirection, ref ball, map, player, ref _score);
-            currentDirectionPlayer = _check.FrameTick(currentDirectionPlayer, player, map);
+            currentDirection = methods.FrameTickBall(currentDirection, ref ball, map, player, ref _score);
+            currentDirectionPlayer = methods.FrameTick(currentDirectionPlayer, player, map);
             player.Action(ref map, currentDirectionPlayer, changeWall);
             ball.Action(ref map, currentDirection);
         }
