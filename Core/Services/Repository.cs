@@ -1,8 +1,6 @@
 ﻿using Core.Models;
-using DAL.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace DAL.Services
 {
@@ -16,20 +14,20 @@ namespace DAL.Services
             _data = new List<TEntity>();
         }
 
-        public IEnumerable<TEntity> GetAllAsync(string path)
+        public IEnumerable<TEntity> GetAll(string path)
         {
             return _serializationWorker.Deserialize<IEnumerable<TEntity>>(path);
         }
 
         public TEntity GetById(string path, int id)
         {
-            var res = GetAllAsync(path);
+            var res = GetAll(path);
             return res.Where(user => user.Id == id).FirstOrDefault();
         }
 
         public void CreateObject(TEntity obj, string path)
         {
-            _data = GetAllAsync(path).ToList();
+            _data = GetAll(path).ToList();
             obj.Id = ++_data.OrderBy(x => x.Id).FirstOrDefault().Id;
             _data.Add(obj);
             _serializationWorker.Serialize<IEnumerable<TEntity>>(_data, path);

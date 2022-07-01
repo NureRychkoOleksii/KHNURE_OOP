@@ -25,7 +25,7 @@ namespace Core.Methods
 
         public IEnumerable<User> GetUsers()
         {
-            return _repository.GetAllAsync(_path);
+            return _repository.GetAll(_path);
         }
 
         public void UpdateUser(User user, int id)
