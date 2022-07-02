@@ -1,5 +1,5 @@
-﻿using Core.NewModels;
-using System;
+﻿using System;
+using System.Linq;
 
 namespace Core.NewModels
 {
@@ -8,6 +8,8 @@ namespace Core.NewModels
     {
         public BaseElement[,] map = new BaseElement[48,48];
         public int scoreToWin = 0;
+        RoomWithLabyrinth roomWithLabyrinth;
+        RoomWithoutLabyrinth roomWithoutLabyrith;
 
 
         public BaseElement this[int x, int y]
@@ -23,20 +25,19 @@ namespace Core.NewModels
         }
         public void CreateRoomsWithoutLabyrinth()
         {
-            RoomWithoutLabyrinth room = new RoomWithoutLabyrinth(ref map);
+            roomWithoutLabyrith = new RoomWithoutLabyrinth(ref map);
         }
 
         public void CreateRoomsWithLabyrinth()
         {
-            Random rnd = new Random();
-
-            
+            roomWithLabyrinth = new RoomWithLabyrinth(ref map);
         }
 
         public void CreateMap()
         {
             Random random = new Random();
             CreateRoomsWithoutLabyrinth();
+            CreateRoomsWithLabyrinth();
             //for (int k = 0; k < 2; k++)
             //{
             //    int l = 2;
@@ -131,6 +132,15 @@ namespace Core.NewModels
 
         public void UpdateMap()
         {
+            foreach(var i in map)
+            {
+                var item = roomWithLabyrinth.room.FirstOrDefault(elem => elem.X == i.X && elem.Y == i.Y);
+                if (item != null && i is Empty)
+                {
+                    roomWithLabyrinth.room.Remove(item);
+                }
+            }
+            roomWithLabyrinth.OpenDoor(ref map);
             foreach (var item in map)
             {
                 item.Draw();

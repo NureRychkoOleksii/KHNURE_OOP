@@ -30,8 +30,7 @@ namespace Core.NewModels
             this.Move(currentDirectionPlayer);
             map[x, y] = new Empty(x, y);
             map[this.X, this.Y] = new Core.NewModels.Player(this.X, this.Y) { reverseSlash = changeWall ? !this.reverseSlash : this.reverseSlash };
+            this.reverseSlash = reverseSlash = changeWall ? !this.reverseSlash : this.reverseSlash;
         }
-
-
     }
 }

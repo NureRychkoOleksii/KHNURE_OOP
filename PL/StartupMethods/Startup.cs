@@ -67,7 +67,7 @@ namespace Console.StartupMethods
             var menu = new DrawMainMenu();
             menu.DrawMenu();
         }
-        private void BeforeStart(out User user, out Core.Methods.TimeCheck time, DrawLogin login)
+        private void BeforeStart(out User user, out TimeCheck time, DrawLogin login)
         {
             user = login.Login(_userService);
             map.CreateMap();
@@ -81,7 +81,7 @@ namespace Console.StartupMethods
         private void Start()
         {
             Stopwatch sw = new Stopwatch();
-            CheckTick(ref sw,ref changeWall);
+            CheckTick(ref sw);
             MakeAction(changeWall);
             map.UpdateMap();
             currentDirectionPlayer = Direction.Stop;
@@ -97,12 +97,12 @@ namespace Console.StartupMethods
             System.Console.WriteLine($"You won! your record: ${user.Record}");
         }
 
-        private void CheckTick(ref Stopwatch sw, ref bool changeWall)
+        private void CheckTick(ref Stopwatch sw)
         {
             sw.Start();
             while (sw.ElapsedMilliseconds <= _frameRate)
             {
-                var movement = new Core.NewModels.Movement();
+                var movement = new Movement();
                 movement.ProcessKey(ref currentDirectionPlayer, functionForMovement);
             }
         }
@@ -118,6 +118,7 @@ namespace Console.StartupMethods
             currentDirectionPlayer = methods.FrameTick(currentDirectionPlayer, player, map);
             player.Action(ref map, currentDirectionPlayer, changeWall);
             ball.Action(ref map, currentDirection);
+            this.changeWall = false;
         }
     }
 }
