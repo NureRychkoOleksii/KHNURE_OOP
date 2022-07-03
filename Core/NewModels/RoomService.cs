@@ -7,6 +7,8 @@ namespace Core.NewModels
         public RoomWithLabyrinth RoomWithLabyrinth { get; set; }
         public RoomWithoutLabyrinth RoomWithoutLabyrinth { get; set; }
 
+        public BigRoom bigRoom { get; set; }
+
         private Random _random = new Random();
 
         private int additionalPlace;
@@ -29,6 +31,8 @@ namespace Core.NewModels
                 RoomWithLabyrinth = new RoomWithLabyrinth(ref map, location, door);
                 RoomWithoutLabyrinth = new RoomWithoutLabyrinth(ref map, location, door, additionalPlace);
             }
+
+            bigRoom = new BigRoom(ref map, location, door, additionalPlace);
         }
 
 
