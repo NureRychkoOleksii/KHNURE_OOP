@@ -6,7 +6,7 @@ namespace Core.NewModels
 
     public class Map
     {
-        public BaseElement[,] map = new BaseElement[48,48];
+        public BaseElement[,] map = new BaseElement[50, 50];
         public int scoreToWin = 0;
         RoomWithLabyrinth roomWithLabyrinth;
         RoomWithoutLabyrinth roomWithoutLabyrinth;

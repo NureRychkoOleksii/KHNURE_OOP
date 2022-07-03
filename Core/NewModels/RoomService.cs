@@ -17,22 +17,22 @@ namespace Core.NewModels
 
         public RoomService(ref BaseElement[,] map)
         {
-            additionalPlace = _random.Next(10, 20);
-            var location = _random.Next(5, 20);
+            additionalPlace = _random.Next(10, 15);
+            var location = _random.Next(25, 27);
             var door = _random.Next(1, 3);
             chance = Convert.ToBoolean(_random.Next(-1, 1));
             if (chance)
             {
                 RoomWithoutLabyrinth = new RoomWithoutLabyrinth(ref map, location, door);
                 RoomWithLabyrinth = new RoomWithLabyrinth(ref map, location, door, additionalPlace);
+                bigRoom = new BigRoom(ref map, location, door, additionalPlace);
             }
             else
             {
                 RoomWithLabyrinth = new RoomWithLabyrinth(ref map, location, door);
                 RoomWithoutLabyrinth = new RoomWithoutLabyrinth(ref map, location, door, additionalPlace);
+                bigRoom = new BigRoom(ref map, location, door, 0-additionalPlace);
             }
-
-            bigRoom = new BigRoom(ref map, location, door, additionalPlace);
         }
 
 

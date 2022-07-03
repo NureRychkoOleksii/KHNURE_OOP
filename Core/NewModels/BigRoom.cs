@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.NewModels
 {
@@ -17,9 +14,9 @@ namespace Core.NewModels
         {
             for (int i = location - 1; i < location + 15; i++)
             {
-                for (int j = location - 1; j < location + 8; j++)
+                for (int j = location - 2; j < location + 8; j++)
                 {
-                    if (i < location || i > location + 13)
+                    if (i < location || i > location + 13 || j == location - 2)
                     {
                         map[i, j + additionalLocation] = new Empty(i, j + additionalLocation);
                         continue;
@@ -29,11 +26,19 @@ namespace Core.NewModels
                     {
                         if (j == location-1)
                         {
-                            if (i - door == location)
+                            if (i - door * 5 == location)
                             {
+                                if (additionalLocation < 0)
+                                {
+                                    map[i, j + additionalLocation + 7] = new Empty(i, j + additionalLocation + 7);
+                                    doorCords = (i, j + additionalLocation + 7);
+                                    reverseDoorCords = (i, j + additionalLocation);
+                                    map[i, j + additionalLocation] = new Wall(i, j + additionalLocation);
+                                    continue;
+                                }
                                 map[i, j + additionalLocation] = new Empty(i, j + additionalLocation);
                                 doorCords = (i, j + additionalLocation);
-                                reverseDoorCords = (i + 13, j + additionalLocation);
+                                reverseDoorCords = (i, j + additionalLocation);
                                 continue;
                             }
                             map[i, j + additionalLocation] = new Wall(i, j + additionalLocation);
