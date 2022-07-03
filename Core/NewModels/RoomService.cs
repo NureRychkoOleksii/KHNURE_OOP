@@ -9,28 +9,62 @@ namespace Core.NewModels
 
         private Random _random = new Random();
 
+        private int additionalPlace;
+
+        private bool chance;
+
         public RoomService(ref BaseElement[,] map)
         {
+            additionalPlace = _random.Next(10, 20);
             var location = _random.Next(5, 20);
             var door = _random.Next(1, 3);
-            RoomWithoutLabyrinth = new RoomWithoutLabyrinth(ref map, location, door);
-            RoomWithLabyrinth = new RoomWithLabyrinth(ref map, location, door);
+            chance = Convert.ToBoolean(_random.Next(-1, 1));
+            if (chance)
+            {
+                RoomWithoutLabyrinth = new RoomWithoutLabyrinth(ref map, location, door);
+                RoomWithLabyrinth = new RoomWithLabyrinth(ref map, location, door, additionalPlace);
+            }
+            else
+            {
+                RoomWithLabyrinth = new RoomWithLabyrinth(ref map, location, door);
+                RoomWithoutLabyrinth = new RoomWithoutLabyrinth(ref map, location, door, additionalPlace);
+            }
         }
 
 
         public void GeneratePassBetweenRooms(ref BaseElement[,] map)
         {
-            for(int i = RoomWithoutLabyrinth.reverseDoorCords.Item1 + 1; i < RoomWithoutLabyrinth.reverseDoorCords.Item1 + 5; i++)
+            if (chance)
             {
-                for (int j = RoomWithoutLabyrinth.reverseDoorCords.Item2 - 1; j < RoomWithoutLabyrinth.reverseDoorCords.Item2 + 2; j++)
+                for (int i = RoomWithoutLabyrinth.reverseDoorCords.Item1 + 1; i < RoomWithoutLabyrinth.reverseDoorCords.Item1 + additionalPlace - 5; i++)
                 {
-                    if(j == RoomWithoutLabyrinth.reverseDoorCords.Item2)
+                    for (int j = RoomWithoutLabyrinth.reverseDoorCords.Item2 - 1; j < RoomWithoutLabyrinth.reverseDoorCords.Item2 + 2; j++)
                     {
-                        map[i, j] = new Empty(i, j);
+                        if (j == RoomWithoutLabyrinth.reverseDoorCords.Item2)
+                        {
+                            map[i, j] = new Empty(i, j);
+                        }
+                        else
+                        {
+                            map[i, j] = new Wall(i, j);
+                        }
                     }
-                    else
+                }
+            }
+            else
+            {
+                for (int i = RoomWithLabyrinth.reverseDoorCords.Item1 + 1; i < RoomWithLabyrinth.reverseDoorCords.Item1 + additionalPlace - 5; i++)
+                {
+                    for (int j = RoomWithLabyrinth.reverseDoorCords.Item2 - 1; j < RoomWithLabyrinth.reverseDoorCords.Item2 + 2; j++)
                     {
-                        map[i, j] = new Wall(i, j);
+                        if (j == RoomWithLabyrinth.reverseDoorCords.Item2)
+                        {
+                            map[i, j] = new Empty(i, j);
+                        }
+                        else
+                        {
+                            map[i, j] = new Wall(i, j);
+                        }
                     }
                 }
             }

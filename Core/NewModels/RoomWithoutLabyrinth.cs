@@ -11,7 +11,7 @@ namespace Core.NewModels
         Random random = new Random();
         int door;
 
-        public RoomWithoutLabyrinth(ref BaseElement[,] map, int location, int door)
+        public RoomWithoutLabyrinth(ref BaseElement[,] map, int location, int door, int additionalPlace = 0)
         {
             for (int i = location - 1; i < location + 6; i++)
             {
@@ -19,7 +19,7 @@ namespace Core.NewModels
                 {
                     if (i < location || i > location + 5)
                     {
-                        map[i, j] = new Empty(i, j);
+                        map[i + additionalPlace, j] = new Empty(i + additionalPlace, j);
                         continue;
                     }
 
@@ -27,24 +27,24 @@ namespace Core.NewModels
                     {
                         if (i == location && j - location == door)
                         {
-                            map[i, j] = new Empty(i, j);
-                            doorCords = (i, j);
-                            reverseDoorCords = (i + 5, j);
+                            map[i + additionalPlace, j] = new Empty(i + additionalPlace, j);
+                            doorCords = (i + additionalPlace, j);
+                            reverseDoorCords = (i + additionalPlace + 5, j);
                             continue;
                         }
-                        map[i, j] = new Wall(i, j);
+                        map[i + additionalPlace, j] = new Wall(i + additionalPlace, j);
                         continue;
                     }
                     int q = random.Next(100);
-                    map[i, j] = q switch
+                    map[i + additionalPlace, j] = q switch
                     {
-                        <= 25 => new EnergyBall(i, j),
-                        _ => new Empty(i, j),
+                        <= 25 => new EnergyBall(i + additionalPlace, j),
+                        _ => new Empty(i + additionalPlace, j),
                     };
                     BaseElement element = q switch
                     {
-                        <= 25 => new EnergyBall(i, j),
-                        _ => new Empty(i, j),
+                        <= 25 => new EnergyBall(i + additionalPlace, j),
+                        _ => new Empty(i + additionalPlace, j),
                     };
                     room.Add(element);
                 }
