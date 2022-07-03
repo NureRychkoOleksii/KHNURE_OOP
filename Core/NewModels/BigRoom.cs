@@ -30,22 +30,25 @@ namespace Core.NewModels
                             {
                                 if (additionalLocation < 0)
                                 {
-                                    map[i, j + additionalLocation + 7] = new Empty(i, j + additionalLocation + 7);
                                     doorCords = (i, j + additionalLocation + 7);
+                                    map[doorCords.Item1, doorCords.Item2] = new Empty(doorCords.Item1, doorCords.Item2);
                                     reverseDoorCords = (i, j + additionalLocation);
                                     map[i, j + additionalLocation] = new Wall(i, j + additionalLocation);
                                     continue;
                                 }
                                 map[i, j + additionalLocation] = new Empty(i, j + additionalLocation);
                                 doorCords = (i, j + additionalLocation);
-                                reverseDoorCords = (i, j + additionalLocation);
+                                reverseDoorCords = (i, j + additionalLocation + 7);
                                 continue;
                             }
                             map[i, j + additionalLocation] = new Wall(i, j + additionalLocation);
                             continue;
                         }
-                        map[i, j + additionalLocation] = new Wall(i, j + additionalLocation);
-                        continue;
+                        if (map[i, j + additionalLocation] == null)
+                        {
+                            map[i, j + additionalLocation] = new Wall(i, j + additionalLocation);
+                            continue;
+                        }
                     }
                     int q = random.Next(100);
                     map[i, j + additionalLocation] = q switch
