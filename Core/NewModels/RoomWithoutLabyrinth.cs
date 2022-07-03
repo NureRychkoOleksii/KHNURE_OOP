@@ -11,23 +11,21 @@ namespace Core.NewModels
         Random random = new Random();
         int door;
 
-        public RoomWithoutLabyrinth(ref BaseElement[,] map)
+        public RoomWithoutLabyrinth(ref BaseElement[,] map, int location, int door)
         {
-            door = random.Next(2, 3);
-            int border = random.Next(5, 40);
-            for (int i = border - 1; i < border + 6; i++)
+            for (int i = location - 1; i < location + 6; i++)
             {
-                for(int j = border - 1; j < border + 6; j++)
+                for(int j = location - 1; j < location + 6; j++)
                 {
-                    if (i < border || i > border + 5)
+                    if (i < location || i > location + 5)
                     {
                         map[i, j] = new Empty(i, j);
                         continue;
                     }
 
-                    if ((i == border) || (i == border + 5) || j == border + 5 || j == border - 1)
+                    if ((i == location) || (i == location + 5) || j == location + 5 || j == location - 1)
                     {
-                        if (i == border && j - border == door)
+                        if (i == location && j - location == door)
                         {
                             map[i, j] = new Empty(i, j);
                             doorCords = (i, j);

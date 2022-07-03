@@ -9,7 +9,7 @@ namespace Core.NewModels
         public BaseElement[,] map = new BaseElement[48,48];
         public int scoreToWin = 0;
         RoomWithLabyrinth roomWithLabyrinth;
-        RoomWithoutLabyrinth roomWithoutLabyrith;
+        RoomWithoutLabyrinth roomWithoutLabyrinth;
 
 
         public BaseElement this[int x, int y]
@@ -23,21 +23,13 @@ namespace Core.NewModels
                 map[x, y] = value;
             }
         }
-        public void CreateRoomsWithoutLabyrinth()
-        {
-            roomWithoutLabyrith = new RoomWithoutLabyrinth(ref map);
-        }
-
-        public void CreateRoomsWithLabyrinth()
-        {
-            roomWithLabyrinth = new RoomWithLabyrinth(ref map);
-        }
-
         public void CreateMap()
         {
             Random random = new Random();
-            CreateRoomsWithoutLabyrinth();
-            CreateRoomsWithLabyrinth();
+            RoomService rooms = new RoomService(ref map);
+            roomWithLabyrinth = rooms.RoomWithLabyrinth;
+            roomWithoutLabyrinth = rooms.RoomWithoutLabyrinth;
+            rooms.GeneratePassBetweenRooms(ref map);
             //for (int k = 0; k < 2; k++)
             //{
             //    int l = 2;
@@ -122,10 +114,10 @@ namespace Core.NewModels
                     }
                 }
             }
-            int x = random.Next(5,25), y = random.Next(5,25);
+            int x = random.Next(20, 35), y = random.Next(20, 35);
             map[x, y] = new Player(x, y);
-            x = random.Next(5, 25);
-            y = random.Next(5, 25);
+            x = random.Next(20, 35);
+            y = random.Next(20, 35);
             map[x, y] = new Ball(x, y);
             UpdateMap();
         }
@@ -135,7 +127,7 @@ namespace Core.NewModels
             foreach(var i in map)
             {
                 var itemFromRoomWithLabyrinth = roomWithLabyrinth.room.FirstOrDefault(elem => elem.X == i.X && elem.Y == i.Y);
-                var itemFromRoomWithoutLabyrinth = roomWithoutLabyrith.room.FirstOrDefault(elem => elem.X == i.X && elem.Y == i.Y);
+                var itemFromRoomWithoutLabyrinth = roomWithoutLabyrinth.room.FirstOrDefault(elem => elem.X == i.X && elem.Y == i.Y);
                 if (itemFromRoomWithLabyrinth != null && i is Empty)
                 {
                     roomWithLabyrinth.room.Remove(itemFromRoomWithLabyrinth);
@@ -147,14 +139,14 @@ namespace Core.NewModels
             }
             foreach(var i in map)
             {
-                var itemFromRoomWithoutLabyrinth = roomWithoutLabyrith.room.FirstOrDefault(elem => elem.X == i.X && elem.Y == i.Y);
+                var itemFromRoomWithoutLabyrinth = roomWithoutLabyrinth.room.FirstOrDefault(elem => elem.X == i.X && elem.Y == i.Y);
                 if (itemFromRoomWithoutLabyrinth != null && i is Empty)
                 {
-                    roomWithoutLabyrith.room.Remove(itemFromRoomWithoutLabyrinth);
+                    roomWithoutLabyrinth.room.Remove(itemFromRoomWithoutLabyrinth);
                 }
             }
             roomWithLabyrinth.OpenDoor(ref map);
-            roomWithoutLabyrith.OpenDoor(ref map);
+            roomWithoutLabyrinth.OpenDoor(ref map);
             foreach (var item in map)
             {
                 item.Draw();

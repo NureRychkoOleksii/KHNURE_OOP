@@ -12,62 +12,60 @@ namespace Core.NewModels
         public (int, int) doorCords = (0, 0);
         public (int, int) reverseDoorCords = (0, 0);
         Random random = new Random();
-        int door;
 
-        public RoomWithLabyrinth(ref BaseElement[,] map)
+        public RoomWithLabyrinth(ref BaseElement[,] map, int location, int door)
         {
-            door = random.Next(1, 3);
-            int border = random.Next(5, 40);
-            for (int i = border - 1; i < border + 7; i++)
+            int coords = 10;
+            for (int i = location - 1; i < location + 7; i++)
             {
-                for (int j = border - 1; j < border + 6; j++)
+                for (int j = location - 1; j < location + 6; j++)
                 {
-                    if (i < border ||  i > border +5)
+                    if (i < location ||  i > location +5)
                     {
-                        map[i, j] = new Empty(i, j);
+                        map[i + coords, j] = new Empty(i + coords, j);
                         continue;
                     }
 
-                    if ((i == border) || (i == border + 5) || j == border + 5 || j == border - 1)
+                    if ((i == location) || (i == location + 5) || j == location + 5 || j == location - 1)
                     {
-                        if (i == border)
+                        if (i == location)
                         {
-                            if (j - door== border)
+                            if (j - door== location)
                             {
-                                map[i, j] = new Empty(i, j);
-                                doorCords = (i, j);
-                                reverseDoorCords = (i+5, j);
+                                map[i + coords, j] = new Empty(i + coords, j);
+                                doorCords = (i + coords, j);
+                                reverseDoorCords = (i + coords + 5, j);
                                 continue;
                             }
-                            map[i, j] = new Wall(i, j);
+                            map[i + coords, j] = new Wall(i + coords, j);
                             continue;
                         }
-                        map[i, j] = new Wall(i, j);
+                        map[i + coords, j] = new Wall(i + coords, j);
                         continue;
                     }
-                    if (j - door == border + 1)
+                    if (j - door == location + 1)
                     {
-                        if (i >= border + 3)
+                        if (i >= location + 3)
                         {
-                            map[i, j] = new Empty(i, j);
+                            map[i + coords, j] = new Empty(i + coords, j);
                             continue;
                         }
                         else
                         {
-                            map[i, j] = new Wall(i, j);
+                            map[i + coords, j] = new Wall(i + coords, j);
                             continue;
                         }
                     }
                     int q = random.Next(100);
-                    map[i, j] = q switch
+                    map[i + coords, j] = q switch
                     {
-                        <= 25 => new EnergyBall(i, j),
-                        _ => new Empty(i, j),
+                        <= 25 => new EnergyBall(i + coords, j),
+                        _ => new Empty(i + coords, j),
                     };
                     BaseElement element = q switch
                     {
-                        <= 25 => new EnergyBall(i, j),
-                        _ => new Empty(i, j),
+                        <= 25 => new EnergyBall(i + coords, j),
+                        _ => new Empty(i + coords, j),
                     };
                     room.Add(element);
                 }
