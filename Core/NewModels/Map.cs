@@ -134,13 +134,27 @@ namespace Core.NewModels
         {
             foreach(var i in map)
             {
-                var item = roomWithLabyrinth.room.FirstOrDefault(elem => elem.X == i.X && elem.Y == i.Y);
-                if (item != null && i is Empty)
+                var itemFromRoomWithLabyrinth = roomWithLabyrinth.room.FirstOrDefault(elem => elem.X == i.X && elem.Y == i.Y);
+                var itemFromRoomWithoutLabyrinth = roomWithoutLabyrith.room.FirstOrDefault(elem => elem.X == i.X && elem.Y == i.Y);
+                if (itemFromRoomWithLabyrinth != null && i is Empty)
                 {
-                    roomWithLabyrinth.room.Remove(item);
+                    roomWithLabyrinth.room.Remove(itemFromRoomWithLabyrinth);
+                }
+                if(itemFromRoomWithoutLabyrinth != null && i is Empty)
+                {
+                    roomWithLabyrinth.room.Remove(itemFromRoomWithoutLabyrinth);
+                }
+            }
+            foreach(var i in map)
+            {
+                var itemFromRoomWithoutLabyrinth = roomWithoutLabyrith.room.FirstOrDefault(elem => elem.X == i.X && elem.Y == i.Y);
+                if (itemFromRoomWithoutLabyrinth != null && i is Empty)
+                {
+                    roomWithoutLabyrith.room.Remove(itemFromRoomWithoutLabyrinth);
                 }
             }
             roomWithLabyrinth.OpenDoor(ref map);
+            roomWithoutLabyrith.OpenDoor(ref map);
             foreach (var item in map)
             {
                 item.Draw();

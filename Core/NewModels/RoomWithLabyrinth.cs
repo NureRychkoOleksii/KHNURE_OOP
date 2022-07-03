@@ -18,11 +18,11 @@ namespace Core.NewModels
         {
             door = random.Next(1, 3);
             int border = random.Next(5, 40);
-            for (int i = border - 1; i < border + 6; i++)
+            for (int i = border - 1; i < border + 7; i++)
             {
                 for (int j = border - 1; j < border + 6; j++)
                 {
-                    if (i < border)
+                    if (i < border ||  i > border +5)
                     {
                         map[i, j] = new Empty(i, j);
                         continue;

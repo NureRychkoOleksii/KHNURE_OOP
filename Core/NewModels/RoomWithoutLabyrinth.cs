@@ -19,7 +19,7 @@ namespace Core.NewModels
             {
                 for(int j = border - 1; j < border + 6; j++)
                 {
-                    if (i < border)
+                    if (i < border || i > border + 5)
                     {
                         map[i, j] = new Empty(i, j);
                         continue;
@@ -53,19 +53,21 @@ namespace Core.NewModels
             }
         }
 
-        public bool CheckRoom()
+        public void OpenDoor(ref BaseElement[,] map)
         {
             var res = false;
-            foreach(var i in room)
+            foreach (var i in room)
             {
-                if(i is not Empty)
+                if (i is not Empty)
                 {
                     res = true;
                     break;
                 }
             }
-
-            return res;
+            if (!res)
+            {
+                map[reverseDoorCords.Item1, reverseDoorCords.Item2] = new Empty(reverseDoorCords.Item1, reverseDoorCords.Item2);
+            }
         }
     }
 }
