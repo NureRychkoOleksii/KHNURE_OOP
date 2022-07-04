@@ -67,7 +67,7 @@ namespace Core.NewModels
                         _ => leftRoom
                     };
                     room.Create(ref map, _x, _y);
-                    ChangeLocation(room, true);
+                    ChangeLocation(room, true, true);
                     OpeningDirection = leftRoom switch
                     {
                         LeftAndRightRoom => "Right",
@@ -85,7 +85,7 @@ namespace Core.NewModels
                         _ => topRoom
                     };
                     room.Create(ref map, _x, _y);
-                    ChangeLocation(room, false);
+                    ChangeLocation(room, false,false,true);
                     OpeningDirection = topRoom switch
                     {
                         TopAndBottomRoom => "Bottom",
@@ -103,7 +103,7 @@ namespace Core.NewModels
                         _ => bottomRoom
                     };
                     room.Create(ref map, _x, _y);
-                    ChangeLocation(room, false);
+                    ChangeLocation(room, false,false, false);
                     OpeningDirection = bottomRoom switch
                     {
                         TopAndBottomRoom => "Bottom",
@@ -115,12 +115,19 @@ namespace Core.NewModels
         }
 
 
-        public void ChangeLocation(RightRoom room, bool nextHorizontal)
+        public void ChangeLocation(RightRoom room, bool nextHorizontal, bool fromLefToRight = false, bool fromTopToBottom = false)
         {
             switch(room)
             {
                 case LeftAndRightRoom:
-                    _x += 5;
+                    if(fromLefToRight)
+                    {
+                        _x += 5;
+                    }
+                    else
+                    {
+                        _x -= 5;
+                    }
                     break;
                 case BottomAndLeftRoom:
                     if(nextHorizontal)
@@ -162,7 +169,14 @@ namespace Core.NewModels
                     }
                     break;
                 case TopAndBottomRoom:
-                    _y += 5;
+                    if (fromTopToBottom)
+                    {
+                        _y += 5;
+                    }
+                    else
+                    {
+                        _y -= 5;
+                    }
                     break;
             }
         }
