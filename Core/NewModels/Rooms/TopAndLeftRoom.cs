@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Core.NewModels.Rooms
 {
-    public class TopAndLeftRoom : RightRoom
+    public class TopAndLeftRoom : Room
     {
         static Random random = new Random();
         public override void Create(ref BaseElement[,] map, int x, int y)

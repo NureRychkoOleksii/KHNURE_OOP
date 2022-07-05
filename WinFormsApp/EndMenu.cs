@@ -6,7 +6,7 @@ namespace WinFormsApp
 {
     public partial class EndMenu : Form
     {
-        private Thread _th;
+        private Thread _thread;
         private readonly User _user;
         public EndMenu(User user)
         {
@@ -17,9 +17,9 @@ namespace WinFormsApp
         private void button1_Click(object sender, System.EventArgs e)
         {
             this.Close();
-            _th = new Thread(OpenNewForm);
-            _th.SetApartmentState(ApartmentState.STA);
-            _th.Start();
+            _thread = new Thread(OpenNewForm);
+            _thread.SetApartmentState(ApartmentState.STA);
+            _thread.Start();
         }
 
         private void OpenNewForm()

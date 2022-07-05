@@ -33,7 +33,20 @@ namespace Core.NewModels
             }
         }
 
-        void Update(ref BaseElement[,] map)
+        private void DetermineDirection(Room room)
+        {
+            OpeningDirection = room switch
+            {
+                LeftAndRightRoom => "Right",
+                BottomAndLeftRoom => "Bottom",
+                TopAndLeftRoom => "Top",
+                BottomAndRight => "Right",
+                TopAndBottomRoom => "Bottom",
+                TopAndRightRoom => "Right",
+            };
+        }
+
+        private void Update(ref BaseElement[,] map)
         {
             var rand = _random.Next(1, 3);
             switch (OpeningDirection)
@@ -50,12 +63,7 @@ namespace Core.NewModels
                     };
                     room.Create(ref map, _x,_y);
                     ChangeLocation(room, true);
-                    OpeningDirection = rightRoom switch
-                    {
-                        LeftAndRightRoom => "Right",
-                        BottomAndLeftRoom => "Bottom",
-                        TopAndLeftRoom => "Top",
-                    };
+                    DetermineDirection(room);
                     break;
                 case "Left":
                     var leftRoom= RoomTemplate.LeftRooms[rand];
@@ -68,12 +76,7 @@ namespace Core.NewModels
                     };
                     room.Create(ref map, _x, _y);
                     ChangeLocation(room, true, true);
-                    OpeningDirection = leftRoom switch
-                    {
-                        LeftAndRightRoom => "Right",
-                        BottomAndRight => "Bottom",
-                        TopAndRightRoom => "Top",
-                    };
+                    DetermineDirection(room);
                     break;
                 case "Top":
                     var topRoom = RoomTemplate.TopRooms[rand];
@@ -86,12 +89,7 @@ namespace Core.NewModels
                     };
                     room.Create(ref map, _x, _y);
                     ChangeLocation(room, false,false,true);
-                    OpeningDirection = topRoom switch
-                    {
-                        TopAndBottomRoom => "Bottom",
-                        BottomAndRight => "Right",
-                        BottomAndLeftRoom => "Left",
-                    };
+                    DetermineDirection(room);
                     break;
                 case "Bottom":
                     var bottomRoom = RoomTemplate.BottomRooms[rand];
@@ -104,18 +102,13 @@ namespace Core.NewModels
                     };
                     room.Create(ref map, _x, _y);
                     ChangeLocation(room, false,false, false);
-                    OpeningDirection = bottomRoom switch
-                    {
-                        TopAndBottomRoom => "Bottom",
-                        TopAndLeftRoom => "Left",
-                        TopAndRightRoom => "Right",
-                    };
+                    DetermineDirection(room);
                     break;
             }
         }
 
 
-        public void ChangeLocation(RightRoom room, bool nextHorizontal, bool fromLefToRight = false, bool fromTopToBottom = false)
+        public void ChangeLocation(Room room, bool nextHorizontal, bool fromLefToRight = false, bool fromTopToBottom = false)
         {
             switch(room)
             {

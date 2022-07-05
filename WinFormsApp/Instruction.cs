@@ -14,7 +14,7 @@ namespace WinFormsApp
 {
     public partial class Instruction : Form
     {
-        Thread th;
+        Thread _thread;
         private readonly User _user;
         public Instruction(User user)
         {
@@ -26,9 +26,9 @@ namespace WinFormsApp
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
-            th = new Thread(OpenNewForm);
-            th.SetApartmentState(ApartmentState.STA);
-            th.Start();
+            _thread = new Thread(OpenNewForm);
+            _thread.SetApartmentState(ApartmentState.STA);
+            _thread.Start();
         }
 
         private void OpenNewForm(object obj)

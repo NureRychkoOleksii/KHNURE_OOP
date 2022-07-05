@@ -15,9 +15,9 @@ namespace Core.NewModels.Rooms
         private static TopAndLeftRoom _tl = new TopAndLeftRoom();
         private static TopAndRightRoom _tr = new TopAndRightRoom();
 
-        public static List<RightRoom> RightRooms = new List<RightRoom>() { _lr, _bl, _tl};
-        public static List<RightRoom> LeftRooms = new List<RightRoom>() { _br,_tr,_lr };
-        public static List<RightRoom> BottomRooms = new List<RightRoom>() { _tb, _tl, _tr };
-        public static List<RightRoom> TopRooms = new List<RightRoom>() { _bl,_br,_tb };
+        public static List<Room> RightRooms = new List<Room>() { _lr, _bl, _tl};
+        public static List<Room> LeftRooms = new List<Room>() { _br,_tr,_lr };
+        public static List<Room> BottomRooms = new List<Room>() { _tb, _tl, _tr };
+        public static List<Room> TopRooms = new List<Room>() { _bl,_br,_tb };
     }
 }

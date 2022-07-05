@@ -8,9 +8,6 @@ namespace Core.NewModels
     {
         public BaseElement[,] map = new BaseElement[50, 50];
         public int scoreToWin = 0;
-        RoomWithLabyrinth roomWithLabyrinth;
-        RoomWithoutLabyrinth roomWithoutLabyrinth;
-
 
         public BaseElement this[int x, int y]
         {
