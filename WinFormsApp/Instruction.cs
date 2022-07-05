@@ -12,11 +12,11 @@ using Core.Models;
 
 namespace WinFormsApp
 {
-    public partial class Form3 : Form
+    public partial class Instruction : Form
     {
         Thread th;
         private readonly User _user;
-        public Form3(User user)
+        public Instruction(User user)
         {
             _user = user;
             InitializeComponent();
@@ -33,7 +33,7 @@ namespace WinFormsApp
 
         private void OpenNewForm(object obj)
         {
-            Application.Run(new Form1(_user));
+            Application.Run(new GameForm(_user));
         }
     }
 }

@@ -46,7 +46,7 @@ namespace WinFormsApp
 
         private void OpenNewForm()
         {
-            Application.Run(new Form3(_user));
+            Application.Run(new Instruction(_user));
         }
 
         public IEnumerable<User> GetAllUsers(string path)

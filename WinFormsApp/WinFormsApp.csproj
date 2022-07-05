@@ -17,16 +17,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Form1.cs">
+    <Compile Update="GameForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Form2.cs">
+    <Compile Update="MainMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Form3.cs">
+    <Compile Update="Instruction.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Form4.cs">
+    <Compile Update="EndMenu.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Properties\Resources.Designer.cs">

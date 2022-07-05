@@ -8,13 +8,13 @@ namespace WinFormsApp
 {
     public class GraphicEngine
     {
-        private Form1 _form { get; set; }
+        private GameForm _form { get; set; }
 
         public PictureBox playerPicturebox { get; set; }
         
         public PictureBox ballPictureBox { get; set; }
 
-        public GraphicEngine(Form1 form)
+        public GraphicEngine(GameForm form)
         {
             _form = form;
         }

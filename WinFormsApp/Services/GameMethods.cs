@@ -22,7 +22,7 @@ namespace WinFormsApp.Services
             _graphicEngine.ballPictureBox.Location = new Point(_graphicEngine.ballPictureBox.Location.X + dx * 15, _graphicEngine.ballPictureBox.Location.Y + dy * 15);
         }
 
-        public void CheckBall(ref Direction _currentBallDir, ref Core.NewModels.Ball _ball, ref Map map, Methods checkings, ref Core.NewModels.Player _player, Form1 form, ref int _score)
+        public void CheckBall(ref Direction _currentBallDir, ref Core.NewModels.Ball _ball, ref Map map, Methods checkings, ref Core.NewModels.Player _player, GameForm form, ref int _score)
         {
             var (dx, dy) = DirectionsDictionary.directions[_currentBallDir];
             if (_ball.X + 1 == map.map.GetLength(0) || _ball.Y + 1 == map.map.GetLength(1) || _ball.X == 0 || _ball.Y == 0)

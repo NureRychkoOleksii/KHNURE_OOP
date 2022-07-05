@@ -4,11 +4,11 @@ using Core.Models;
 
 namespace WinFormsApp
 {
-    public partial class Form4 : Form
+    public partial class EndMenu : Form
     {
         private Thread _th;
         private readonly User _user;
-        public Form4(User user)
+        public EndMenu(User user)
         {
             _user = user;
             InitializeComponent();
@@ -24,7 +24,7 @@ namespace WinFormsApp
 
         private void OpenNewForm()
         {
-            Application.Run(new Form1(_user));
+            Application.Run(new GameForm(_user));
         }
 
         private void button2_Click(object sender, System.EventArgs e)

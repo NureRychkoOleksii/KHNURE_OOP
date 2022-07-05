@@ -1,6 +1,6 @@
 ﻿namespace WinFormsApp
 {
-    partial class Form3
+    partial class Instruction
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form3));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Instruction));
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -41,7 +41,7 @@
             this.textBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(423, 137);
+            this.textBox1.Size = new System.Drawing.Size(423, 179);
             this.textBox1.TabIndex = 0;
             this.textBox1.Text = resources.GetString("textBox1.Text");
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -58,7 +58,7 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // Form3
+            // Instruction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -68,7 +68,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.Name = "Form3";
+            this.Name = "Instruction";
             this.Text = "Form3";
             this.ResumeLayout(false);
             this.PerformLayout();

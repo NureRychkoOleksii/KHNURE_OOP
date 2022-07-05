@@ -10,7 +10,7 @@ using Core.Methods;
 
 namespace WinFormsApp
 {
-    public partial class Form1 : Form
+    public partial class GameForm : Form
     {
         private Thread _thread;
         private EventHandler functionForMovement;
@@ -30,7 +30,7 @@ namespace WinFormsApp
         private GraphicEngine _graphicEngine;
         Methods checkings = new Methods();
 
-        public Form1(User user)
+        public GameForm(User user)
         {
             InitializeComponent();
             _user = user;
@@ -95,7 +95,7 @@ namespace WinFormsApp
 
         private void OpenNewForm()
         {
-            Application.Run(new Form4(_user));
+            Application.Run(new EndMenu(_user));
         }
     }
 }

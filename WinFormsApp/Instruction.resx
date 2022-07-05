@@ -58,17 +58,17 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="textBox1.Text" xml:space="preserve">
-    <value> Welcome!
-I'm glad you started playing this game!
+    <value>Welcome to the New Ball Game!
 Here is an instruction:
-You need to collect all green cubes by the ball to win.
-To interact with ball, use wall.
-Left arrow - Left
-Right arrow - Right
-Up arrow - Up
-Down arrow - Down
-Tab - change wall.
-Good Luck!
+You need to collect all white squares(energy points)
+Keys:
+Left arrow - left
+Right arrow - right
+Up arrow - up
+Down arrow - down
+Tab - change wall
+
+Good luck!
 </value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />

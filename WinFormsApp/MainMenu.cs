@@ -4,10 +4,10 @@ using System.Windows.Forms;
 
 namespace WinFormsApp
 {
-    public partial class Form2 : Form
+    public partial class MainMenu : Form
     {
         Thread th;
-        public Form2()
+        public MainMenu()
         {
             InitializeComponent();
             textBox.Enabled = false;
