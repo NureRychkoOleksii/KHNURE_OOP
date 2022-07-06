@@ -41,6 +41,7 @@ namespace Console.StartupMethods
                         End();
                         break;
                     }
+                    _userService.UpdateUser(ref user, user.Id);
                 }
             }
             else if (System.Console.ReadKey(true).Key == ConsoleKey.D2)
@@ -91,7 +92,7 @@ namespace Console.StartupMethods
         {
             time.StartTimeChecking();
             user.Record = time.stopwatch.Elapsed.ToString();
-            _userService.UpdateUser(user, user.Id);
+            _userService.UpdateUser(ref user, user.Id);
             System.Console.Clear();
             System.Console.SetCursorPosition(50, 30);
             System.Console.WriteLine($"You won! your record: ${user.Record}");
@@ -114,7 +115,7 @@ namespace Console.StartupMethods
 
         private void MakeAction(bool changeWall)
         {
-            currentDirection = methods.FrameTickBall(currentDirection, ref ball, map, player, ref _score);
+            currentDirection = methods.FrameTickBall(currentDirection, ref ball, map, player, ref _score, ref user.CoinsCount);
             currentDirectionPlayer = methods.FrameTick(currentDirectionPlayer, player, map);
             player.Action(ref map, currentDirectionPlayer, changeWall);
             ball.Action(ref map, currentDirection);

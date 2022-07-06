@@ -23,7 +23,7 @@ namespace WinFormsApp
         private int _total = 0;
         private int _score = 0;
         TimeCheck time = new TimeCheck();
-        private readonly UserService _userService;
+        private readonly UserService _userService = new UserService();
         private GameMethods _game = new GameMethods();
         private Movement movement = new Movement();
 
@@ -53,8 +53,9 @@ namespace WinFormsApp
             {
                 EndGame();
             }
-            _game.CheckBall(ref _currentBallDir, ref _ball, ref map, checkings, ref _player, this, ref _score);
+            _game.CheckBall(ref _currentBallDir, ref _ball, ref map, checkings, ref _player, this, ref _score, ref _user.CoinsCount);
             _game.MoveBall(ref _currentBallDir, ref _ball, ref map, ref _graphicEngine);
+            _userService.UpdateUser(ref _user, _user.Id);
         }
 
         private void EndGame()

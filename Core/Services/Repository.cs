@@ -28,7 +28,14 @@ namespace DAL.Services
         public void CreateObject(TEntity obj, string path)
         {
             _data = GetAll(path).ToList();
-            obj.Id = ++_data.OrderBy(x => x.Id).FirstOrDefault().Id;
+            _data.Add(obj);
+            _serializationWorker.Serialize<IEnumerable<TEntity>>(_data, path);
+        }
+
+        public void CreateFirstObject(TEntity obj, string path)
+        {
+            _data = GetAll(path).ToList();
+            obj.Id = _data.LastOrDefault().Id + 1;
             _data.Add(obj);
             _serializationWorker.Serialize<IEnumerable<TEntity>>(_data, path);
         }

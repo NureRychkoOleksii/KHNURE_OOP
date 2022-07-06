@@ -11,8 +11,6 @@ namespace WinFormsApp
     public partial class RegistrationAndLoginForm : Form
     {
         private readonly UserService _userService = new UserService();
-        private List<User> _data = new List<User>();
-        private readonly string _path = "..\\..\\..\\Data\\Users.json";
         private Thread _thread;
         private static User _user;
         public RegistrationAndLoginForm()
@@ -26,16 +24,19 @@ namespace WinFormsApp
             {
                 Name = textBox1.Text,
                 Password = textBox2.Text,
-                Record = "0"
+                Record = "0",
+                CoinsCount = 0
             };
-            if (_userService.GetUserByName(_path, textBox1.Text) != null)
+            if (_userService.GetUserByName(textBox1.Text) != null)
             {
+                _user.CoinsCount = _userService.GetUserByName(_user.Name).CoinsCount;
+                _user.Id = _userService.GetUserByName(_user.Name).Id;
                 this.Close();
                 AddThread();
             }
             else
             {
-                _userService.AddUser(_user);
+                _userService.AddNewUser(_user);
                 this.Close();
                 AddThread();
             }

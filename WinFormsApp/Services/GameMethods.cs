@@ -23,7 +23,7 @@ namespace WinFormsApp.Services
             _graphicEngine.ballPictureBox.Location = new Point(_graphicEngine.ballPictureBox.Location.X + dx * 15, _graphicEngine.ballPictureBox.Location.Y + dy * 15);
         }
 
-        public void CheckBall(ref Direction _currentBallDir, ref Core.NewModels.Ball _ball, ref Map map, Methods checkings, ref Core.NewModels.Player _player, GameForm form, ref int _score)
+        public void CheckBall(ref Direction _currentBallDir, ref Core.NewModels.Ball _ball, ref Map map, Methods checkings, ref Core.NewModels.Player _player, GameForm form, ref int _score, ref int _userScore)
         {
             var (dx, dy) = DirectionsDictionary.directions[_currentBallDir];
             if (_ball.X + 1 == map.map.GetLength(0) || _ball.Y + 1 == map.map.GetLength(1) || _ball.X == 0 || _ball.Y == 0)
@@ -59,6 +59,7 @@ namespace WinFormsApp.Services
                             }
                         }
                         map[item.X, item.Y] = new Empty(item.X, item.Y);
+                        _userScore++;
                         _score++;
                         form.scoreBox.Text = Convert.ToString(_score);
                     }
@@ -80,7 +81,7 @@ namespace WinFormsApp.Services
         {
             time.StopTimeChecking();
             _user.Record = time.stopwatch.Elapsed.ToString();
-            _userService.UpdateUser(_user, _user.Id);
+            _userService.UpdateUser(ref _user, _user.Id);
         }
 
     }
