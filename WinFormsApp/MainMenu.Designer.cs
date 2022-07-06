@@ -30,8 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenu));
             this.textBox = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.startButton = new System.Windows.Forms.Button();
+            this.exitButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBox
@@ -46,36 +46,36 @@
             this.textBox.TabIndex = 0;
             this.textBox.Text = "Welcome to the New Ball Game!";
             // 
-            // button1
+            // startButton
             // 
-            this.button1.Location = new System.Drawing.Point(92, 111);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(120, 49);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Start";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.startButton.Location = new System.Drawing.Point(92, 111);
+            this.startButton.Name = "startButton";
+            this.startButton.Size = new System.Drawing.Size(120, 49);
+            this.startButton.TabIndex = 1;
+            this.startButton.Text = "Start";
+            this.startButton.UseVisualStyleBackColor = true;
+            this.startButton.Click += new System.EventHandler(this.startButton_Click);
             // 
-            // button2
+            // exitButton
             // 
-            this.button2.Location = new System.Drawing.Point(409, 111);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(120, 49);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Exit";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.exitButton.Location = new System.Drawing.Point(409, 111);
+            this.exitButton.Name = "exitButton";
+            this.exitButton.Size = new System.Drawing.Size(120, 49);
+            this.exitButton.TabIndex = 2;
+            this.exitButton.Text = "Exit";
+            this.exitButton.UseVisualStyleBackColor = true;
+            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
-            // Form2
+            // MainMenu
             // 
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(629, 364);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.exitButton);
+            this.Controls.Add(this.startButton);
             this.Controls.Add(this.textBox);
-            this.Name = "Form2";
+            this.Name = "MainMenu";
             this.Text = "New Ball game";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -85,7 +85,7 @@
         #endregion
 
         private System.Windows.Forms.TextBox textBox;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button startButton;
+        private System.Windows.Forms.Button exitButton;
     }
 }

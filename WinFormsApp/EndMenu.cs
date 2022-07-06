@@ -14,7 +14,7 @@ namespace WinFormsApp
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, System.EventArgs e)
+        private void restartButton_Click(object sender, System.EventArgs e)
         {
             this.Close();
             _thread = new Thread(OpenNewForm);
@@ -27,7 +27,7 @@ namespace WinFormsApp
             Application.Run(new GameForm(_user));
         }
 
-        private void button2_Click(object sender, System.EventArgs e)
+        private void exitButton_Click(object sender, System.EventArgs e)
         {
             this.Close();
         }

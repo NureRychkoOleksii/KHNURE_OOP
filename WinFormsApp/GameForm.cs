@@ -22,7 +22,7 @@ namespace WinFormsApp
         private Map map = new Map();
         private int _total = 0;
         private int _score = 0;
-        Core.Methods.TimeCheck time = new Core.Methods.TimeCheck();
+        TimeCheck time = new TimeCheck();
         private readonly UserService _userService;
         private GameMethods _game = new GameMethods();
         private Movement movement = new Movement();
@@ -59,9 +59,7 @@ namespace WinFormsApp
 
         private void EndGame()
         {
-            time.StopTimeChecking();
-            _user.Record = time.stopwatch.Elapsed.ToString();
-            _userService.UpdateUser(_user, _user.Id);
+            _game.End(time, ref _user, _userService);
             this.Close();
             _thread = new Thread(OpenNewForm);
             _thread.SetApartmentState(ApartmentState.STA);

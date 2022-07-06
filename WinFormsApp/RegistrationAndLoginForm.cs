@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
+using Core.Methods;
 using Core.Models;
 using WinFormsApp.Services;
 
@@ -9,7 +10,7 @@ namespace WinFormsApp
 {
     public partial class RegistrationAndLoginForm : Form
     {
-        private readonly SerializationWorker _serializationWorker = new SerializationWorker();
+        private readonly UserService _userService = new UserService();
         private List<User> _data = new List<User>();
         private readonly string _path = "..\\..\\..\\Data\\Users.json";
         private Thread _thread;
@@ -19,7 +20,7 @@ namespace WinFormsApp
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, System.EventArgs e)
+        private void loginButton_Click(object sender, System.EventArgs e)
         {
             _user = new User()
             {
@@ -27,20 +28,16 @@ namespace WinFormsApp
                 Password = textBox2.Text,
                 Record = "0"
             };
-            if (GetUserByName(_path, textBox1.Text) != null)
+            if (_userService.GetUserByName(_path, textBox1.Text) != null)
             {
                 this.Close();
-                _thread = new Thread(OpenNewForm);
-                _thread.SetApartmentState(ApartmentState.STA);
-                _thread.Start();
+                AddThread();
             }
             else
             {
-                CreateObject(_user, _path);
+                _userService.AddUser(_user);
                 this.Close();
-                _thread = new Thread(OpenNewForm);
-                _thread.SetApartmentState(ApartmentState.STA);
-                _thread.Start();
+                AddThread();
             }
         }
 
@@ -49,29 +46,11 @@ namespace WinFormsApp
             Application.Run(new Instruction(_user));
         }
 
-        public IEnumerable<User> GetAllUsers(string path)
+        private void AddThread()
         {
-            return _serializationWorker.Deserialize<IEnumerable<User>>(path);
-        }
-
-        public User GetUserByName(string path, string name)
-        {
-            var res = GetAllUsers(path);
-            return res.Where(user => user.Name == name).FirstOrDefault();
-        }
-
-        public void CreateObject(User obj, string path)
-        {
-            _data = GetAllUsers(path).ToList();
-            _data.Add(obj);
-            _serializationWorker.Serialize<IEnumerable<User>>(_data, path);
-        }
-
-        public void DeleteObject(User obj, string path)
-        {
-            _data = _serializationWorker.Deserialize<IEnumerable<User>>(path).ToList();
-            _data.RemoveAll(x => x.Name == obj.Name);
-            _serializationWorker.Serialize<IEnumerable<User>>(_data, path);
+            _thread = new Thread(OpenNewForm);
+            _thread.SetApartmentState(ApartmentState.STA);
+            _thread.Start();
         }
     }
 }

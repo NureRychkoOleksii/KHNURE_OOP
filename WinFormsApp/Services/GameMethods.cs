@@ -3,6 +3,7 @@ using Core.Models;
 using Core.NewModels;
 using System;
 using System.Drawing;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace WinFormsApp.Services
@@ -74,5 +75,13 @@ namespace WinFormsApp.Services
                 _player.Action(ref map, _currentDir);
             }
         }
+
+        public void End(TimeCheck time, ref User _user, UserService _userService)
+        {
+            time.StopTimeChecking();
+            _user.Record = time.stopwatch.Elapsed.ToString();
+            _userService.UpdateUser(_user, _user.Id);
+        }
+
     }
 }

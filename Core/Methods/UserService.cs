@@ -11,7 +11,7 @@ namespace Core.Methods
     public class UserService
     {
         private readonly Repository<User> _repository = new Repository<User>();
-        private string _path = "JSON\\Users.json";
+        private string _path = "Data\\Users.json";
 
         public void AddUser(User user)
         {
@@ -34,5 +34,12 @@ namespace Core.Methods
             _repository.DeleteObject(userGet, _path);
             _repository.CreateObject(user, _path);
         }
+
+        public User GetUserByName(string path, string name)
+        {
+            var res = GetUsers();
+            return res.Where(user => user.Name == name).FirstOrDefault();
+        }
+
     }
 }

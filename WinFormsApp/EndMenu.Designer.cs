@@ -30,8 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EndMenu));
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.restartButton = new System.Windows.Forms.Button();
+            this.exitButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -49,43 +49,43 @@
     "Exit\"";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // button1
+            // restartButton
             // 
-            this.button1.BackColor = System.Drawing.Color.RoyalBlue;
-            this.button1.Location = new System.Drawing.Point(217, 201);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(113, 47);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Restart";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.restartButton.BackColor = System.Drawing.Color.RoyalBlue;
+            this.restartButton.Location = new System.Drawing.Point(217, 201);
+            this.restartButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.restartButton.Name = "restartButton";
+            this.restartButton.Size = new System.Drawing.Size(113, 47);
+            this.restartButton.TabIndex = 1;
+            this.restartButton.Text = "Restart";
+            this.restartButton.UseVisualStyleBackColor = false;
+            this.restartButton.Click += new System.EventHandler(this.restartButton_Click);
             // 
-            // button2
+            // exitButton
             // 
-            this.button2.BackColor = System.Drawing.Color.RoyalBlue;
-            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
-            this.button2.Location = new System.Drawing.Point(600, 201);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(113, 47);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Exit";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.exitButton.BackColor = System.Drawing.Color.RoyalBlue;
+            this.exitButton.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
+            this.exitButton.Location = new System.Drawing.Point(600, 201);
+            this.exitButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.exitButton.Name = "exitButton";
+            this.exitButton.Size = new System.Drawing.Size(113, 47);
+            this.exitButton.TabIndex = 2;
+            this.exitButton.Text = "Exit";
+            this.exitButton.UseVisualStyleBackColor = false;
+            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
-            // Form4
+            // EndMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(933, 519);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.exitButton);
+            this.Controls.Add(this.restartButton);
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.Name = "Form4";
+            this.Name = "EndMenu";
             this.Text = "Form4";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -95,7 +95,7 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button restartButton;
+        private System.Windows.Forms.Button exitButton;
     }
 }

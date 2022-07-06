@@ -34,7 +34,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.loginButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -89,17 +89,17 @@
             this.textBox2.Size = new System.Drawing.Size(177, 23);
             this.textBox2.TabIndex = 4;
             // 
-            // button1
+            // loginButton
             // 
-            this.button1.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.button1.Location = new System.Drawing.Point(429, 333);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(88, 27);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Login";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.loginButton.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.loginButton.Location = new System.Drawing.Point(429, 333);
+            this.loginButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.loginButton.Name = "loginButton";
+            this.loginButton.Size = new System.Drawing.Size(88, 27);
+            this.loginButton.TabIndex = 5;
+            this.loginButton.Text = "Login";
+            this.loginButton.UseVisualStyleBackColor = false;
+            this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
             // 
             // RegistrationAndLoginForm
             // 
@@ -108,7 +108,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(933, 519);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.loginButton);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -129,6 +129,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button loginButton;
     }
 }

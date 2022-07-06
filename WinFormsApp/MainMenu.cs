@@ -13,7 +13,7 @@ namespace WinFormsApp
             textBox.Enabled = false;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void startButton_Click(object sender, EventArgs e)
         {
             this.Close();
             _thread = new Thread(OpenNewForm1);
@@ -26,14 +26,9 @@ namespace WinFormsApp
             Application.Run(new RegistrationAndLoginForm());
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void exitButton_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
