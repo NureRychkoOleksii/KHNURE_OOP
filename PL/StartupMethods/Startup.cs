@@ -71,9 +71,9 @@ namespace Console.StartupMethods
         private void BeforeStart(out User user, out TimeCheck time, DrawLogin login)
         {
             user = login.Login(_userService);
-            //DrawShop magazine = new DrawShop();
-            //magazine.Draw(user);
-            //System.Console.Clear();
+            DrawShop magazine = new DrawShop();
+            magazine.Draw(user);
+            System.Console.Clear();
             map.CreateMap(user);
             methods.DetermineElements(ref player, ref ball, map, ref _total, user);
             var item = (Core.NewModels.Player)map[player.X, player.Y];
