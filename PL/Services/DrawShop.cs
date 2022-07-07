@@ -30,8 +30,8 @@ namespace Console.Services
 
             System.Console.WriteLine($"Your coins: {user.CoinsCount}");
 
-            System.Console.WriteLine("1) Yellow skin - " + _yellowSkin);
-            System.Console.WriteLine("2) Cyan skin - " + _cyanSkin);
+            System.Console.WriteLine("1) Yellow skin (rare skin for cool guys) - " + _yellowSkin);
+            System.Console.WriteLine("2) Cyan skin (epic skin for guys with big ) - " + _cyanSkin);
 
             System.Console.WriteLine("Choose one to buy!");
 
@@ -48,15 +48,26 @@ namespace Console.Services
             System.Console.ReadKey();
         }
 
-        public void CheckBalance(int skin, string skinName)
+        public void CheckBalance(int skinPrice, string skinName)
         {
-            if(user.CoinsCount >= skin)
+            if(user.CoinsCount >= skinPrice && CheckSkin(skinName))
             {
                 user.Skin = skinName;
+                user.CoinsCount -= skinPrice;
                 System.Console.WriteLine("Successful!");
                 return;
             }
+            if(CheckSkin(skinName))
+            {
+                System.Console.WriteLine("You already have this skin");
+                return;
+            }
             System.Console.WriteLine("Not enough money");
+        }
+
+        public bool CheckSkin(string skin)
+        {
+            return !(user.Skin == skin);
         }
     }
 }

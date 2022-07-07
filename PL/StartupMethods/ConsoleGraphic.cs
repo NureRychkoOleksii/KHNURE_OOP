@@ -48,7 +48,7 @@ namespace Console.StartupMethods
                 case "yellow":
                     res = ConsoleColor.Yellow;
                     break;
-                case "purple":
+                case "cyan":
                     res = ConsoleColor.Cyan;
                     break;
                 default:
