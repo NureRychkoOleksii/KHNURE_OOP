@@ -17,7 +17,7 @@ namespace WinFormsApp
         private User _user = new User();
         private Direction _currentDir = Direction.Stop;
         private Direction _currentBallDir = Direction.Right;
-        private Core.NewModels.Player _player = new Core.NewModels.Player(0,0);
+        private Core.NewModels.Player _player = new Core.NewModels.Player(0,0, "default");
         private Core.NewModels.Ball _ball = new Core.NewModels.Ball(0, 0);
         private Map map = new Map();
         private int _total = 0;
@@ -41,7 +41,7 @@ namespace WinFormsApp
             BaseElement.ClearElement += _graphicEngine.Clear;
             functionForMovement += ChangeImage;
             _game.StartGame(ref map, ref time);
-            checkings.DetermineElements(ref _player, ref _ball, map, ref _total);
+            checkings.DetermineElements(ref _player, ref _ball, map, ref _total, _user);
             timer1.Interval = 300;
             timer1.Start();
             this.KeyDown += UpdateKeyEventHandler;

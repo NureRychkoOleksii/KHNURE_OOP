@@ -10,7 +10,7 @@ namespace Console.StartupMethods
     public class Startup
     {
         private UserService _userService = new UserService();
-        Core.NewModels.Player player = new Core.NewModels.Player(0,0);
+        Core.NewModels.Player player = new Core.NewModels.Player(0,0,"default");
         Core.NewModels.Ball ball = new Core.NewModels.Ball(0,0);
         Direction currentDirection = Direction.Right;
         Direction currentDirectionPlayer = Direction.Stop;
@@ -48,7 +48,7 @@ namespace Console.StartupMethods
             {
                 System.Console.WriteLine("Ok...");
             }
-            else if(System.Console.ReadKey(true).Key == ConsoleKey.Escape)
+            else if (System.Console.ReadKey(true).Key == ConsoleKey.Escape)
             {
                 System.Console.WriteLine("It's not right button, but ok, you won (Easter egg for Vitaliy Nikolaevich)");
             }
@@ -71,8 +71,13 @@ namespace Console.StartupMethods
         private void BeforeStart(out User user, out TimeCheck time, DrawLogin login)
         {
             user = login.Login(_userService);
-            map.CreateMap();
-            methods.DetermineElements(ref player, ref ball, map, ref _total);
+            //DrawShop magazine = new DrawShop();
+            //magazine.Draw(user);
+            //System.Console.Clear();
+            map.CreateMap(user);
+            methods.DetermineElements(ref player, ref ball, map, ref _total, user);
+            var item = (Core.NewModels.Player)map[player.X, player.Y];
+            item.Skin = user.Skin;
             System.Console.ReadKey();
             System.Console.CursorVisible = false;
             time = new TimeCheck();

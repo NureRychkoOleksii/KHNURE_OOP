@@ -6,10 +6,13 @@ namespace Core.NewModels
     public class Player : BaseElement
     {
         public bool reverseSlash = false;
-        public Player(int x, int y) : base(x, y)
+
+        public string Skin = "default";
+        public Player(int x, int y, string skin) : base(x, y)
         {
             isStopping = true;
             isAngleChanging = true;
+            Skin = skin;
         }
         public void Move(Direction direction)
         {
@@ -29,7 +32,7 @@ namespace Core.NewModels
             int x = this.X, y = this.Y;
             this.Move(currentDirectionPlayer);
             map[x, y] = new Empty(x, y);
-            map[this.X, this.Y] = new Core.NewModels.Player(this.X, this.Y) { reverseSlash = changeWall ? !this.reverseSlash : this.reverseSlash };
+            map[this.X, this.Y] = new Player(this.X, this.Y, this.Skin) { reverseSlash = changeWall ? !this.reverseSlash : this.reverseSlash };
             this.reverseSlash = reverseSlash = changeWall ? !this.reverseSlash : this.reverseSlash;
         }
     }

@@ -6,13 +6,14 @@ namespace Core.Methods
 {
     public class Methods
     {
-        public void DetermineElements(ref Core.NewModels.Player player, ref Core.NewModels.Ball ball, Map map, ref int _total)
+        public void DetermineElements(ref Core.NewModels.Player player, ref Core.NewModels.Ball ball, Map map, ref int _total, User user)
         {
             foreach (var i in map.map)
             {
-                if (i is Core.NewModels.Player)
+                if (i is NewModels.Player)
                 {
                     player = (Core.NewModels.Player)i;
+                    player.Skin = user.Skin;
                 }
                 else if (i is Core.NewModels.Ball)
                 {

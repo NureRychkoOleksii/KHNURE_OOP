@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core.Models;
+using System;
 using System.Linq;
 
 namespace Core.NewModels
@@ -20,7 +21,7 @@ namespace Core.NewModels
                 map[x, y] = value;
             }
         }
-        public void CreateMap()
+        public void CreateMap(User user)
         {
             RoomSpawner roomSpawner = new RoomSpawner(ref map);
             Random random = new Random();
@@ -113,7 +114,7 @@ namespace Core.NewModels
                 }
             }
             int x = random.Next(20, 35), y = random.Next(20, 35);
-            map[x, y] = new Player(x, y);
+            map[x, y] = new Player(x, y,user.Skin); 
             x = random.Next(20, 35);
             y = random.Next(20, 35);
             map[x, y] = new Ball(x, y);

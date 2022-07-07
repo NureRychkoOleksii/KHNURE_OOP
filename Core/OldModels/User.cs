@@ -9,5 +9,7 @@
         public string Record { get; set; }
 
         public int CoinsCount = 0;
+
+        public string Skin;
     }
 }

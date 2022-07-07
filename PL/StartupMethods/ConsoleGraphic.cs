@@ -23,7 +23,7 @@ namespace Console.StartupMethods
 
             var color = pixel switch
             {
-                Player => ConsoleColor.Red,
+                Player => DetermineSkin((Player)pixel),
                 Wall => ConsoleColor.White,
                 EnergyBall => ConsoleColor.Green,
                 Ball => ConsoleColor.Blue,
@@ -38,6 +38,24 @@ namespace Console.StartupMethods
                     System.Console.Write(symbol);
                 }
             }
+        }
+
+        private ConsoleColor DetermineSkin(Player player)
+        {
+            var res = ConsoleColor.Red;
+            switch (player.Skin)
+            {
+                case "yellow":
+                    res = ConsoleColor.Yellow;
+                    break;
+                case "purple":
+                    res = ConsoleColor.Cyan;
+                    break;
+                default:
+                    break;
+            }
+
+            return res;
         }
 
         public void Clear(object? sender, EventArgs e)

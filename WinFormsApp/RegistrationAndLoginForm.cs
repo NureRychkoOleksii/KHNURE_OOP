@@ -25,12 +25,14 @@ namespace WinFormsApp
                 Name = textBox1.Text,
                 Password = textBox2.Text,
                 Record = "0",
-                CoinsCount = 0
+                CoinsCount = 0,
+                Skin = "default"
             };
             if (_userService.GetUserByName(textBox1.Text) != null)
             {
                 _user.CoinsCount = _userService.GetUserByName(_user.Name).CoinsCount;
                 _user.Id = _userService.GetUserByName(_user.Name).Id;
+                _user.Skin = _userService.GetUserByName(_user.Name).Skin;
                 this.Close();
                 AddThread();
             }
