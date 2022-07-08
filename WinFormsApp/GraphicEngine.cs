@@ -31,7 +31,7 @@ namespace WinFormsApp
                     Player => ((Player)pixel).reverseSlash ? Properties.Resources.reverseSlash : Properties.Resources.slash,
                     Wall => Properties.Resources.wall,
                     Ball => Properties.Resources.Table_tennis_ball,
-                    EnergyBall => Properties.Resources.energyBall,
+                    EnergyBall => Properties.Resources.coin,
                     _ => null
                 };
 
@@ -40,7 +40,8 @@ namespace WinFormsApp
                 Size = new Size(15, 15),
                 //Parent = _form.pictureBox1,
                 Location = new Point(pixel.X * 15, pixel.Y * 15),
-                BackgroundImage = image
+                BackgroundImage = image,
+                BackgroundImageLayout = ImageLayout.Stretch
             };
 
             if (sender is Player)
@@ -55,7 +56,6 @@ namespace WinFormsApp
                 picture.BackgroundImageLayout = ImageLayout.Stretch;
             }
             _form.pictureBox1.Controls.Add(picture);
-            picture.BringToFront();
         }
 
         public void Clear(object? sender, EventArgs e)

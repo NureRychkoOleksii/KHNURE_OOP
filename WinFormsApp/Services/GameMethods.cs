@@ -10,9 +10,9 @@ namespace WinFormsApp.Services
 {
     public class GameMethods
     {
-        public void StartGame(ref Map map, ref TimeCheck time)
+        public void StartGame(ref Map map, ref TimeCheck time, User user)
         {
-            map.CreateMap();
+            map.CreateMap(user);
             time.StartTimeChecking();
         }
 

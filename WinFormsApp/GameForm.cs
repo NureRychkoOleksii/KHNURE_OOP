@@ -40,7 +40,7 @@ namespace WinFormsApp
             BaseElement.DrawElement += _graphicEngine.Draw;
             BaseElement.ClearElement += _graphicEngine.Clear;
             functionForMovement += ChangeImage;
-            _game.StartGame(ref map, ref time);
+            _game.StartGame(ref map, ref time, _user);
             checkings.DetermineElements(ref _player, ref _ball, map, ref _total, _user);
             timer1.Interval = 300;
             timer1.Start();
