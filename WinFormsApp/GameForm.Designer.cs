@@ -37,6 +37,9 @@
             this.scoreBox = new System.Windows.Forms.Label();
             this.ball = new System.Windows.Forms.PictureBox();
             this.player = new System.Windows.Forms.PictureBox();
+            this.pauseButton = new System.Windows.Forms.Button();
+            this.Decrease = new System.Windows.Forms.Button();
+            this.Add = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ball)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.player)).BeginInit();
@@ -95,7 +98,37 @@
             this.player.TabIndex = 6;
             this.player.TabStop = false;
             // 
-            // Form1
+            // pauseButton
+            // 
+            this.pauseButton.Location = new System.Drawing.Point(1189, 193);
+            this.pauseButton.Name = "pauseButton";
+            this.pauseButton.Size = new System.Drawing.Size(117, 55);
+            this.pauseButton.TabIndex = 8;
+            this.pauseButton.Text = "Pause/Play music";
+            this.pauseButton.UseVisualStyleBackColor = true;
+            this.pauseButton.Click += new System.EventHandler(this.pauseButton_Click);
+            // 
+            // Decrease
+            // 
+            this.Decrease.Location = new System.Drawing.Point(1191, 344);
+            this.Decrease.Name = "Decrease";
+            this.Decrease.Size = new System.Drawing.Size(115, 23);
+            this.Decrease.TabIndex = 9;
+            this.Decrease.Text = "Decrease volume";
+            this.Decrease.UseVisualStyleBackColor = true;
+            this.Decrease.Click += new System.EventHandler(this.Decrease_Click);
+            // 
+            // Add
+            // 
+            this.Add.Location = new System.Drawing.Point(1191, 315);
+            this.Add.Name = "Add";
+            this.Add.Size = new System.Drawing.Size(115, 23);
+            this.Add.TabIndex = 10;
+            this.Add.Text = "Add volume";
+            this.Add.UseVisualStyleBackColor = true;
+            this.Add.Click += new System.EventHandler(this.Add_Click);
+            // 
+            // GameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -103,6 +136,9 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1381, 1109);
+            this.Controls.Add(this.Add);
+            this.Controls.Add(this.Decrease);
+            this.Controls.Add(this.pauseButton);
             this.Controls.Add(this.ball);
             this.Controls.Add(this.player);
             this.Controls.Add(this.scoreBox);
@@ -110,7 +146,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Location = new System.Drawing.Point(15, 15);
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.Name = "Form1";
+            this.Name = "GameForm";
             this.Text = "New Ball Game";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ball)).EndInit();
@@ -128,6 +164,9 @@
         private System.Windows.Forms.PictureBox ball;
         private System.Windows.Forms.PictureBox player;
         public System.Windows.Forms.Label scoreBox;
+        private System.Windows.Forms.Button pauseButton;
+        private System.Windows.Forms.Button Decrease;
+        private System.Windows.Forms.Button Add;
     }
 }
 

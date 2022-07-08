@@ -26,6 +26,7 @@ namespace WinFormsApp
         private readonly UserService _userService = new UserService();
         private GameMethods _game = new GameMethods();
         private Movement movement = new Movement();
+        Music music;
 
         private GraphicEngine _graphicEngine;
         Methods checkings = new Methods();
@@ -34,7 +35,7 @@ namespace WinFormsApp
         {
             InitializeComponent();
             _user = user;
-            Music music = new Music();
+            music = new Music();
             music.Play();
             _graphicEngine = new GraphicEngine(this);
             BaseElement.DrawElement += _graphicEngine.Draw;
@@ -95,6 +96,21 @@ namespace WinFormsApp
         private void OpenNewForm()
         {
             Application.Run(new EndMenu(_user));
+        }
+
+        private void pauseButton_Click(object sender, EventArgs e)
+        {
+            music.Pause();
+        }
+
+        private void Add_Click(object sender, EventArgs e)
+        {
+            music.ChangeVolume(5);
+        }
+
+        private void Decrease_Click(object sender, EventArgs e)
+        {
+            music.ChangeVolume(-5);
         }
     }
 }
