@@ -51,6 +51,9 @@ namespace Console.Services
                 case System.ConsoleKey.D3:
                     CheckBalanceForItems(_wall, "wall");
                     break;
+                case System.ConsoleKey.D4:
+                    CheckBalanceForItems(_teleport, "teleport");
+                    break;
 
             }
 
@@ -61,9 +64,10 @@ namespace Console.Services
         {
             if (user.CoinsCount >= price)
             {
-                var item = itemName switch
+                BaseElement item = itemName switch
                 {
                     "wall" => new Wall(0,0),
+                    "teleport" => new Teleport(0,0),
                 };
                 user.Inventory.Add(item);
                 user.CoinsCount -= price;

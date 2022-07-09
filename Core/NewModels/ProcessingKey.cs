@@ -23,6 +23,7 @@ namespace Core.NewModels
                 map[player.X, player.Y + 1] = user.Inventory.FirstOrDefault() switch
                 {
                     Wall => new Wall(player.X,player.Y + 1),
+                    Teleport => new Teleport(player.X,player.Y + 1),
                     _ => new Empty(player.X, player.Y + 1)
                 };
                 user.Inventory.Remove(user.Inventory.FirstOrDefault());
