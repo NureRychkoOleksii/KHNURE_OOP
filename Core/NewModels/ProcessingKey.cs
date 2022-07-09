@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Core.NewModels
 {
-    public class Movement
+    public class ProcessingKey
     {
-        public void ProcessKey(ref Direction currentDirection, EventHandler function)
+        public void ProcessKey(ref Direction currentDirection, EventHandler function, ref BaseElement[,] map, ref User user, Player player)
         {
             if (!Console.KeyAvailable)
             {
@@ -17,6 +17,17 @@ namespace Core.NewModels
             }
 
             ConsoleKey key = Console.ReadKey(true).Key;
+
+            if(key == ConsoleKey.F9)
+            {
+                map[player.X, player.Y + 1] = user.Inventory.FirstOrDefault() switch
+                {
+                    Wall => new Wall(player.X,player.Y + 1),
+                    _ => new Empty(player.X, player.Y + 1)
+                };
+                user.Inventory.Remove(user.Inventory.FirstOrDefault());
+                return;
+            }
 
             switch (key)
             {

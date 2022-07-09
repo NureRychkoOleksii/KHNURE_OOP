@@ -123,29 +123,6 @@ namespace Core.NewModels
 
         public void UpdateMap()
         {
-            //foreach(var i in map)
-            //{
-            //    var itemFromRoomWithLabyrinth = roomWithLabyrinth.room.FirstOrDefault(elem => elem.X == i.X && elem.Y == i.Y);
-            //    var itemFromRoomWithoutLabyrinth = roomWithoutLabyrinth.room.FirstOrDefault(elem => elem.X == i.X && elem.Y == i.Y);
-            //    if (itemFromRoomWithLabyrinth != null && i is Empty)
-            //    {
-            //        roomWithLabyrinth.room.Remove(itemFromRoomWithLabyrinth);
-            //    }
-            //    if(itemFromRoomWithoutLabyrinth != null && i is Empty)
-            //    {
-            //        roomWithLabyrinth.room.Remove(itemFromRoomWithoutLabyrinth);
-            //    }
-            //}
-            //foreach(var i in map)
-            //{
-            //    var itemFromRoomWithoutLabyrinth = roomWithoutLabyrinth.room.FirstOrDefault(elem => elem.X == i.X && elem.Y == i.Y);
-            //    if (itemFromRoomWithoutLabyrinth != null && i is Empty)
-            //    {
-            //        roomWithoutLabyrinth.room.Remove(itemFromRoomWithoutLabyrinth);
-            //    }
-            //}
-            //roomWithLabyrinth.OpenDoor(ref map);
-            //roomWithoutLabyrinth.OpenDoor(ref map);
             foreach (var item in map)
             {
                 item.Draw();

@@ -30,7 +30,7 @@ namespace Console.Services
             }
             else
             {
-                var res = new User() { Id = 0, Name = nick, Password = pass, Record = "0", CoinsCount = 0, Skin = "default"};
+                var res = new User() { Id = 0, Name = nick, Password = pass, Record = "0", CoinsCount = 0, Skin = "default", Inventory = new System.Collections.Generic.List<Core.NewModels.BaseElement>()};
                 _userService.AddUser(res);
                 return res;
             }

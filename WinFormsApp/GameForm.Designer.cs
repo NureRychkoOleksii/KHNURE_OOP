@@ -37,9 +37,9 @@
             this.scoreBox = new System.Windows.Forms.Label();
             this.ball = new System.Windows.Forms.PictureBox();
             this.player = new System.Windows.Forms.PictureBox();
-            this.pauseButton = new System.Windows.Forms.Button();
-            this.Decrease = new System.Windows.Forms.Button();
-            this.Add = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ball)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.player)).BeginInit();
@@ -98,35 +98,32 @@
             this.player.TabIndex = 6;
             this.player.TabStop = false;
             // 
-            // pauseButton
+            // textBox1
             // 
-            this.pauseButton.Location = new System.Drawing.Point(1189, 193);
-            this.pauseButton.Name = "pauseButton";
-            this.pauseButton.Size = new System.Drawing.Size(117, 55);
-            this.pauseButton.TabIndex = 8;
-            this.pauseButton.Text = "Pause/Play music";
-            this.pauseButton.UseVisualStyleBackColor = true;
-            this.pauseButton.Click += new System.EventHandler(this.pauseButton_Click);
+            this.textBox1.Location = new System.Drawing.Point(1191, 214);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 23);
+            this.textBox1.TabIndex = 8;
+            this.textBox1.Text = "Play/Pause music";
+            this.textBox1.Click += new System.EventHandler(this.textBox1_Click);
             // 
-            // Decrease
+            // textBox3
             // 
-            this.Decrease.Location = new System.Drawing.Point(1191, 344);
-            this.Decrease.Name = "Decrease";
-            this.Decrease.Size = new System.Drawing.Size(115, 23);
-            this.Decrease.TabIndex = 9;
-            this.Decrease.Text = "Decrease volume";
-            this.Decrease.UseVisualStyleBackColor = true;
-            this.Decrease.Click += new System.EventHandler(this.Decrease_Click);
+            this.textBox3.Location = new System.Drawing.Point(1191, 272);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(100, 23);
+            this.textBox3.TabIndex = 9;
+            this.textBox3.Text = "Add volume";
+            this.textBox3.Click += new System.EventHandler(this.textBox3_Click);
             // 
-            // Add
+            // textBox2
             // 
-            this.Add.Location = new System.Drawing.Point(1191, 315);
-            this.Add.Name = "Add";
-            this.Add.Size = new System.Drawing.Size(115, 23);
-            this.Add.TabIndex = 10;
-            this.Add.Text = "Add volume";
-            this.Add.UseVisualStyleBackColor = true;
-            this.Add.Click += new System.EventHandler(this.Add_Click);
+            this.textBox2.Location = new System.Drawing.Point(1191, 329);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(100, 23);
+            this.textBox2.TabIndex = 10;
+            this.textBox2.Text = "Decrease volume";
+            this.textBox2.Click += new System.EventHandler(this.textBox2_Click);
             // 
             // GameForm
             // 
@@ -136,14 +133,15 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1381, 1109);
-            this.Controls.Add(this.Add);
-            this.Controls.Add(this.Decrease);
-            this.Controls.Add(this.pauseButton);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.ball);
             this.Controls.Add(this.player);
             this.Controls.Add(this.scoreBox);
             this.Controls.Add(this.score);
             this.Controls.Add(this.pictureBox1);
+            this.Enabled = false;
             this.Location = new System.Drawing.Point(15, 15);
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "GameForm";
@@ -164,9 +162,9 @@
         private System.Windows.Forms.PictureBox ball;
         private System.Windows.Forms.PictureBox player;
         public System.Windows.Forms.Label scoreBox;
-        private System.Windows.Forms.Button pauseButton;
-        private System.Windows.Forms.Button Decrease;
-        private System.Windows.Forms.Button Add;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }
 

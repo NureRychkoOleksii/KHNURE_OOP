@@ -108,8 +108,8 @@ namespace Console.StartupMethods
             sw.Start();
             while (sw.ElapsedMilliseconds <= _frameRate)
             {
-                var movement = new Movement();
-                movement.ProcessKey(ref currentDirectionPlayer, functionForMovement);
+                var processingKey = new ProcessingKey();
+                processingKey.ProcessKey(ref currentDirectionPlayer, functionForMovement, ref map.map, ref user, player);
             }
         }
         

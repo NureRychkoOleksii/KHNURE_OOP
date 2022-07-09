@@ -25,7 +25,7 @@ namespace WinFormsApp
         TimeCheck time = new TimeCheck();
         private readonly UserService _userService = new UserService();
         private GameMethods _game = new GameMethods();
-        private Movement movement = new Movement();
+        private ProcessingKey movement = new ProcessingKey();
         Music music;
 
         private GraphicEngine _graphicEngine;
@@ -98,17 +98,19 @@ namespace WinFormsApp
             Application.Run(new EndMenu(_user));
         }
 
-        private void pauseButton_Click(object sender, EventArgs e)
+        //fix click
+
+        private void textBox1_Click(object sender, EventArgs e)
         {
             music.Pause();
         }
 
-        private void Add_Click(object sender, EventArgs e)
+        private void textBox3_Click(object sender, EventArgs e)
         {
             music.ChangeVolume(5);
         }
 
-        private void Decrease_Click(object sender, EventArgs e)
+        private void textBox2_Click(object sender, EventArgs e)
         {
             music.ChangeVolume(-5);
         }
