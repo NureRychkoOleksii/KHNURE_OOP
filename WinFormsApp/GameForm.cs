@@ -1,6 +1,5 @@
 ﻿using Core.NewModels;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
@@ -99,20 +98,19 @@ namespace WinFormsApp
         }
 
         //fix click
-
-        private void textBox1_Click(object sender, EventArgs e)
+        private void label2_Click(object sender, EventArgs e)
         {
             music.Pause();
         }
 
-        private void textBox3_Click(object sender, EventArgs e)
+        private void label3_Click(object sender, EventArgs e)
         {
-            music.ChangeVolume(5);
+            music.ChangeVolume(10);
         }
 
-        private void textBox2_Click(object sender, EventArgs e)
+        private void label4_Click(object sender, EventArgs e)
         {
-            music.ChangeVolume(-5);
+            music.ChangeVolume(-10);
         }
     }
 }
