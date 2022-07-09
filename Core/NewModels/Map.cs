@@ -113,6 +113,8 @@ namespace Core.NewModels
                     }
                 }
             }
+            int teleportX = random.Next(20, 35), teleportY = random.Next(20, 35);
+            map[teleportX, teleportY] = new Teleport(teleportX, teleportY);
             int x = random.Next(20, 35), y = random.Next(20, 35);
             map[x, y] = new Player(x, y,user.Skin); 
             x = random.Next(20, 35);

@@ -72,6 +72,14 @@ namespace Core.Methods
                     _score++;
                     return dir;
                 }
+                else if(item is Teleport)
+                {
+                    Random rand = new Random();
+                    map[item.X, item.Y] = new Empty(item.X, item.Y);
+                    ball.Teleport(ref map, rand.Next(5, 25), rand.Next(5, 25));
+                    ball.Action(ref map, dir);
+                    return dir;
+                }
 
             }
             return dir;

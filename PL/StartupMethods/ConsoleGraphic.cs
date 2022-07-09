@@ -18,6 +18,7 @@ namespace Console.StartupMethods
                 EnergyBall => "%",
                 Wall => "#",
                 Ball => "█",
+                Teleport => "█",
                 _ => "?"
             };
 
@@ -27,6 +28,7 @@ namespace Console.StartupMethods
                 Wall => ConsoleColor.White,
                 EnergyBall => ConsoleColor.Green,
                 Ball => ConsoleColor.Blue,
+                Teleport => ConsoleColor.Yellow,
                 _ => ConsoleColor.Black
             };
             System.Console.ForegroundColor = color;

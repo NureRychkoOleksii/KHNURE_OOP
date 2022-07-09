@@ -26,5 +26,12 @@ namespace Core.NewModels
             map[ballX, ballY] = new Empty(ballX, ballY);
             map[this.X, this.Y] = new Ball(this.X, this.Y);
         }
+
+        public void Teleport(ref Map map, int x, int y)
+        {
+            map[this.X, this.Y] = new Empty(this.X, this.Y);
+            this.X = x;
+            this.Y = y;
+        }
     }
 }
