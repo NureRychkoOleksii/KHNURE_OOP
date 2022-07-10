@@ -37,24 +37,32 @@ namespace Console.Services
             System.Console.WriteLine("2) Cyan skin (epic skin for guys with big ) - " + _cyanSkin);
             System.Console.WriteLine("3) Buy extra wall! " + _wall);
             System.Console.WriteLine("4) Buy a teleport! " + _teleport);
+            System.Console.WriteLine("To leave shop, press Q");
 
             System.Console.WriteLine("Choose one to buy!");
+            bool condition = true;
 
-            switch(System.Console.ReadKey(true).Key)
+            while (condition)
             {
-                case System.ConsoleKey.D1:
-                    CheckBalance(_yellowSkin, "yellow");
-                    break;
-                case System.ConsoleKey.D2:
-                    CheckBalance(_cyanSkin, "cyan");
-                    break;
-                case System.ConsoleKey.D3:
-                    CheckBalanceForItems(_wall, "wall");
-                    break;
-                case System.ConsoleKey.D4:
-                    CheckBalanceForItems(_teleport, "teleport");
-                    break;
 
+                switch (System.Console.ReadKey(true).Key)
+                {
+                    case System.ConsoleKey.D1:
+                        CheckBalance(_yellowSkin, "yellow");
+                        break;
+                    case System.ConsoleKey.D2:
+                        CheckBalance(_cyanSkin, "cyan");
+                        break;
+                    case System.ConsoleKey.D3:
+                        CheckBalanceForItems(_wall, "wall");
+                        break;
+                    case System.ConsoleKey.D4:
+                        CheckBalanceForItems(_teleport, "teleport");
+                        break;
+                    case System.ConsoleKey.Q:
+                        condition = false;
+                        break;
+                }
             }
 
             System.Console.ReadKey();
@@ -74,6 +82,7 @@ namespace Console.Services
                 System.Console.WriteLine("Successful!");
                 return;
             }
+            System.Console.WriteLine("Not enough money");
         }
 
         public void CheckBalance(int skinPrice, string skinName)
