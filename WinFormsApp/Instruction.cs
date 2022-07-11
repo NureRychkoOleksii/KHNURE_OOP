@@ -35,5 +35,17 @@ namespace WinFormsApp
         {
             Application.Run(new GameForm(_user));
         }
+        private void OpenNewForm2(object obj)
+        {
+            Application.Run(new ChooseMapForm(_user));
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            _thread = new Thread(OpenNewForm2);
+            _thread.SetApartmentState(ApartmentState.STA);
+            _thread.Start();
+        }
     }
 }

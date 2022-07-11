@@ -10,9 +10,16 @@ namespace WinFormsApp.Services
 {
     public class GameMethods
     {
-        public void StartGame(ref Map map, ref TimeCheck time, User user)
+        public void StartGame(ref Map map, ref TimeCheck time, User user, bool isNew)
         {
-            map.CreateMap(user);
+            if(isNew)
+            {
+                map.CreateMap(user);
+            }
+            else
+            {
+                map.UpdateMap();
+            }
             time.StartTimeChecking();
         }
 

@@ -1,14 +1,15 @@
 ﻿using Core.Models;
 using System;
-using System.Linq;
 
 namespace Core.NewModels
 {
 
-    public class Map
+    public class Map : IdKey
     {
         public BaseElement[,] map;
         public int scoreToWin = 0;
+
+        public string Name { get; set; }
 
         public Map(int x, int y)
         {

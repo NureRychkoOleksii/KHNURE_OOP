@@ -1,12 +1,7 @@
-﻿using Core.NewModels;
+﻿using Core.Methods;
+using Core.NewModels;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WinFormsApp
@@ -16,6 +11,7 @@ namespace WinFormsApp
         private Map map;
         private GraphicEngine _engine = new GraphicEngine();
         private Button clickedButton;
+        private MapService _mapService = new MapService();
 
         public LevelEditor()
         {
@@ -27,16 +23,15 @@ namespace WinFormsApp
         private void button6_Click(object sender, EventArgs e)
         {
             map = new Map(50, 50);
-            CreateMap(50,50);
+            CreateMap();
             MakeClickEvent();
         }
         
-        private void CreateMap(int x, int y)
+        private void CreateMap()
         {
             map.CreateEmptyMap();
             map.UpdateMap();
             BaseElement.DrawElement -= _engine.DrawLevelEditor;
-            BaseElement.DrawElement += _engine.Draw;
         }
 
         private void buttonsClick(object sender, EventArgs e)
@@ -72,11 +67,11 @@ namespace WinFormsApp
             }
             picture.BackgroundImage = clickedButton.BackgroundImage;
             picture.BackgroundImageLayout = ImageLayout.Stretch;
-            map[picture.Location.X / 15, picture.Location.Y / 15] = DetermineElement(picture.Location.X / 15, picture.Location.Y / 15);
+            DetermineElement(picture.Location.X / 15, picture.Location.Y / 15, ref map.map[picture.Location.X / 15, picture.Location.Y / 15]);
             map.UpdateMap();
         }
 
-        private BaseElement DetermineElement(int x, int y)
+        private void DetermineElement(int x, int y, ref BaseElement item)
         {
             BaseElement res = clickedButton.Tag switch
             {
@@ -87,7 +82,13 @@ namespace WinFormsApp
                 _ => new Empty(x,y)
             };
 
-            return res;
+            item = res;
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            map.Name = nameTextBox.Text;
+            _mapService.AddNewMap(map);
         }
     }
 }

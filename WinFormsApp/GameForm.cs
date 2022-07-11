@@ -18,7 +18,7 @@ namespace WinFormsApp
         private Direction _currentBallDir = Direction.Right;
         private Core.NewModels.Player _player = new Core.NewModels.Player(0,0, "default");
         private Core.NewModels.Ball _ball = new Core.NewModels.Ball(0, 0);
-        private Map map = new Map(50,50);
+        private Map _map;
         private int _total = 0;
         private int _score = 0;
         TimeCheck time = new TimeCheck();
@@ -30,18 +30,20 @@ namespace WinFormsApp
         private GraphicEngine _graphicEngine;
         Methods checkings = new Methods();
 
-        public GameForm(User user)
+        public GameForm(User user, Map _map = null)
         {
             InitializeComponent();
             _user = user;
             music = new Music();
+            this._map = _map == null ? new Map(50, 50) : _map;
             music.Play();
             _graphicEngine = new GraphicEngine(this);
             BaseElement.DrawElement += _graphicEngine.Draw;
             BaseElement.ClearElement += _graphicEngine.Clear;
             functionForMovement += ChangeImage;
-            _game.StartGame(ref map, ref time, _user);
-            checkings.DetermineElements(ref _player, ref _ball, map, ref _total, _user);
+            bool isNew = _map == null ? true : false;
+            _game.StartGame(ref this._map, ref time, _user, isNew);
+            checkings.DetermineElements(ref _player, ref _ball, this._map, ref _total, _user);
             timer1.Interval = 300;
             timer1.Start();
             this.KeyDown += UpdateKeyEventHandler;
@@ -53,8 +55,8 @@ namespace WinFormsApp
             {
                 EndGame();
             }
-            _game.CheckBall(ref _currentBallDir, ref _ball, ref map, checkings, ref _player, this, ref _score, ref _user.CoinsCount);
-            _game.MoveBall(ref _currentBallDir, ref _ball, ref map, ref _graphicEngine);
+            _game.CheckBall(ref _currentBallDir, ref _ball, ref _map, checkings, ref _player, this, ref _score, ref _user.CoinsCount);
+            _game.MoveBall(ref _currentBallDir, ref _ball, ref _map, ref _graphicEngine);
             _userService.UpdateUser(ref _user, _user.Id);
         }
 
@@ -71,11 +73,11 @@ namespace WinFormsApp
         {
             _currentDir = movement.ProcessKeyWinForms(e.KeyCode.ToString(), functionForMovement);
             var (dx, dy) = DirectionsDictionary.directions[_currentDir];
-            _currentDir = checkings.FrameTick(_currentDir, _player, map);
+            _currentDir = checkings.FrameTick(_currentDir, _player, _map);
             if (_currentDir != Direction.Stop)
             {
                 _graphicEngine.playerPicturebox.Location = new Point(_graphicEngine.playerPicturebox.Location.X + dx * 15, _graphicEngine.playerPicturebox.Location.Y + dy * 15);
-                _player.Action(ref map, _currentDir);
+                _player.Action(ref _map, _currentDir);
             }
         }
 
