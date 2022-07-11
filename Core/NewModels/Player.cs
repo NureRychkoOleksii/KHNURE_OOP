@@ -8,7 +8,7 @@ namespace Core.NewModels
         public bool reverseSlash = false;
 
         public string Skin = "default";
-        public Player(int x, int y, string skin) : base(x, y)
+        public Player(int x, int y, string skin = "default") : base(x, y)
         {
             isStopping = true;
             isAngleChanging = true;

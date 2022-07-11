@@ -10,6 +10,8 @@ namespace WinFormsApp
     {
         private GameForm _form { get; set; }
 
+        private LevelEditor _editor { get; set; }
+
         public PictureBox playerPicturebox { get; set; }
         
         public PictureBox ballPictureBox { get; set; }
@@ -17,6 +19,15 @@ namespace WinFormsApp
         public GraphicEngine(GameForm form)
         {
             _form = form;
+        }
+        public GraphicEngine()
+        {
+            
+        }
+
+        public void SetEditor(LevelEditor form)
+        {
+            _editor = form;
         }
 
         public void Draw(object? sender, EventArgs e)
@@ -39,7 +50,6 @@ namespace WinFormsApp
 
             var picture = new PictureBox() {
                 Size = new Size(15, 15),
-                //Parent = _form.pictureBox1,
                 Location = new Point(pixel.X * 15, pixel.Y * 15),
                 BackgroundImage = image,
                 BackgroundImageLayout = ImageLayout.Stretch
@@ -56,7 +66,27 @@ namespace WinFormsApp
                 ballPictureBox = picture;
                 picture.BackgroundImageLayout = ImageLayout.Stretch;
             }
+            if(_form is null)
+            {
+                _editor.pictureBox1.Controls.Add(picture);
+                return;
+            }
             _form.pictureBox1.Controls.Add(picture);
+        }
+
+        public void DrawLevelEditor(object? sender, EventArgs e)
+        {
+            if (sender is not BaseElement pixel)
+            {
+                return;
+            }
+            var picture = new PictureBox() {
+                Size = new Size(15, 15),
+                Location = new Point(pixel.X * 15, pixel.Y * 15),
+                BackColor = Color.Aqua,
+                BorderStyle = BorderStyle.FixedSingle
+            };
+            _editor.pictureBox1.Controls.Add(picture);
         }
 
         public void Clear(object? sender, EventArgs e)
