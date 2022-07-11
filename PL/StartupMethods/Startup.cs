@@ -24,7 +24,7 @@ namespace Console.StartupMethods
         bool changeWall = false;
         EventHandler functionForMovement;
 
-        private Map map= new Map();
+        private Map map= new Map(50,50);
 
         public void StartGame()
         {

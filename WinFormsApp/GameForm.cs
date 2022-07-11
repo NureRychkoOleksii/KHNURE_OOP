@@ -18,7 +18,7 @@ namespace WinFormsApp
         private Direction _currentBallDir = Direction.Right;
         private Core.NewModels.Player _player = new Core.NewModels.Player(0,0, "default");
         private Core.NewModels.Ball _ball = new Core.NewModels.Ball(0, 0);
-        private Map map = new Map();
+        private Map map = new Map(50,50);
         private int _total = 0;
         private int _score = 0;
         TimeCheck time = new TimeCheck();

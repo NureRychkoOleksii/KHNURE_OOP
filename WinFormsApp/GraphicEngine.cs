@@ -32,6 +32,7 @@ namespace WinFormsApp
                     Wall => Properties.Resources.wall,
                     Ball => Properties.Resources.Table_tennis_ball,
                     EnergyBall => Properties.Resources.coin,
+                    Teleport => Properties.Resources.teleport,
                     _ => null
                 };
 

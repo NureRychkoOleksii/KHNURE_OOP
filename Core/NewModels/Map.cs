@@ -7,8 +7,13 @@ namespace Core.NewModels
 
     public class Map
     {
-        public BaseElement[,] map = new BaseElement[50, 50];
+        public BaseElement[,] map;
         public int scoreToWin = 0;
+
+        public Map(int x, int y)
+        {
+            map = new BaseElement[x, y];
+        }
 
         public BaseElement this[int x, int y]
         {
@@ -123,6 +128,19 @@ namespace Core.NewModels
             UpdateMap();
         }
 
+        public void CreateEmptyMap()
+        {
+            for (int i = 0; i < map.GetLength(0); i++)
+            {
+                for (int j = 0; j < map.GetLength(1); j++)
+                {
+                    if (map[i, j] == null)
+                    {
+                        map[i, j] = new Empty(i, j);
+                    }
+                }
+            }
+        }
         public void UpdateMap()
         {
             foreach (var item in map)

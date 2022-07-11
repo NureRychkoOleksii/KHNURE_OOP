@@ -32,6 +32,7 @@
             this.textBox = new System.Windows.Forms.TextBox();
             this.startButton = new System.Windows.Forms.Button();
             this.exitButton = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBox
@@ -66,12 +67,23 @@
             this.exitButton.UseVisualStyleBackColor = true;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(254, 220);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(120, 49);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Level Editor";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // MainMenu
             // 
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(629, 364);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.startButton);
             this.Controls.Add(this.textBox);
@@ -87,5 +99,6 @@
         private System.Windows.Forms.TextBox textBox;
         private System.Windows.Forms.Button startButton;
         private System.Windows.Forms.Button exitButton;
+        private System.Windows.Forms.Button button1;
     }
 }

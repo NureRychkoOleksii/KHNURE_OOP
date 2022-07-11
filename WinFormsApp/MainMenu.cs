@@ -25,10 +25,22 @@ namespace WinFormsApp
         {
             Application.Run(new RegistrationAndLoginForm());
         }
+        private void OpenNewForm2(object obj)
+        {
+            Application.Run(new LevelEditor());
+        }
 
         private void exitButton_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            _thread = new Thread(OpenNewForm2);
+            _thread.SetApartmentState(ApartmentState.STA);
+            _thread.Start();
         }
     }
 }
