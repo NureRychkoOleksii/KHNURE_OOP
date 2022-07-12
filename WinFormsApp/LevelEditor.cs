@@ -23,7 +23,7 @@ namespace WinFormsApp
             BaseElement.DrawElement += _engine.DrawLevelEditor;
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        private void createMapButton_Click(object sender, EventArgs e)
         {
             map = new Map(50, 50);
             CreateMap();
@@ -106,7 +106,7 @@ namespace WinFormsApp
                 MessageBox.Show("You didn't create player or ball, or each of them!");
                 return;
             }
-            map.Name = nameTextBox.Text;
+            map.Name = mapsBox.Text;
             _mapService.AddNewMap(map);
             this.Close();
         }

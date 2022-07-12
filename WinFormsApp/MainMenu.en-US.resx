@@ -690,8 +690,4 @@
         aP8AIXn4eqfQeI1PNfvXeeNy5s6i2XtJuLwrC8b3rgrer6Qj/9k=
 </value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
-    <value>CenterScreen</value>
-  </data>
 </root>

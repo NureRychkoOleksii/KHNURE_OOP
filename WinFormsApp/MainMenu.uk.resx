@@ -58,34 +58,22 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="textBox.Text" xml:space="preserve">
-    <value>Вітаю в New Ball Game!</value>
-  </data>
-  <data name="startButton.Text" xml:space="preserve">
-    <value>Почати</value>
-  </data>
-  <data name="exitButton.Text" xml:space="preserve">
-    <value>Вийти</value>
-  </data>
-  <data name="button1.Text" xml:space="preserve">
-    <value>Редактор рівнів</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="button2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 44</value>
-  </data>
-  <data name="button2.Text" xml:space="preserve">
-    <value>Eng</value>
+    <value>Welcome to the New Ball Game!</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="button3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="textBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Center</value>
   </data>
-  <data name="button3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 44</value>
+  <data name="startButton.Text" xml:space="preserve">
+    <value>Start</value>
   </data>
-  <data name="button3.Text" xml:space="preserve">
-    <value>Ua</value>
+  <data name="exitButton.Text" xml:space="preserve">
+    <value>Exit</value>
   </data>
+  <data name="editorButton.Text" xml:space="preserve">
+    <value>Level Editor</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         /9j/4AAQSkZJRgABAQEAAAAAAAD/2wBDAAUDBAgICAgIBwgHBwcICAgIBwcHBwgHBwcHBwgHBwcHBwcH

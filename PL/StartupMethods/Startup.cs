@@ -76,8 +76,6 @@ namespace Console.StartupMethods
             System.Console.Clear();
             map.CreateMap(user);
             methods.DetermineElements(ref player, ref ball, map, ref _total, user);
-            var item = (Core.NewModels.Player)map[player.X, player.Y];
-            item.Skin = user.Skin;
             System.Console.ReadKey();
             System.Console.CursorVisible = false;
             time = new TimeCheck();

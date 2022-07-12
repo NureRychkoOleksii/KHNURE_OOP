@@ -34,14 +34,22 @@ namespace WinFormsApp
         {
             InitializeComponent();
             _user = user;
-            music = new Music();
-            this._map = _map == null ? new Map(50, 50) : _map;
+            music = new Music(); 
             music.Play();
+            this._map = _map == null ? new Map(50, 50) : _map;
             _graphicEngine = new GraphicEngine(this);
             BaseElement.DrawElement += _graphicEngine.Draw;
             BaseElement.ClearElement += _graphicEngine.Clear;
             functionForMovement += ChangeImage;
-            bool isNew = _map == null ? true : false;
+            bool isNew;
+            BeforeStart(out isNew);
+            timer1.Interval = 300;
+            timer1.Start();
+        }
+
+        private void BeforeStart(out bool isNew)
+        {
+            isNew = _map == null ? true : false;
             _game.StartGame(ref this._map, ref time, _user, isNew);
             checkings.DetermineElements(ref _player, ref _ball, this._map, ref _total, _user);
             timer1.Interval = 300;

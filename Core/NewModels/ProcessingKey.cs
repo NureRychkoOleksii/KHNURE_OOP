@@ -60,20 +60,20 @@ namespace Core.NewModels
             {
                 case "Right":
                     return Direction.Right;
-                    break;
+                    
                 case "Left":
                     return Direction.Left;
-                    break;
+                    
                 case "Down":
                     return Direction.Down;
-                    break;
+                    
                 case "Up":
                     return Direction.Up;
-                    break;
+                    
                 case "Tab":
                     function.Invoke(this, EventArgs.Empty);
                     return Direction.Stop;
-                    break;
+                    
             }
             return Direction.Right;
         }
