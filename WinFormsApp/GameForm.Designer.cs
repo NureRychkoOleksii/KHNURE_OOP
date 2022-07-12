@@ -48,12 +48,9 @@
             // 
             // pictureBox1
             // 
+            resources.ApplyResources(this.pictureBox1, "pictureBox1");
             this.pictureBox1.BackColor = System.Drawing.Color.Aqua;
-            this.pictureBox1.Location = new System.Drawing.Point(307, 12);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(750, 750);
-            this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
             // timer1
@@ -62,93 +59,55 @@
             // 
             // score
             // 
-            this.score.AutoSize = true;
-            this.score.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.score.Location = new System.Drawing.Point(1191, 36);
-            this.score.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            resources.ApplyResources(this.score, "score");
             this.score.Name = "score";
-            this.score.Size = new System.Drawing.Size(115, 39);
-            this.score.TabIndex = 4;
-            this.score.Text = "Score:";
             // 
             // scoreBox
             // 
-            this.scoreBox.AutoSize = true;
+            resources.ApplyResources(this.scoreBox, "scoreBox");
             this.scoreBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.scoreBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.scoreBox.Location = new System.Drawing.Point(1224, 93);
-            this.scoreBox.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.scoreBox.Name = "scoreBox";
-            this.scoreBox.Size = new System.Drawing.Size(38, 41);
-            this.scoreBox.TabIndex = 5;
-            this.scoreBox.Text = "0";
             // 
             // ball
             // 
-            this.ball.Location = new System.Drawing.Point(0, 0);
+            resources.ApplyResources(this.ball, "ball");
             this.ball.Name = "ball";
-            this.ball.Size = new System.Drawing.Size(0, 0);
-            this.ball.TabIndex = 7;
             this.ball.TabStop = false;
             // 
             // player
             // 
-            this.player.Location = new System.Drawing.Point(86, 184);
+            resources.ApplyResources(this.player, "player");
             this.player.Name = "player";
-            this.player.Size = new System.Drawing.Size(1, 1);
-            this.player.TabIndex = 6;
             this.player.TabStop = false;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(1739, -39);
+            resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 15);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "label1";
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.label2.Location = new System.Drawing.Point(1206, 226);
+            resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(100, 15);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "Pause/Play music";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.label3.Location = new System.Drawing.Point(1206, 322);
+            resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(72, 15);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Add volume";
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.label4.Location = new System.Drawing.Point(1206, 421);
+            resources.ApplyResources(this.label4, "label4");
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(97, 15);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "Decrease volume";
             this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // GameForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1381, 1109);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -158,10 +117,7 @@
             this.Controls.Add(this.scoreBox);
             this.Controls.Add(this.score);
             this.Controls.Add(this.pictureBox1);
-            this.Location = new System.Drawing.Point(15, 15);
-            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "GameForm";
-            this.Text = "New Ball Game";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ball)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.player)).EndInit();

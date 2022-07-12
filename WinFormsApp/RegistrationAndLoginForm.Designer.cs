@@ -39,84 +39,53 @@
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
+            resources.ApplyResources(this.label1, "label1");
             this.label1.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.label1.Location = new System.Drawing.Point(429, 34);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(95, 15);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Hello! Log in pls!";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // textBox1
             // 
+            resources.ApplyResources(this.textBox1, "textBox1");
             this.textBox1.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.textBox1.Location = new System.Drawing.Point(386, 138);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(177, 23);
-            this.textBox1.TabIndex = 1;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
+            resources.ApplyResources(this.label2, "label2");
             this.label2.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.label2.Location = new System.Drawing.Point(454, 120);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(39, 15);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Name";
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
+            resources.ApplyResources(this.label3, "label3");
             this.label3.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.label3.Location = new System.Drawing.Point(443, 223);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(57, 15);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Password";
             // 
             // textBox2
             // 
+            resources.ApplyResources(this.textBox2, "textBox2");
             this.textBox2.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.textBox2.Location = new System.Drawing.Point(386, 241);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(177, 23);
-            this.textBox2.TabIndex = 4;
             // 
             // loginButton
             // 
+            resources.ApplyResources(this.loginButton, "loginButton");
             this.loginButton.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.loginButton.Location = new System.Drawing.Point(429, 333);
-            this.loginButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.loginButton.Name = "loginButton";
-            this.loginButton.Size = new System.Drawing.Size(88, 27);
-            this.loginButton.TabIndex = 5;
-            this.loginButton.Text = "Login";
             this.loginButton.UseVisualStyleBackColor = false;
             this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
             // 
             // RegistrationAndLoginForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(933, 519);
             this.Controls.Add(this.loginButton);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "RegistrationAndLoginForm";
-            this.Text = "New Ball Game";
             this.ResumeLayout(false);
             this.PerformLayout();
 
