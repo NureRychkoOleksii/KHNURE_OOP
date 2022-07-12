@@ -65,13 +65,22 @@ namespace WinFormsApp
             {
                 return;
             }
-            picture.BackgroundImage = clickedButton.BackgroundImage;
-            picture.BackgroundImageLayout = ImageLayout.Stretch;
-            DetermineElement(picture.Location.X / 15, picture.Location.Y / 15, ref map.map[picture.Location.X / 15, picture.Location.Y / 15]);
+            if(!clickedButton.Tag.Equals("clear"))
+            {
+                picture.BackgroundImage = clickedButton.BackgroundImage;
+                picture.BackgroundImageLayout = ImageLayout.Stretch;
+                map.map[picture.Location.X / 15, picture.Location.Y / 15] = DetermineElement(picture.Location.X / 15, picture.Location.Y / 15);
+            }
+            else
+            {
+                picture.BackgroundImage = null;
+                map.map[picture.Location.X / 15, picture.Location.Y / 15] = new Empty(picture.Location.X / 15, picture.Location.Y / 15);
+            }
+           
             map.UpdateMap();
         }
 
-        private void DetermineElement(int x, int y, ref BaseElement item)
+        private BaseElement DetermineElement(int x, int y)
         {
             BaseElement res = clickedButton.Tag switch
             {
@@ -82,7 +91,7 @@ namespace WinFormsApp
                 _ => new Empty(x,y)
             };
 
-            item = res;
+            return res;
         }
 
         private void saveButton_Click(object sender, EventArgs e)

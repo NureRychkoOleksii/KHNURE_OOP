@@ -38,6 +38,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.nameTextBox = new System.Windows.Forms.TextBox();
             this.saveButton = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.mapPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -109,7 +110,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(1006, 171);
+            this.button6.Location = new System.Drawing.Point(1005, 170);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(68, 23);
             this.button6.TabIndex = 9;
@@ -153,12 +154,26 @@
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
+            // button3
+            // 
+            this.button3.BackgroundImage = global::WinFormsApp.Properties.Resources.lastik_dlya_karandashey_chernil_koh_noor_bluestar_6521_0;
+            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button3.Location = new System.Drawing.Point(1027, 121);
+            this.button3.Name = "button3";
+            this.button3.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.button3.Size = new System.Drawing.Size(25, 22);
+            this.button3.TabIndex = 14;
+            this.button3.Tag = "clear";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.buttonsClick);
+            // 
             // LevelEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1138, 851);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.nameTextBox);
             this.Controls.Add(this.pictureBox1);
@@ -190,5 +205,6 @@
         public System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox nameTextBox;
         private System.Windows.Forms.Button saveButton;
+        private System.Windows.Forms.Button button3;
     }
 }

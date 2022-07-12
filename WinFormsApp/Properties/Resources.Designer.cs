@@ -83,6 +83,16 @@ namespace WinFormsApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap lastik_dlya_karandashey_chernil_koh_noor_bluestar_6521_0 {
+            get {
+                object obj = ResourceManager.GetObject("lastik_dlya_karandashey_chernil_koh_noor_bluestar_6521_0", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap reverseSlash {
             get {
                 object obj = ResourceManager.GetObject("reverseSlash", resourceCulture);
