@@ -34,14 +34,14 @@
             this.exitButton = new System.Windows.Forms.Button();
             this.editorButton = new System.Windows.Forms.Button();
             this.engButton = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.uaButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBox
             // 
-            resources.ApplyResources(this.textBox, "textBox");
             this.textBox.BackColor = System.Drawing.SystemColors.Window;
             this.textBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            resources.ApplyResources(this.textBox, "textBox");
             this.textBox.Name = "textBox";
             this.textBox.ReadOnly = true;
             // 
@@ -73,18 +73,18 @@
             this.engButton.UseVisualStyleBackColor = true;
             this.engButton.Click += new System.EventHandler(this.engButton_Click);
             // 
-            // button1
+            // uaButton
             // 
-            resources.ApplyResources(this.button1, "button1");
-            this.button1.Name = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.uaButton_Click);
+            resources.ApplyResources(this.uaButton, "uaButton");
+            this.uaButton.Name = "uaButton";
+            this.uaButton.UseVisualStyleBackColor = true;
+            this.uaButton.Click += new System.EventHandler(this.uaButton_Click);
             // 
             // MainMenu
             // 
-            resources.ApplyResources(this, "$this");
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.Controls.Add(this.button1);
+            resources.ApplyResources(this, "$this");
+            this.Controls.Add(this.uaButton);
             this.Controls.Add(this.engButton);
             this.Controls.Add(this.editorButton);
             this.Controls.Add(this.exitButton);
@@ -103,6 +103,6 @@
         private System.Windows.Forms.Button exitButton;
         private System.Windows.Forms.Button editorButton;
         private System.Windows.Forms.Button engButton;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button uaButton;
     }
 }

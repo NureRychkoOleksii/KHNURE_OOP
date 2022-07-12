@@ -46,8 +46,8 @@
             // 
             // coin
             // 
-            resources.ApplyResources(this.coin, "coin");
             this.coin.BackgroundImage = global::WinFormsApp.Properties.Resources.coin;
+            resources.ApplyResources(this.coin, "coin");
             this.coin.Name = "coin";
             this.coin.Tag = "coin";
             this.coin.UseVisualStyleBackColor = true;
@@ -55,8 +55,8 @@
             // 
             // player
             // 
-            resources.ApplyResources(this.player, "player");
             this.player.BackgroundImage = global::WinFormsApp.Properties.Resources.slash;
+            resources.ApplyResources(this.player, "player");
             this.player.Name = "player";
             this.player.Tag = "player";
             this.player.UseVisualStyleBackColor = true;
@@ -64,8 +64,8 @@
             // 
             // wall
             // 
-            resources.ApplyResources(this.wall, "wall");
             this.wall.BackgroundImage = global::WinFormsApp.Properties.Resources.wall;
+            resources.ApplyResources(this.wall, "wall");
             this.wall.Name = "wall";
             this.wall.Tag = "wall";
             this.wall.UseVisualStyleBackColor = true;
@@ -73,8 +73,8 @@
             // 
             // button4
             // 
-            resources.ApplyResources(this.button4, "button4");
             this.button4.BackgroundImage = global::WinFormsApp.Properties.Resources.Table_tennis_ball;
+            resources.ApplyResources(this.button4, "button4");
             this.button4.Name = "button4";
             this.button4.Tag = "ball";
             this.button4.UseVisualStyleBackColor = true;
@@ -82,8 +82,8 @@
             // 
             // tp
             // 
-            resources.ApplyResources(this.tp, "tp");
             this.tp.BackgroundImage = global::WinFormsApp.Properties.Resources.teleport;
+            resources.ApplyResources(this.tp, "tp");
             this.tp.Name = "tp";
             this.tp.Tag = "tp";
             this.tp.UseVisualStyleBackColor = true;
@@ -98,15 +98,15 @@
             // 
             // mapPicture
             // 
-            resources.ApplyResources(this.mapPicture, "mapPicture");
             this.mapPicture.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            resources.ApplyResources(this.mapPicture, "mapPicture");
             this.mapPicture.Name = "mapPicture";
             this.mapPicture.TabStop = false;
             // 
             // pictureBox1
             // 
-            resources.ApplyResources(this.pictureBox1, "pictureBox1");
             this.pictureBox1.BackColor = System.Drawing.Color.Aqua;
+            resources.ApplyResources(this.pictureBox1, "pictureBox1");
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.TabStop = false;
             // 
@@ -124,8 +124,8 @@
             // 
             // clear
             // 
-            resources.ApplyResources(this.clear, "clear");
             this.clear.BackgroundImage = global::WinFormsApp.Properties.Resources.lastik_dlya_karandashey_chernil_koh_noor_bluestar_6521_0;
+            resources.ApplyResources(this.clear, "clear");
             this.clear.Name = "clear";
             this.clear.Tag = "clear";
             this.clear.UseVisualStyleBackColor = true;

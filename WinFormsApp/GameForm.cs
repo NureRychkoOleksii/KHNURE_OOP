@@ -41,20 +41,14 @@ namespace WinFormsApp
             BaseElement.DrawElement += _graphicEngine.Draw;
             BaseElement.ClearElement += _graphicEngine.Clear;
             functionForMovement += ChangeImage;
-            bool isNew;
-            BeforeStart(out isNew);
-            timer1.Interval = 300;
-            timer1.Start();
-        }
-
-        private void BeforeStart(out bool isNew)
-        {
-            isNew = _map == null ? true : false;
+            bool isNew = _map == null ? true : false;
             _game.StartGame(ref this._map, ref time, _user, isNew);
             checkings.DetermineElements(ref _player, ref _ball, this._map, ref _total, _user);
             timer1.Interval = 300;
             timer1.Start();
             this.KeyDown += UpdateKeyEventHandler;
+            timer1.Interval = 300;
+            timer1.Start();
         }
 
         private void timer1_Tick(object sender, EventArgs e)

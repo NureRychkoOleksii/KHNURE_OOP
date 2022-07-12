@@ -117,16 +117,90 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Привіт! Зайдіть в акаунт</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value />
   </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Ім'я</value>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value />
   </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>Пароль</value>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value />
   </data>
-  <data name="loginButton.Text" xml:space="preserve">
-    <value>Увійти</value>
+  <data name="&gt;&gt;button1.Name" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;button1.Parent" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;button1.Type" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;button1.ZOrder" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;startButton.Name" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;startButton.Parent" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;startButton.Type" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;startButton.ZOrder" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;textBox1.Name" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;textBox1.Parent" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;textBox1.Type" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;textBox1.ZOrder" xml:space="preserve">
+    <value />
+  </data>
+  <data name="button1.Text" xml:space="preserve">
+    <value>Вибрати мапу</value>
+  </data>
+  <data name="startButton.Text" xml:space="preserve">
+    <value>Запустити гру з рандомною мапою</value>
+  </data>
+  <data name="String" xml:space="preserve">
+    <value />
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="String2" xml:space="preserve">
+    <value />
+  </data>
+  <data name="String3" xml:space="preserve">
+    <value />
+  </data>
+  <data name="String4" xml:space="preserve">
+    <value />
+  </data>
+  <data name="String5" xml:space="preserve">
+    <value />
+  </data>
+  <data name="String6" xml:space="preserve">
+    <value />
+  </data>
+  <data name="String7" xml:space="preserve">
+    <value />
+  </data>
+  <data name="textBox1.Text" xml:space="preserve">
+    <value>Ласкаво просимо до New Ball Game!
+Ось інструкція:
+Вам потрібно зібрати всі монети
+Ключі:
+Стрілка вліво - вліво
+Стрілка вправо - вправо
+Стрілка вгору - вгору
+Стрілка вниз - вниз
+Tab - змінити стіну</value>
   </data>
 </root>

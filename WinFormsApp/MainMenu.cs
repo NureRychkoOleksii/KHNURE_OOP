@@ -45,14 +45,14 @@ namespace WinFormsApp
 
         private void engButton_Click(object sender, EventArgs e)
         {
-            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("uk-UA");
+            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
             this.Controls.Clear();
             this.InitializeComponent();
         }
 
         private void uaButton_Click(object sender, EventArgs e)
         {
-            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
+            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("uk-UA");
             this.Controls.Clear();
             this.InitializeComponent();
         }
