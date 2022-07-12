@@ -2,6 +2,7 @@
 using Core.NewModels;
 using System;
 using System.Drawing;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace WinFormsApp
@@ -9,6 +10,8 @@ namespace WinFormsApp
     public partial class LevelEditor : Form
     {
         private Map map;
+        private bool playerExists = false;
+        private bool ballExists = false;
         private GraphicEngine _engine = new GraphicEngine();
         private Button clickedButton;
         private MapService _mapService = new MapService();
@@ -90,14 +93,22 @@ namespace WinFormsApp
                 "ball" => new Ball(x, y),
                 _ => new Empty(x,y)
             };
+            playerExists = res is Player ? true : playerExists;
+            ballExists = res is Ball ? true : playerExists;
 
             return res;
         }
 
         private void saveButton_Click(object sender, EventArgs e)
         {
+            if(!(playerExists && ballExists))
+            {
+                MessageBox.Show("You didn't create player or ball, or each of them!");
+                return;
+            }
             map.Name = nameTextBox.Text;
             _mapService.AddNewMap(map);
+            this.Close();
         }
     }
 }

@@ -47,10 +47,10 @@
             // 
             this.playerButton.BackgroundImage = global::WinFormsApp.Properties.Resources.coin;
             this.playerButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.playerButton.Location = new System.Drawing.Point(996, 68);
+            this.playerButton.Location = new System.Drawing.Point(1005, 279);
             this.playerButton.Name = "playerButton";
             this.playerButton.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.playerButton.Size = new System.Drawing.Size(25, 22);
+            this.playerButton.Size = new System.Drawing.Size(45, 45);
             this.playerButton.TabIndex = 0;
             this.playerButton.Tag = "coin";
             this.playerButton.UseVisualStyleBackColor = true;
@@ -60,10 +60,10 @@
             // 
             this.button1.BackgroundImage = global::WinFormsApp.Properties.Resources.slash;
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button1.Location = new System.Drawing.Point(1027, 68);
+            this.button1.Location = new System.Drawing.Point(1035, 341);
             this.button1.Name = "button1";
             this.button1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.button1.Size = new System.Drawing.Size(25, 22);
+            this.button1.Size = new System.Drawing.Size(45, 45);
             this.button1.TabIndex = 1;
             this.button1.Tag = "player";
             this.button1.UseVisualStyleBackColor = true;
@@ -73,10 +73,10 @@
             // 
             this.button2.BackgroundImage = global::WinFormsApp.Properties.Resources.wall;
             this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button2.Location = new System.Drawing.Point(1058, 68);
+            this.button2.Location = new System.Drawing.Point(1056, 279);
             this.button2.Name = "button2";
             this.button2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.button2.Size = new System.Drawing.Size(25, 22);
+            this.button2.Size = new System.Drawing.Size(45, 45);
             this.button2.TabIndex = 2;
             this.button2.Tag = "wall";
             this.button2.UseVisualStyleBackColor = true;
@@ -86,10 +86,10 @@
             // 
             this.button4.BackgroundImage = global::WinFormsApp.Properties.Resources.Table_tennis_ball;
             this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button4.Location = new System.Drawing.Point(965, 68);
+            this.button4.Location = new System.Drawing.Point(954, 279);
             this.button4.Name = "button4";
             this.button4.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.button4.Size = new System.Drawing.Size(25, 22);
+            this.button4.Size = new System.Drawing.Size(45, 45);
             this.button4.TabIndex = 4;
             this.button4.Tag = "ball";
             this.button4.UseVisualStyleBackColor = true;
@@ -99,10 +99,10 @@
             // 
             this.button5.BackgroundImage = global::WinFormsApp.Properties.Resources.teleport;
             this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button5.Location = new System.Drawing.Point(1089, 68);
+            this.button5.Location = new System.Drawing.Point(984, 341);
             this.button5.Name = "button5";
             this.button5.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.button5.Size = new System.Drawing.Size(25, 22);
+            this.button5.Size = new System.Drawing.Size(45, 45);
             this.button5.TabIndex = 5;
             this.button5.Tag = "tp";
             this.button5.UseVisualStyleBackColor = true;
@@ -110,9 +110,9 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(1005, 170);
+            this.button6.Location = new System.Drawing.Point(984, 498);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(68, 23);
+            this.button6.Size = new System.Drawing.Size(87, 44);
             this.button6.TabIndex = 9;
             this.button6.Text = "Create";
             this.button6.UseVisualStyleBackColor = true;
@@ -139,16 +139,17 @@
             // 
             // nameTextBox
             // 
-            this.nameTextBox.Location = new System.Drawing.Point(27, 84);
+            this.nameTextBox.Location = new System.Drawing.Point(12, 353);
+            this.nameTextBox.Multiline = true;
             this.nameTextBox.Name = "nameTextBox";
-            this.nameTextBox.Size = new System.Drawing.Size(117, 23);
+            this.nameTextBox.Size = new System.Drawing.Size(133, 58);
             this.nameTextBox.TabIndex = 12;
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(41, 131);
+            this.saveButton.Location = new System.Drawing.Point(30, 431);
             this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(89, 23);
+            this.saveButton.Size = new System.Drawing.Size(89, 59);
             this.saveButton.TabIndex = 13;
             this.saveButton.Text = "Save and Play";
             this.saveButton.UseVisualStyleBackColor = true;
@@ -158,10 +159,10 @@
             // 
             this.button3.BackgroundImage = global::WinFormsApp.Properties.Resources.lastik_dlya_karandashey_chernil_koh_noor_bluestar_6521_0;
             this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button3.Location = new System.Drawing.Point(1027, 121);
+            this.button3.Location = new System.Drawing.Point(1005, 431);
             this.button3.Name = "button3";
             this.button3.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.button3.Size = new System.Drawing.Size(25, 22);
+            this.button3.Size = new System.Drawing.Size(45, 45);
             this.button3.TabIndex = 14;
             this.button3.Tag = "clear";
             this.button3.UseVisualStyleBackColor = true;
