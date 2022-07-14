@@ -30,10 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RegistrationAndLoginForm));
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.nameBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.passwordBox = new System.Windows.Forms.TextBox();
             this.loginButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -43,11 +43,11 @@
             this.label1.BackColor = System.Drawing.Color.LightSteelBlue;
             this.label1.Name = "label1";
             // 
-            // textBox1
+            // nameBox
             // 
-            resources.ApplyResources(this.textBox1, "textBox1");
-            this.textBox1.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.textBox1.Name = "textBox1";
+            resources.ApplyResources(this.nameBox, "nameBox");
+            this.nameBox.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.nameBox.Name = "nameBox";
             // 
             // label2
             // 
@@ -61,11 +61,11 @@
             this.label3.BackColor = System.Drawing.Color.LightSteelBlue;
             this.label3.Name = "label3";
             // 
-            // textBox2
+            // passwordBox
             // 
-            resources.ApplyResources(this.textBox2, "textBox2");
-            this.textBox2.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.textBox2.Name = "textBox2";
+            resources.ApplyResources(this.passwordBox, "passwordBox");
+            this.passwordBox.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.passwordBox.Name = "passwordBox";
             // 
             // loginButton
             // 
@@ -80,10 +80,10 @@
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.loginButton);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.passwordBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.nameBox);
             this.Controls.Add(this.label1);
             this.Name = "RegistrationAndLoginForm";
             this.ResumeLayout(false);
@@ -94,10 +94,10 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox nameBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox passwordBox;
         private System.Windows.Forms.Button loginButton;
     }
 }

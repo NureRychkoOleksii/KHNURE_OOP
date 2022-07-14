@@ -32,16 +32,16 @@ namespace WinFormsApp
             var items = _mapService.GetMaps();
             foreach(var i in items)
             {
-                listView1.Items.Add(i.Name);
+                listView.Items.Add(i.Name);
             }
         }
 
         private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            var name = listView1.HitTest(e.X, e.Y);
+            var name = listView.HitTest(e.X, e.Y);
 
             var item = name.Item;
-            if(listView1 == null || item is null)
+            if(listView == null || item is null)
             {
                 return;
             }

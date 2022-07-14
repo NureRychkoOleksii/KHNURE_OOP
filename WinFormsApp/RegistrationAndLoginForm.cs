@@ -22,13 +22,13 @@ namespace WinFormsApp
         {
             _user = new User()
             {
-                Name = textBox1.Text,
-                Password = textBox2.Text,
+                Name = nameBox.Text,
+                Password = passwordBox.Text,
                 Record = "0",
                 CoinsCount = 0,
                 Skin = "default"
             };
-            if (_userService.GetUserByName(textBox1.Text) != null)
+            if (_userService.GetUserByName(nameBox.Text) != null)
             {
                 _user.CoinsCount = _userService.GetUserByName(_user.Name).CoinsCount;
                 _user.Id = _userService.GetUserByName(_user.Name).Id;

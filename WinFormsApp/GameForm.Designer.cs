@@ -38,9 +38,9 @@
             this.ball = new System.Windows.Forms.PictureBox();
             this.player = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.pause = new System.Windows.Forms.Label();
+            this.add = new System.Windows.Forms.Label();
+            this.decrease = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ball)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.player)).BeginInit();
@@ -85,32 +85,32 @@
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
             // 
-            // label2
+            // pause
             // 
-            resources.ApplyResources(this.label2, "label2");
-            this.label2.Name = "label2";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+            resources.ApplyResources(this.pause, "pause");
+            this.pause.Name = "pause";
+            this.pause.Click += new System.EventHandler(this.label2_Click);
             // 
-            // label3
+            // add
             // 
-            resources.ApplyResources(this.label3, "label3");
-            this.label3.Name = "label3";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
+            resources.ApplyResources(this.add, "add");
+            this.add.Name = "add";
+            this.add.Click += new System.EventHandler(this.label3_Click);
             // 
-            // label4
+            // decrease
             // 
-            resources.ApplyResources(this.label4, "label4");
-            this.label4.Name = "label4";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
+            resources.ApplyResources(this.decrease, "decrease");
+            this.decrease.Name = "decrease";
+            this.decrease.Click += new System.EventHandler(this.label4_Click);
             // 
             // GameForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.decrease);
+            this.Controls.Add(this.add);
+            this.Controls.Add(this.pause);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ball);
             this.Controls.Add(this.player);
@@ -135,9 +135,9 @@
         private System.Windows.Forms.PictureBox player;
         public System.Windows.Forms.Label scoreBox;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label pause;
+        private System.Windows.Forms.Label add;
+        private System.Windows.Forms.Label decrease;
     }
 }
 
