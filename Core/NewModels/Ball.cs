@@ -8,10 +8,12 @@ namespace Core.NewModels
         {
 
         }
-        public void Move(Direction direction, bool eat = false)
+        public void Move(Direction direction, bool console = false)
         {
-            Clear(X,Y);
-
+            if(console)
+            {
+                Clear(X, Y);
+            }
             var (dx, dy) = DirectionsDictionary.directions[direction];
             X += dx;
             Y += dy;
@@ -19,10 +21,10 @@ namespace Core.NewModels
             Draw();
         }
 
-        public void Action(ref Map map, Direction currentDirection)
+        public void Action(ref Map map, Direction currentDirection, bool console = false)
         {
             int ballX = this.X, ballY = this.Y;
-            this.Move(currentDirection);
+            this.Move(currentDirection, console);
             map[ballX, ballY] = new Empty(ballX, ballY);
             map[this.X, this.Y] = new Ball(this.X, this.Y);
         }

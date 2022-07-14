@@ -60,15 +60,6 @@ namespace WinFormsApp
             _userService.UpdateUser(ref _user, _user.Id);
         }
 
-        private void EndGame()
-        {
-            _game.End(time, ref _user, _userService);
-            this.Close();
-            _thread = new Thread(OpenNewForm);
-            _thread.SetApartmentState(ApartmentState.STA);
-            _thread.Start();
-        }
-
         private void UpdateKeyEventHandler(object sender, KeyEventArgs e)
         {
             _currentDir = movement.ProcessKeyWinForms(e.KeyCode.ToString(), functionForMovement);
@@ -113,6 +104,14 @@ namespace WinFormsApp
         private void label4_Click(object sender, EventArgs e)
         {
             music.ChangeVolume(-10);
+        }
+        private void EndGame()
+        {
+            _game.End(time, ref _user, _userService);
+            this.Close();
+            _thread = new Thread(OpenNewForm);
+            _thread.SetApartmentState(ApartmentState.STA);
+            _thread.Start();
         }
     }
 }

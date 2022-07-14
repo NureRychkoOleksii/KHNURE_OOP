@@ -121,7 +121,7 @@ namespace Console.StartupMethods
             currentDirection = methods.FrameTickBall(currentDirection, ref ball, map, player, ref _score, ref user.CoinsCount);
             currentDirectionPlayer = methods.FrameTick(currentDirectionPlayer, player, map);
             player.Action(ref map, currentDirectionPlayer, changeWall);
-            ball.Action(ref map, currentDirection);
+            ball.Action(ref map, currentDirection, true);
             this.changeWall = false;
         }
     }

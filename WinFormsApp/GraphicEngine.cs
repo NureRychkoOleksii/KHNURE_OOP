@@ -96,13 +96,13 @@ namespace WinFormsApp
                 return;
             }
 
-            foreach(var i in _form.Controls)
+            foreach(var i in _form.pictureBox1.Controls)
             {
                 if(i is PictureBox item)
                 {
                     if(item.Location.X == pixel.X * 15 && item.Location.Y == pixel.Y * 15)
                     {
-                        _form.Controls.Remove(item);
+                        _form.pictureBox1.Controls.Remove(item);
                     }
                 }
             }
