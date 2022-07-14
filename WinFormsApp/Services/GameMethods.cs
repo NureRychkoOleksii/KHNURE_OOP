@@ -77,6 +77,10 @@ namespace WinFormsApp.Services
         {
             var (dx, dy) = DirectionsDictionary.directions[_currentDir];
             _currentDir = checkings.FrameTick(_currentDir, _player, map);
+            if (_player.X + 1 == map.map.GetLength(0) || _player.Y + 1 == map.map.GetLength(1) || _player.X - 1 == 0 || _player.Y - 1 == 0)
+            {
+                _currentDir = checkings.ChangeDirection(_currentDir);
+            }
             if (_currentDir != Direction.Stop)
             {
                 _graphicEngine.playerPicturebox.Location = new Point(_graphicEngine.playerPicturebox.Location.X + dx * 15, _graphicEngine.playerPicturebox.Location.Y + dy * 15);

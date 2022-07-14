@@ -25,7 +25,7 @@ namespace Core.Methods
                 }
             }
         }
-        public Direction FrameTick(Direction currentDirection, Core.NewModels.Player player, Core.NewModels.Map map)
+        public Direction FrameTick(Direction currentDirection, NewModels.Player player, Map map)
         {
             var (dx, dy) = DirectionsDictionary.directions[currentDirection];
             foreach (var item in map.map)
@@ -119,7 +119,6 @@ namespace Core.Methods
         public Direction ChangeDirection(Direction dir)
         {
             return (Direction)(((int)dir + 2) % 4);
-
         }
     }  
 }

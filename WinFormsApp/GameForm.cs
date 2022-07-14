@@ -47,8 +47,6 @@ namespace WinFormsApp
             timer1.Interval = 300;
             timer1.Start();
             this.KeyDown += UpdateKeyEventHandler;
-            timer1.Interval = 300;
-            timer1.Start();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -74,10 +72,10 @@ namespace WinFormsApp
         private void UpdateKeyEventHandler(object sender, KeyEventArgs e)
         {
             _currentDir = movement.ProcessKeyWinForms(e.KeyCode.ToString(), functionForMovement);
-            var (dx, dy) = DirectionsDictionary.directions[_currentDir];
             _currentDir = checkings.FrameTick(_currentDir, _player, _map);
             if (_currentDir != Direction.Stop)
             {
+                var (dx, dy) = DirectionsDictionary.directions[_currentDir];
                 _graphicEngine.playerPicturebox.Location = new Point(_graphicEngine.playerPicturebox.Location.X + dx * 15, _graphicEngine.playerPicturebox.Location.Y + dy * 15);
                 _player.Action(ref _map, _currentDir);
             }

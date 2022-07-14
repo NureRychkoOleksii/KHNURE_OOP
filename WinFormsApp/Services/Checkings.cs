@@ -5,7 +5,7 @@ namespace WinFormsApp.Services
 {
     public class Checkings
     {
-        public Direction FrameTick(Direction currentDirection, Core.NewModels.Player player, Core.NewModels.Map map)
+        public Direction FrameTick(Direction currentDirection, Core.NewModels.Player player, Map map)
         {
             var (dx, dy) = DirectionsDictionary.directions[currentDirection];
             foreach (var item in map.map)
@@ -15,7 +15,7 @@ namespace WinFormsApp.Services
                 {
                     return Direction.Stop;
                 }
-                else if (player.X == 0 || player.Y == 0 || player.X + 1 == map.map.GetLength(0) || player.Y + 1 == map.map.GetLength(1))
+                else if (player.X == 0 || player.Y == 0 || player.X + dx == map.map.GetLength(0) || player.Y + dy == map.map.GetLength(1))
                 {
                     return ChangeDirection(currentDirection);
                 }
