@@ -35,6 +35,7 @@ namespace WinFormsApp
             map.CreateEmptyMap();
             map.UpdateMap();
             BaseElement.DrawElement -= _engine.DrawLevelEditor;
+            createMapButton.Enabled = false;
         }
 
         private void buttonsClick(object sender, EventArgs e)
@@ -91,6 +92,7 @@ namespace WinFormsApp
                 "player" => new Player(x, y),
                 "wall" => new Wall(x, y),
                 "ball" => new Ball(x, y),
+                "tp" => new Teleport(x,y),
                 _ => new Empty(x,y)
             };
             playerExists = res is Player ? true : playerExists;

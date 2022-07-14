@@ -64,19 +64,12 @@
   <data name="label1.Text" xml:space="preserve">
     <value>Привіт! Зайдіть в акаунт</value>
   </data>
-  <data name="nameBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>386, 138</value>
-  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="nameBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 3, 4, 3</value>
   </data>
   <data name="nameBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>177, 23</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="nameBox.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>28, 15</value>
@@ -90,17 +83,11 @@
   <data name="label3.Text" xml:space="preserve">
     <value>Пароль</value>
   </data>
-  <data name="passwordBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>386, 241</value>
-  </data>
   <data name="passwordBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 3, 4, 3</value>
   </data>
   <data name="passwordBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>177, 23</value>
-  </data>
-  <data name="passwordBox.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
   </data>
   <data name="loginButton.Text" xml:space="preserve">
     <value>Увійти</value>

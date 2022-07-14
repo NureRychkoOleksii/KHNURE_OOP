@@ -31,7 +31,7 @@ namespace Core.Methods
             foreach (var item in map.map)
             {
                 var condition = player.X + dx == item.X && player.Y + dy == item.Y;
-                if (condition && (item.isStopping || item.isCollecting))
+                if (condition && (item.isStopping || item.isCollecting || item is Teleport))
                 {
                     return Direction.Stop;
                 }

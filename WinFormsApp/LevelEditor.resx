@@ -156,6 +156,9 @@
   <data name="&gt;&gt;button4.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
+  <data name="tp.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Stretch</value>
+  </data>
   <data name="tp.Location" type="System.Drawing.Point, System.Drawing">
     <value>984, 341</value>
   </data>
@@ -316,9 +319,6 @@
   <data name="&gt;&gt;clear.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, System.Private.CoreLib, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
-    <value>uk-UA</value>
-  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>

@@ -45,8 +45,8 @@
             // 
             // nameBox
             // 
-            resources.ApplyResources(this.nameBox, "nameBox");
             this.nameBox.BackColor = System.Drawing.Color.LightSteelBlue;
+            resources.ApplyResources(this.nameBox, "nameBox");
             this.nameBox.Name = "nameBox";
             // 
             // label2
@@ -63,14 +63,14 @@
             // 
             // passwordBox
             // 
-            resources.ApplyResources(this.passwordBox, "passwordBox");
             this.passwordBox.BackColor = System.Drawing.Color.LightSteelBlue;
+            resources.ApplyResources(this.passwordBox, "passwordBox");
             this.passwordBox.Name = "passwordBox";
             // 
             // loginButton
             // 
-            resources.ApplyResources(this.loginButton, "loginButton");
             this.loginButton.BackColor = System.Drawing.Color.LightSteelBlue;
+            resources.ApplyResources(this.loginButton, "loginButton");
             this.loginButton.Name = "loginButton";
             this.loginButton.UseVisualStyleBackColor = false;
             this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
