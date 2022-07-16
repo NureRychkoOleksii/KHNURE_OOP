@@ -40,6 +40,7 @@
             this.mapsBox = new System.Windows.Forms.TextBox();
             this.saveButton = new System.Windows.Forms.Button();
             this.clear = new System.Windows.Forms.Button();
+            this.maps = new System.Windows.Forms.ListView();
             ((System.ComponentModel.ISupportInitialize)(this.mapPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -131,10 +132,19 @@
             this.clear.UseVisualStyleBackColor = true;
             this.clear.Click += new System.EventHandler(this.buttonsClick);
             // 
+            // maps
+            // 
+            this.maps.HideSelection = false;
+            resources.ApplyResources(this.maps, "maps");
+            this.maps.Name = "maps";
+            this.maps.UseCompatibleStateImageBehavior = false;
+            this.maps.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.maps_MouseDoubleClick);
+            // 
             // LevelEditor
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.maps);
             this.Controls.Add(this.clear);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.mapsBox);
@@ -167,5 +177,6 @@
         private System.Windows.Forms.TextBox mapsBox;
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Button clear;
+        private System.Windows.Forms.ListView maps;
     }
 }

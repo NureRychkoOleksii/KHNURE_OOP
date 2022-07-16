@@ -77,14 +77,8 @@
   <data name="pause.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>TopRight</value>
   </data>
-  <data name="pause.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1193, 227</value>
-  </data>
   <data name="pause.Size" type="System.Drawing.Size, System.Drawing">
     <value>117, 15</value>
-  </data>
-  <data name="pause.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
   </data>
   <data name="pause.Text" xml:space="preserve">
     <value>Пауза/Грати музику</value>
@@ -95,14 +89,8 @@
   <data name="add.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>TopRight</value>
   </data>
-  <data name="add.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1193, 322</value>
-  </data>
   <data name="add.Size" type="System.Drawing.Size, System.Drawing">
     <value>72, 15</value>
-  </data>
-  <data name="add.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
   </data>
   <data name="add.Text" xml:space="preserve">
     <value>Додати звук</value>
@@ -113,14 +101,8 @@
   <data name="decrease.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>TopRight</value>
   </data>
-  <data name="decrease.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1193, 419</value>
-  </data>
   <data name="decrease.Size" type="System.Drawing.Size, System.Drawing">
     <value>92, 15</value>
-  </data>
-  <data name="decrease.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
   </data>
   <data name="decrease.Text" xml:space="preserve">
     <value>Зменшити звук</value>

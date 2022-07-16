@@ -44,5 +44,11 @@ namespace Core.Methods
             return res.Where(user => user.Name == name).FirstOrDefault();
         }
 
+        public void DeleteMap(string name)
+        {
+            var map = GetUserByName(name);
+            _repository.DeleteObject(map, _path);
+        }
+
     }
 }

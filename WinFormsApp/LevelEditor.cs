@@ -4,6 +4,7 @@ using System;
 using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace WinFormsApp
 {
@@ -21,6 +22,11 @@ namespace WinFormsApp
             InitializeComponent();
             _engine.SetEditor(this);
             BaseElement.DrawElement += _engine.DrawLevelEditor;
+            var items = _mapService.GetMaps();
+            foreach (var i in items)
+            {
+                maps.Items.Add(i.Name);
+            }
         }
 
         private void createMapButton_Click(object sender, EventArgs e)
@@ -35,6 +41,7 @@ namespace WinFormsApp
             map.CreateEmptyMap();
             map.UpdateMap();
             BaseElement.DrawElement -= _engine.DrawLevelEditor;
+            BaseElement.DrawElement += _engine.Draw;
             createMapButton.Enabled = false;
         }
 
@@ -84,6 +91,22 @@ namespace WinFormsApp
             map.UpdateMap();
         }
 
+        private void CheckMap()
+        {
+            foreach(var i in pictureBox1.Controls)
+            {
+                foreach(var item in map.map)
+                {
+                    if(i is PictureBox picture && item.X == picture.Location.X / 15 && item.Y == picture.Location.Y / 15)
+                    {
+                        picture.BackgroundImage = (Image)DeterminePicture(item);
+                        picture.BackgroundImageLayout = ImageLayout.Stretch;
+                    }
+                }
+            }
+            
+        }
+
         private BaseElement DetermineElement(int x, int y)
         {
             BaseElement res = clickedButton.Tag switch
@@ -101,16 +124,61 @@ namespace WinFormsApp
             return res;
         }
 
+        private void DetermineKeyElements()
+        {
+            foreach(var item in map.map)
+            {
+                if(item is Player)
+                {
+                    playerExists = true;
+                }    
+                if(item is Ball)
+                {
+                    ballExists = true;
+                }
+            }
+        }
+
+        private Bitmap DeterminePicture(BaseElement picture)
+        {
+            var image = picture switch
+            {
+                Player => ((Player)picture).reverseSlash ? Properties.Resources.reverseSlash : Properties.Resources.slash,
+                Wall => Properties.Resources.wall,
+                Ball => Properties.Resources.Table_tennis_ball,
+                EnergyBall => Properties.Resources.coin,
+                Teleport => Properties.Resources.teleport,
+                _ => null
+            };
+
+            return image;
+        }
+
         private void saveButton_Click(object sender, EventArgs e)
         {
+            DetermineKeyElements();
             if(!(playerExists && ballExists))
             {
                 MessageBox.Show("You didn't create player or ball, or each of them!");
                 return;
             }
             map.Name = mapsBox.Text;
+            if(_mapService.GetMaps().FirstOrDefault(map => map.Name == map.Name) != null)
+            {
+                _mapService.DeleteMap(map.Name);
+            }
             _mapService.AddNewMap(map);
             this.Close();
+        }
+
+        private void maps_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            var name = maps.HitTest(e.X, e.Y);
+
+            var item = name.Item;
+            var _map = _mapService.GetMaps().FirstOrDefault(x => x.Name == item.Text);
+            map = _map;
+            CheckMap();
         }
     }
 }

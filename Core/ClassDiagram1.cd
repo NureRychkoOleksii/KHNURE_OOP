@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Core.NewModels.Ball">
+    <Position X="9.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAQ=</HashCode>
+      <FileName>NewModels\Ball.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core.NewModels.Player">
+    <Position X="4.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAQAAAAAAAAAAAAQAAAQ=</HashCode>
+      <FileName>NewModels\Player.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core.NewModels.BaseElement">
+    <Position X="7" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAQAAAAAAACAAAABAAAAARAYAA=</HashCode>
+      <FileName>NewModels\BaseElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core.NewModels.Wall">
+    <Position X="7" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NewModels\Wall.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core.NewModels.EnergyBall">
+    <Position X="11.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NewModels\EnergyBall.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core.NewModels.Teleport">
+    <Position X="2.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NewModels\Teleport.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
