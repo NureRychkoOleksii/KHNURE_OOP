@@ -90,7 +90,6 @@ namespace WinFormsApp
             Application.Run(new EndMenu(_user));
         }
 
-        //fix click
         private void label2_Click(object sender, EventArgs e)
         {
             music.Pause();

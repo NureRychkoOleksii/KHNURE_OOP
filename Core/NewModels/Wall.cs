@@ -8,7 +8,6 @@ namespace Core.NewModels
 {
     public class Wall : BaseElement
     {
-        public const char pixel = '#';
         public Wall(int x, int y) : base(x, y)
         {
             isStopping = true;
