@@ -46,9 +46,7 @@ namespace WinFormsApp
                 return;
             }
 
-            var map = _mapService.GetMaps().FirstOrDefault(x => x.Name == item.Text);
-            _map = map;
-
+            _map = _mapService.GetMaps().FirstOrDefault(x => x.Name == item.Text);
         }
 
         private void startButton_Click(object sender, EventArgs e)

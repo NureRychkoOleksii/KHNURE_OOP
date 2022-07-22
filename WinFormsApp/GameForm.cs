@@ -42,11 +42,16 @@ namespace WinFormsApp
             BaseElement.ClearElement += _graphicEngine.Clear;
             functionForMovement += ChangeImage;
             bool isNew = _map == null ? true : false;
+            Test(isNew);
+            this.KeyDown += UpdateKeyEventHandler;
+        }
+
+        private void Test(bool isNew)
+        {
             _game.StartGame(ref this._map, ref time, _user, isNew);
             checkings.DetermineElements(ref _player, ref _ball, this._map, ref _total, _user);
             timer1.Interval = 300;
             timer1.Start();
-            this.KeyDown += UpdateKeyEventHandler;
         }
 
         private void timer1_Tick(object sender, EventArgs e)

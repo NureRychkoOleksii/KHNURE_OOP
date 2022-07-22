@@ -91,7 +91,7 @@ namespace WinFormsApp
             map.UpdateMap();
         }
 
-        private void CheckMap()
+        private void LoadMap()
         {
             foreach(var i in pictureBox1.Controls)
             {
@@ -186,7 +186,7 @@ namespace WinFormsApp
             var item = name.Item;
             var _map = _mapService.GetMaps().FirstOrDefault(x => x.Name == item.Text);
             map = _map;
-            CheckMap();
+            LoadMap();
         }
     }
 }
