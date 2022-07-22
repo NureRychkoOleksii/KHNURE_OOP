@@ -118,6 +118,14 @@ namespace WinFormsApp
                 "tp" => new Teleport(x,y),
                 _ => new Empty(x,y)
             };
+            if(res is Player)
+            {
+                player.Enabled = false;
+            }
+            if(res is Ball)
+            {
+                ball.Enabled = false;   
+            }
             playerExists = res is Player ? true : playerExists;
             ballExists = res is Ball ? true : playerExists;
 

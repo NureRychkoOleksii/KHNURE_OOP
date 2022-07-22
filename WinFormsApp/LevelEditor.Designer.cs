@@ -32,7 +32,7 @@
             this.coin = new System.Windows.Forms.Button();
             this.player = new System.Windows.Forms.Button();
             this.wall = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.ball = new System.Windows.Forms.Button();
             this.tp = new System.Windows.Forms.Button();
             this.createMapButton = new System.Windows.Forms.Button();
             this.mapPicture = new System.Windows.Forms.PictureBox();
@@ -72,14 +72,14 @@
             this.wall.UseVisualStyleBackColor = true;
             this.wall.Click += new System.EventHandler(this.buttonsClick);
             // 
-            // button4
+            // ball
             // 
-            this.button4.BackgroundImage = global::WinFormsApp.Properties.Resources.Table_tennis_ball;
-            resources.ApplyResources(this.button4, "button4");
-            this.button4.Name = "button4";
-            this.button4.Tag = "ball";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.buttonsClick);
+            this.ball.BackgroundImage = global::WinFormsApp.Properties.Resources.Table_tennis_ball;
+            resources.ApplyResources(this.ball, "ball");
+            this.ball.Name = "ball";
+            this.ball.Tag = "ball";
+            this.ball.UseVisualStyleBackColor = true;
+            this.ball.Click += new System.EventHandler(this.buttonsClick);
             // 
             // tp
             // 
@@ -152,7 +152,7 @@
             this.Controls.Add(this.mapPicture);
             this.Controls.Add(this.createMapButton);
             this.Controls.Add(this.tp);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.ball);
             this.Controls.Add(this.wall);
             this.Controls.Add(this.player);
             this.Controls.Add(this.coin);
@@ -169,7 +169,7 @@
         private System.Windows.Forms.Button coin;
         private System.Windows.Forms.Button player;
         private System.Windows.Forms.Button wall;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button ball;
         private System.Windows.Forms.Button tp;
         private System.Windows.Forms.Button createMapButton;
         private System.Windows.Forms.PictureBox mapPicture;
