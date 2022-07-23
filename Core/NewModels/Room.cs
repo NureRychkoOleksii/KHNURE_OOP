@@ -24,6 +24,7 @@ namespace Core.NewModels
         static Random random = new Random();
         public static void Create(ref BaseElement[,] map, int x, int y, string nextExit, string previousExit)
         {
+            bool randomRoomCreated = false;
             for (int i = x; i < x + 5; i++)
             {
                 for (int j = y; j < y + 5; j++)
@@ -42,7 +43,13 @@ namespace Core.NewModels
                             map[i, j] = new Empty(i, j);
                             continue;
                         }
-
+                        (dx, dy) = _exits[GetNewExit(previousExit)];
+                        if (i == x + dx && j == y + dy && !randomRoomCreated)
+                        {
+                            map[i, j] = new Empty(i, j);
+                            randomRoomCreated = true;
+                            continue;
+                        }
                         map[i, j] = new Wall(i, j);
                         continue;
                     }
@@ -77,6 +84,28 @@ namespace Core.NewModels
             }
 
             return res;
+        }
+
+        private static string GetNewExit(string currentExit)
+        {
+            var res = random.Next(1, 100) switch
+            {
+                <= 10 => GetRandomExit(),
+                _ => currentExit
+            };
+
+            return res;
+        }
+
+        private static string GetRandomExit()
+        {
+            return random.Next(1, 4) switch
+            {
+                1 => "left",
+                2 => "up",
+                3 => "right",
+                4 => "down"
+            };
         }
     }
 }
