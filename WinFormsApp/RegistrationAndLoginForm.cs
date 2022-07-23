@@ -28,7 +28,14 @@ namespace WinFormsApp
                 CoinsCount = 0,
                 Skin = "default"
             };
-            if (_userService.GetUserByName(nameBox.Text) != null)
+            var user = _userService.GetUserByName(nameBox.Text);
+            if(user == null)
+            {
+                _userService.AddNewUser(_user);
+                this.Close();
+                AddThread();
+            }
+            else if (user.Password == _user.Password)
             {
                 _user.CoinsCount = _userService.GetUserByName(_user.Name).CoinsCount;
                 _user.Id = _userService.GetUserByName(_user.Name).Id;
@@ -38,9 +45,7 @@ namespace WinFormsApp
             }
             else
             {
-                _userService.AddNewUser(_user);
-                this.Close();
-                AddThread();
+                MessageBox.Show("Wrong password");
             }
         }
 
