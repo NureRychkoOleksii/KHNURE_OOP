@@ -11,8 +11,9 @@ namespace WinFormsApp
     public partial class LevelEditor : Form
     {
         private Map map;
-        private bool playerExists = false;
-        private bool ballExists = false;
+        private bool _playerExists = false;
+        private bool _ballExists = false;
+        private bool _coinsExist = false;
         private GraphicEngine _engine = new GraphicEngine();
         private Button clickedButton;
         private MapService _mapService = new MapService();
@@ -136,11 +137,15 @@ namespace WinFormsApp
             {
                 if(item is Player)
                 {
-                    playerExists = true;
+                    _playerExists = true;
                 }    
                 if(item is Ball)
                 {
-                    ballExists = true;
+                    _ballExists = true;
+                }
+                if(item is EnergyBall)
+                {
+                    _coinsExist = true;
                 }
             }
         }
@@ -168,9 +173,9 @@ namespace WinFormsApp
                 return;
             }
             DetermineKeyElements();
-            if(!(playerExists && ballExists))
+            if(!(_playerExists && _ballExists && _coinsExist))
             {
-                MessageBox.Show("You didn't create player or ball, or each of them!");
+                MessageBox.Show("You didn't create player, coin or ball, or each of them!");
                 return;
             }
             map.Name = mapsBox.Text;
