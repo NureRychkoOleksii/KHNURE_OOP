@@ -82,7 +82,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;coin.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>10</value>
   </data>
   <data name="player.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Stretch</value>
@@ -106,7 +106,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;player.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>9</value>
   </data>
   <data name="wall.Location" type="System.Drawing.Point, System.Drawing">
     <value>1056, 279</value>
@@ -127,7 +127,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;wall.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>8</value>
   </data>
   <data name="ball.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Stretch</value>
@@ -154,7 +154,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ball.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>7</value>
   </data>
   <data name="tp.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Stretch</value>
@@ -178,30 +178,6 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;tp.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="createMapButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>984, 512</value>
-  </data>
-  <data name="createMapButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>89, 59</value>
-  </data>
-  <data name="createMapButton.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="createMapButton.Text" xml:space="preserve">
-    <value>Create Map</value>
-  </data>
-  <data name="&gt;&gt;createMapButton.Name" xml:space="preserve">
-    <value>createMapButton</value>
-  </data>
-  <data name="&gt;&gt;createMapButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;createMapButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;createMapButton.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
   <data name="mapPicture.Location" type="System.Drawing.Point, System.Drawing">

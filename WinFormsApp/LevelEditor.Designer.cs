@@ -34,7 +34,6 @@
             this.wall = new System.Windows.Forms.Button();
             this.ball = new System.Windows.Forms.Button();
             this.tp = new System.Windows.Forms.Button();
-            this.createMapButton = new System.Windows.Forms.Button();
             this.mapPicture = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.mapsBox = new System.Windows.Forms.TextBox();
@@ -90,13 +89,6 @@
             this.tp.UseVisualStyleBackColor = true;
             this.tp.Click += new System.EventHandler(this.buttonsClick);
             // 
-            // createMapButton
-            // 
-            resources.ApplyResources(this.createMapButton, "createMapButton");
-            this.createMapButton.Name = "createMapButton";
-            this.createMapButton.UseVisualStyleBackColor = true;
-            this.createMapButton.Click += new System.EventHandler(this.createMapButton_Click);
-            // 
             // mapPicture
             // 
             this.mapPicture.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -150,7 +142,6 @@
             this.Controls.Add(this.mapsBox);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.mapPicture);
-            this.Controls.Add(this.createMapButton);
             this.Controls.Add(this.tp);
             this.Controls.Add(this.ball);
             this.Controls.Add(this.wall);
@@ -171,7 +162,6 @@
         private System.Windows.Forms.Button wall;
         private System.Windows.Forms.Button ball;
         private System.Windows.Forms.Button tp;
-        private System.Windows.Forms.Button createMapButton;
         private System.Windows.Forms.PictureBox mapPicture;
         public System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox mapsBox;

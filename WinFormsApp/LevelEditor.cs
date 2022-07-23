@@ -28,10 +28,6 @@ namespace WinFormsApp
             {
                 maps.Items.Add(i.Name);
             }
-        }
-
-        private void createMapButton_Click(object sender, EventArgs e)
-        {
             map = new Map(50, 50);
             CreateMap();
             MakeClickEvent();
@@ -43,7 +39,6 @@ namespace WinFormsApp
             map.UpdateMap();
             BaseElement.DrawElement -= _engine.DrawLevelEditor;
             BaseElement.DrawElement += _engine.Draw;
-            createMapButton.Enabled = false;
         }
 
         private void buttonsClick(object sender, EventArgs e)
