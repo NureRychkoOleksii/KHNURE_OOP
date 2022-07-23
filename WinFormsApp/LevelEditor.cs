@@ -126,8 +126,6 @@ namespace WinFormsApp
             {
                 ball.Enabled = false;   
             }
-            playerExists = res is Player ? true : playerExists;
-            ballExists = res is Ball ? true : playerExists;
 
             return res;
         }
@@ -171,7 +169,7 @@ namespace WinFormsApp
                 return;
             }
             map.Name = mapsBox.Text;
-            if(_mapService.GetMaps().FirstOrDefault(map => map.Name == map.Name) != null)
+            if(_mapService.GetMaps().FirstOrDefault(_map => map.Name == _map.Name) != null)
             {
                 _mapService.DeleteMap(map.Name);
             }
