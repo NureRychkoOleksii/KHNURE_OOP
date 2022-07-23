@@ -162,6 +162,11 @@ namespace WinFormsApp
 
         private void saveButton_Click(object sender, EventArgs e)
         {
+            if (mapsBox.Text == String.Empty)
+            {
+                MessageBox.Show("Enter name of map");
+                return;
+            }
             DetermineKeyElements();
             if(!(playerExists && ballExists))
             {
