@@ -11,7 +11,6 @@ namespace WinFormsApp
     public partial class RegistrationAndLoginForm : Form
     {
         private readonly UserService _userService = new UserService();
-        private Thread _thread;
         private static User _user;
         public RegistrationAndLoginForm()
         {
@@ -32,16 +31,18 @@ namespace WinFormsApp
             if(user == null)
             {
                 _userService.AddNewUser(_user);
-                this.Close();
-                AddThread();
+                this.Hide();
+                var form = new Instruction(_user);
+                form.Show();
             }
             else if (user.Password == _user.Password)
             {
                 _user.CoinsCount = _userService.GetUserByName(_user.Name).CoinsCount;
                 _user.Id = _userService.GetUserByName(_user.Name).Id;
                 _user.Skin = _userService.GetUserByName(_user.Name).Skin;
-                this.Close();
-                AddThread();
+                this.Hide();
+                var form = new Instruction(_user);
+                form.Show();
             }
             else
             {
@@ -49,16 +50,5 @@ namespace WinFormsApp
             }
         }
 
-        private void OpenNewForm()
-        {
-            Application.Run(new Instruction(_user));
-        }
-
-        private void AddThread()
-        {
-            _thread = new Thread(OpenNewForm);
-            _thread.SetApartmentState(ApartmentState.STA);
-            _thread.Start();
-        }
     }
 }

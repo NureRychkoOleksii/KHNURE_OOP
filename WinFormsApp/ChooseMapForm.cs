@@ -2,14 +2,7 @@
 using Core.Models;
 using Core.NewModels;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WinFormsApp
@@ -19,7 +12,6 @@ namespace WinFormsApp
         private readonly MapService _mapService = new MapService();
         private Map _map;
         private User user;
-        private Thread _thread;
         public ChooseMapForm(User _user)
         {
             user = _user;
@@ -51,15 +43,9 @@ namespace WinFormsApp
 
         private void startButton_Click(object sender, EventArgs e)
         {
-                this.Close();
-                _thread = new Thread(OpenNewForm);
-                _thread.SetApartmentState(ApartmentState.STA);
-                _thread.Start();
-        }
-
-        private void OpenNewForm()
-        {
-            Application.Run(new GameForm(user, _map));
+            this.Hide();
+            var form = new GameForm(user, _map);
+            form.Show();
         }
     }
 }

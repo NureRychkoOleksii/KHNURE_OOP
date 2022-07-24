@@ -6,7 +6,6 @@ namespace WinFormsApp
 {
     public partial class MainMenu : Form
     {
-        Thread _thread;
         public MainMenu()
         {
             InitializeComponent();
@@ -15,19 +14,9 @@ namespace WinFormsApp
 
         private void startButton_Click(object sender, EventArgs e)
         {
-            this.Close();
-            _thread = new Thread(OpenLogin);
-            _thread.SetApartmentState(ApartmentState.STA);
-            _thread.Start();
-        }
-
-        private void OpenLogin(object obj)
-        {
-            Application.Run(new RegistrationAndLoginForm());
-        }
-        private void OpenEditor(object obj)
-        {
-            Application.Run(new LevelEditor());
+            this.Hide();
+            var form = new RegistrationAndLoginForm();
+            form.Show();
         }
 
         private void exitButton_Click(object sender, EventArgs e)
@@ -37,10 +26,9 @@ namespace WinFormsApp
 
         private void editorButton_Click(object sender, EventArgs e)
         {
-            this.Close();
-            _thread = new Thread(OpenEditor);
-            _thread.SetApartmentState(ApartmentState.STA);
-            _thread.Start();
+            this.Hide();
+            var form = new LevelEditor();
+            form.Show();
         }
 
         private void engButton_Click(object sender, EventArgs e)

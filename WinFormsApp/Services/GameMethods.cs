@@ -30,8 +30,6 @@ namespace WinFormsApp.Services
 
         public void Initalization(GraphicEngine _graphicEngine)
         {
-            var music = new Music();
-            music.Play();
             BaseElement.DrawElement += _graphicEngine.Draw;
             BaseElement.ClearElement += _graphicEngine.Clear;
         }

@@ -11,7 +11,6 @@ namespace WinFormsApp
 {
     public partial class GameForm : Form
     {
-        private Thread _thread;
         private EventHandler functionForMovement;
         private User _user = new User();
         private Direction _currentDir = Direction.Stop;
@@ -45,6 +44,8 @@ namespace WinFormsApp
 
         private void StartGame(bool isNew)
         {
+            var music = new Music();
+            music.Play();
             _game.StartGame(ref this._map, ref time, _user, isNew);
             checkings.DetermineElements(ref _player, ref _ball, this._map, ref _total, _user);
             timer1.Interval = 300;
@@ -87,11 +88,6 @@ namespace WinFormsApp
             }
         }
 
-        private void OpenNewForm()
-        {
-            Application.Run(new EndMenu(_user));
-        }
-
         private void label2_Click(object sender, EventArgs e)
         {
             music.Pause();
@@ -109,10 +105,9 @@ namespace WinFormsApp
         private void EndGame()
         {
             _game.End(time, ref _user, _userService);
-            this.Close();
-            _thread = new Thread(OpenNewForm);
-            _thread.SetApartmentState(ApartmentState.STA);
-            _thread.Start();
+            this.Hide();
+            var form = new EndMenu(_user);
+            form.Show(); ;
         }
     }
 }
