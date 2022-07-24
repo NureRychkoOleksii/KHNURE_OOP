@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 using System.Linq;
+using WinFormsApp.Services;
 
 namespace WinFormsApp
 {
@@ -17,6 +18,7 @@ namespace WinFormsApp
         private GraphicEngine _engine = new GraphicEngine();
         private Button clickedButton;
         private MapService _mapService = new MapService();
+        private LevelEditorHelper helper = new LevelEditorHelper();
 
         public LevelEditor()
         {
@@ -76,7 +78,7 @@ namespace WinFormsApp
             {
                 picture.BackgroundImage = clickedButton.BackgroundImage;
                 picture.BackgroundImageLayout = ImageLayout.Stretch;
-                map.map[picture.Location.X / 15, picture.Location.Y / 15] = DetermineElement(picture.Location.X / 15, picture.Location.Y / 15);
+                map.map[picture.Location.X / 15, picture.Location.Y / 15] = helper.DetermineElement(picture.Location.X / 15, picture.Location.Y / 15, clickedButton, player, wall);
             }
             else
             {
@@ -103,48 +105,6 @@ namespace WinFormsApp
             
         }
 
-        private BaseElement DetermineElement(int x, int y)
-        {
-            BaseElement res = clickedButton.Tag switch
-            {
-                "coin" => new EnergyBall(x, y),
-                "player" => new Player(x, y),
-                "wall" => new Wall(x, y),
-                "ball" => new Ball(x, y),
-                "tp" => new Teleport(x,y),
-                _ => new Empty(x,y)
-            };
-            if(res is Player)
-            {
-                player.Enabled = false;
-            }
-            if(res is Ball)
-            {
-                ball.Enabled = false;   
-            }
-
-            return res;
-        }
-
-        private void DetermineKeyElements()
-        {
-            foreach(var item in map.map)
-            {
-                if(item is Player)
-                {
-                    _playerExists = true;
-                }    
-                if(item is Ball)
-                {
-                    _ballExists = true;
-                }
-                if(item is EnergyBall)
-                {
-                    _coinsExist = true;
-                }
-            }
-        }
-
         private Bitmap DeterminePicture(BaseElement picture)
         {
             var image = picture switch
@@ -167,7 +127,7 @@ namespace WinFormsApp
                 MessageBox.Show("Enter name of map");
                 return;
             }
-            DetermineKeyElements();
+            helper.DetermineKeyElements(ref _playerExists, ref _ballExists, ref _coinsExist, map);
             if(!(_playerExists && _ballExists && _coinsExist))
             {
                 MessageBox.Show("You didn't create player, coin or ball, or each of them!");
