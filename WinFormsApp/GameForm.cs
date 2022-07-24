@@ -26,6 +26,7 @@ namespace WinFormsApp
         private GameMethods _game = new GameMethods();
         private ProcessingKey movement = new ProcessingKey();
         Music music;
+        bool isNew = false;
 
         private GraphicEngine _graphicEngine;
         Methods checkings = new Methods();
@@ -34,19 +35,15 @@ namespace WinFormsApp
         {
             InitializeComponent();
             _user = user;
-            music = new Music(); 
-            music.Play();
-            this._map = _map == null ? new Map(50, 50) : _map;
+            _game.DetermineMap(_map, ref this._map, ref isNew);
             _graphicEngine = new GraphicEngine(this);
-            BaseElement.DrawElement += _graphicEngine.Draw;
-            BaseElement.ClearElement += _graphicEngine.Clear;
+            _game.Initalization(_graphicEngine);
             functionForMovement += ChangeImage;
-            bool isNew = _map == null ? true : false;
-            Test(isNew);
+            StartGame(isNew);
             this.KeyDown += UpdateKeyEventHandler;
         }
 
-        private void Test(bool isNew)
+        private void StartGame(bool isNew)
         {
             _game.StartGame(ref this._map, ref time, _user, isNew);
             checkings.DetermineElements(ref _player, ref _ball, this._map, ref _total, _user);

@@ -22,6 +22,19 @@ namespace WinFormsApp.Services
             }
             time.StartTimeChecking();
         }
+        public void DetermineMap(Map _map, ref Map mapToChange, ref bool isNew)
+        {
+            mapToChange = _map == null ? new Map(50, 50) : _map;
+            isNew = _map == null ? true : false;
+        }
+
+        public void Initalization(GraphicEngine _graphicEngine)
+        {
+            var music = new Music();
+            music.Play();
+            BaseElement.DrawElement += _graphicEngine.Draw;
+            BaseElement.ClearElement += _graphicEngine.Clear;
+        }
 
         public void MoveBall(ref Direction _currentBallDir, ref Core.NewModels.Ball _ball, ref Map map, ref GraphicEngine _graphicEngine)
         {
