@@ -44,7 +44,7 @@ namespace WinFormsApp
 
         private void StartGame(bool isNew)
         {
-            var music = new Music();
+            music = new Music();
             music.Play();
             _game.StartGame(ref this._map, ref time, _user, isNew);
             checkings.DetermineElements(ref _player, ref _ball, this._map, ref _total, _user);
@@ -105,9 +105,9 @@ namespace WinFormsApp
         private void EndGame()
         {
             _game.End(time, ref _user, _userService);
-            this.Hide();
+            this.Close();
             var form = new EndMenu(_user);
-            form.Show(); ;
+            form.Show();
         }
     }
 }

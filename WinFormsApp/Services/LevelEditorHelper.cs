@@ -1,6 +1,7 @@
 ﻿using Core.NewModels;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,6 +50,21 @@ namespace WinFormsApp.Services
                     _coinsExist = true;
                 }
             }
+        }
+
+        public Bitmap DeterminePicture(BaseElement picture)
+        {
+            var image = picture switch
+            {
+                Player => ((Player)picture).reverseSlash ? Properties.Resources.reverseSlash : Properties.Resources.slash,
+                Wall => Properties.Resources.wall,
+                Ball => Properties.Resources.Table_tennis_ball,
+                EnergyBall => Properties.Resources.coin,
+                Teleport => Properties.Resources.teleport,
+                _ => null
+            };
+
+            return image;
         }
     }
 }

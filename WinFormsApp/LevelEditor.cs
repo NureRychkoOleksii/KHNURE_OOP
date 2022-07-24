@@ -97,27 +97,12 @@ namespace WinFormsApp
                 {
                     if(i is PictureBox picture && item.X == picture.Location.X / 15 && item.Y == picture.Location.Y / 15)
                     {
-                        picture.BackgroundImage = (Image)DeterminePicture(item);
+                        picture.BackgroundImage = (Image)helper.DeterminePicture(item);
                         picture.BackgroundImageLayout = ImageLayout.Stretch;
                     }
                 }
             }
             
-        }
-
-        private Bitmap DeterminePicture(BaseElement picture)
-        {
-            var image = picture switch
-            {
-                Player => ((Player)picture).reverseSlash ? Properties.Resources.reverseSlash : Properties.Resources.slash,
-                Wall => Properties.Resources.wall,
-                Ball => Properties.Resources.Table_tennis_ball,
-                EnergyBall => Properties.Resources.coin,
-                Teleport => Properties.Resources.teleport,
-                _ => null
-            };
-
-            return image;
         }
 
         private void saveButton_Click(object sender, EventArgs e)

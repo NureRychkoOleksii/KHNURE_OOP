@@ -6,7 +6,6 @@ namespace WinFormsApp
 {
     public partial class EndMenu : Form
     {
-        private Thread _thread;
         private readonly User _user;
         public EndMenu(User user)
         {
@@ -16,16 +15,11 @@ namespace WinFormsApp
 
         private void restartButton_Click(object sender, System.EventArgs e)
         {
-            this.Close();
-            _thread = new Thread(OpenNewForm);
-            _thread.SetApartmentState(ApartmentState.STA);
-            _thread.Start();
+            this.Hide();
+            var form = new GameForm(_user);
+            form.Show();
         }
 
-        private void OpenNewForm()
-        {
-            Application.Run(new GameForm(_user));
-        }
 
         private void exitButton_Click(object sender, System.EventArgs e)
         {
