@@ -144,12 +144,19 @@ namespace WinFormsApp
 
         private void maps_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            var name = maps.HitTest(e.X, e.Y);
+            if(DialogResult.OK == MessageBox.Show("You didn't save your map, you sure you want to load another map?", "Alert", MessageBoxButtons.OKCancel))
+            {
+                var name = maps.HitTest(e.X, e.Y);
 
-            var item = name.Item;
-            var _map = _mapService.GetMaps().FirstOrDefault(x => x.Name == item.Text);
-            map = _map;
-            LoadMap();
+                var item = name.Item;
+                var _map = _mapService.GetMaps().FirstOrDefault(x => x.Name == item.Text);
+                map = _map;
+                LoadMap();
+            }
+            else
+            {
+                return;
+            }
         }
     }
 }
